@@ -16,7 +16,7 @@ namespace ProjektNr1_Palacz
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProjektNr1_Palacz());
+            Application.Run(new ProjektNr1_Palacz53262());
         }
     }
 }
