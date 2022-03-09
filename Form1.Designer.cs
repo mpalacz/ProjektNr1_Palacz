@@ -29,6 +29,7 @@ namespace ProjektNr1_Palacz
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjektNr1_Palacz53262));
             this.mpTCZakladki = new System.Windows.Forms.TabControl();
             this.mpTabPage1 = new System.Windows.Forms.TabPage();
             this.mpBTNZamknij = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@ namespace ProjektNr1_Palacz
             this.mpBTNWyplata = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.mpTabPage2 = new System.Windows.Forms.TabPage();
+            this.mpBTNPowrot1 = new System.Windows.Forms.Button();
             this.mpDataGridView1 = new System.Windows.Forms.DataGridView();
             this.LiczbaNominalow = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WartoscNominalu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,45 +52,40 @@ namespace ProjektNr1_Palacz
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mpTabPage3 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.mpBTNPowrot1 = new System.Windows.Forms.Button();
-            this.mpBTNPowrot2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.button12 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.mpCMBMetodaPlatnosci = new System.Windows.Forms.ComboBox();
+            this.mpCMBWaluta = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.mpTXBToughnessEmperorCena = new System.Windows.Forms.TextBox();
+            this.mpTXBToughnessInfinityCena = new System.Windows.Forms.TextBox();
+            this.mpTXBStaminanXCena = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.mpTXBStaminanSparkCena = new System.Windows.Forms.TextBox();
+            this.mpTXBStaminanRoyaleCena = new System.Windows.Forms.TextBox();
+            this.mpTXBStaminanXXCena = new System.Windows.Forms.TextBox();
+            this.mpTXBToughnessZZCena = new System.Windows.Forms.TextBox();
+            this.mpTXBToughnessZCena = new System.Windows.Forms.TextBox();
+            this.mpTXBToughnessLightCena = new System.Windows.Forms.TextBox();
+            this.mpBTNPowrot2 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.mpBTNPlacenieKarta = new System.Windows.Forms.Button();
+            this.mpBTNToughnessEmperor = new System.Windows.Forms.Button();
+            this.mpBTNToughnessInfinity = new System.Windows.Forms.Button();
+            this.mpBTNStaminanSpark = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.mpBTNStaminanRoyale = new System.Windows.Forms.Button();
+            this.mpBTNStaminanXX = new System.Windows.Forms.Button();
+            this.mpBTNStaminanX = new System.Windows.Forms.Button();
+            this.mpBTNToughnessZZ = new System.Windows.Forms.Button();
+            this.mpBTNToughnessZ = new System.Windows.Forms.Button();
+            this.mpBTNToughnessLight = new System.Windows.Forms.Button();
             this.mpTCZakladki.SuspendLayout();
             this.mpTabPage1.SuspendLayout();
             this.mpTabPage2.SuspendLayout();
@@ -183,6 +180,15 @@ namespace ProjektNr1_Palacz
             this.mpTabPage2.Size = new System.Drawing.Size(1271, 561);
             this.mpTabPage2.TabIndex = 1;
             this.mpTabPage2.Text = "Bankomat";
+            // 
+            // mpBTNPowrot1
+            // 
+            this.mpBTNPowrot1.Location = new System.Drawing.Point(1100, 6);
+            this.mpBTNPowrot1.Name = "mpBTNPowrot1";
+            this.mpBTNPowrot1.Size = new System.Drawing.Size(165, 31);
+            this.mpBTNPowrot1.TabIndex = 7;
+            this.mpBTNPowrot1.Text = "Powrót do pulpitu";
+            this.mpBTNPowrot1.UseVisualStyleBackColor = true;
             // 
             // mpDataGridView1
             // 
@@ -306,41 +312,37 @@ namespace ProjektNr1_Palacz
             // 
             this.mpTabPage3.BackColor = System.Drawing.Color.HotPink;
             this.mpTabPage3.Controls.Add(this.label11);
-            this.mpTabPage3.Controls.Add(this.button15);
+            this.mpTabPage3.Controls.Add(this.mpBTNPlacenieKarta);
             this.mpTabPage3.Controls.Add(this.button14);
             this.mpTabPage3.Controls.Add(this.button13);
             this.mpTabPage3.Controls.Add(this.textBox14);
             this.mpTabPage3.Controls.Add(this.textBox13);
-            this.mpTabPage3.Controls.Add(this.comboBox2);
-            this.mpTabPage3.Controls.Add(this.comboBox1);
+            this.mpTabPage3.Controls.Add(this.mpCMBMetodaPlatnosci);
+            this.mpTabPage3.Controls.Add(this.mpCMBWaluta);
             this.mpTabPage3.Controls.Add(this.label10);
             this.mpTabPage3.Controls.Add(this.label9);
             this.mpTabPage3.Controls.Add(this.label8);
             this.mpTabPage3.Controls.Add(this.label7);
-            this.mpTabPage3.Controls.Add(this.textBox12);
-            this.mpTabPage3.Controls.Add(this.button12);
-            this.mpTabPage3.Controls.Add(this.textBox11);
-            this.mpTabPage3.Controls.Add(this.button11);
-            this.mpTabPage3.Controls.Add(this.textBox10);
-            this.mpTabPage3.Controls.Add(this.button10);
-            this.mpTabPage3.Controls.Add(this.textBox9);
-            this.mpTabPage3.Controls.Add(this.button9);
-            this.mpTabPage3.Controls.Add(this.textBox8);
-            this.mpTabPage3.Controls.Add(this.button8);
+            this.mpTabPage3.Controls.Add(this.mpTXBToughnessEmperorCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNToughnessEmperor);
+            this.mpTabPage3.Controls.Add(this.mpTXBToughnessInfinityCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNToughnessInfinity);
+            this.mpTabPage3.Controls.Add(this.mpTXBStaminanXCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNStaminanSpark);
             this.mpTabPage3.Controls.Add(this.textBox7);
             this.mpTabPage3.Controls.Add(this.button7);
-            this.mpTabPage3.Controls.Add(this.textBox6);
-            this.mpTabPage3.Controls.Add(this.button6);
-            this.mpTabPage3.Controls.Add(this.textBox5);
-            this.mpTabPage3.Controls.Add(this.button5);
-            this.mpTabPage3.Controls.Add(this.textBox4);
-            this.mpTabPage3.Controls.Add(this.button4);
-            this.mpTabPage3.Controls.Add(this.textBox3);
-            this.mpTabPage3.Controls.Add(this.button3);
-            this.mpTabPage3.Controls.Add(this.textBox2);
-            this.mpTabPage3.Controls.Add(this.button2);
-            this.mpTabPage3.Controls.Add(this.textBox1);
-            this.mpTabPage3.Controls.Add(this.button1);
+            this.mpTabPage3.Controls.Add(this.mpTXBStaminanSparkCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNStaminanRoyale);
+            this.mpTabPage3.Controls.Add(this.mpTXBStaminanRoyaleCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNStaminanXX);
+            this.mpTabPage3.Controls.Add(this.mpTXBStaminanXXCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNStaminanX);
+            this.mpTabPage3.Controls.Add(this.mpTXBToughnessZZCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNToughnessZZ);
+            this.mpTabPage3.Controls.Add(this.mpTXBToughnessZCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNToughnessZ);
+            this.mpTabPage3.Controls.Add(this.mpTXBToughnessLightCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNToughnessLight);
             this.mpTabPage3.Controls.Add(this.mpBTNPowrot2);
             this.mpTabPage3.Controls.Add(this.label6);
             this.mpTabPage3.Location = new System.Drawing.Point(4, 28);
@@ -349,307 +351,25 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.Size = new System.Drawing.Size(1271, 561);
             this.mpTabPage3.TabIndex = 2;
             this.mpTabPage3.Text = "Automat vendingowy";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(482, 3);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(271, 66);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Maszyna Vendingowa\r\nAutor: Michał Palacz\r\nKarta studencka (numer): 53262";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // mpBTNPowrot1
-            // 
-            this.mpBTNPowrot1.Location = new System.Drawing.Point(1100, 6);
-            this.mpBTNPowrot1.Name = "mpBTNPowrot1";
-            this.mpBTNPowrot1.Size = new System.Drawing.Size(165, 31);
-            this.mpBTNPowrot1.TabIndex = 7;
-            this.mpBTNPowrot1.Text = "Powrót do pulpitu";
-            this.mpBTNPowrot1.UseVisualStyleBackColor = true;
-            // 
-            // mpBTNPowrot2
-            // 
-            this.mpBTNPowrot2.Location = new System.Drawing.Point(1100, 6);
-            this.mpBTNPowrot2.Name = "mpBTNPowrot2";
-            this.mpBTNPowrot2.Size = new System.Drawing.Size(165, 31);
-            this.mpBTNPowrot2.TabIndex = 8;
-            this.mpBTNPowrot2.Text = "Powrót do pulpitu";
-            this.mpBTNPowrot2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(405, 153);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 75);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(405, 234);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(75, 26);
-            this.textBox1.TabIndex = 10;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(486, 234);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(75, 26);
-            this.textBox2.TabIndex = 12;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(486, 153);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 75);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(567, 234);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(75, 26);
-            this.textBox3.TabIndex = 14;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(567, 153);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 75);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(648, 234);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(75, 26);
-            this.textBox4.TabIndex = 16;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(648, 153);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 75);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(729, 234);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(75, 26);
-            this.textBox5.TabIndex = 18;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(729, 153);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 75);
-            this.button5.TabIndex = 17;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(810, 234);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(75, 26);
-            this.textBox6.TabIndex = 20;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(810, 153);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 75);
-            this.button6.TabIndex = 19;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(405, 347);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(75, 26);
-            this.textBox7.TabIndex = 22;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(405, 266);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 75);
-            this.button7.TabIndex = 21;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(486, 347);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(75, 26);
-            this.textBox8.TabIndex = 24;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(486, 266);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 75);
-            this.button8.TabIndex = 23;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(567, 347);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(75, 26);
-            this.textBox9.TabIndex = 26;
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(567, 266);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 75);
-            this.button9.TabIndex = 25;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(648, 347);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(75, 26);
-            this.textBox10.TabIndex = 28;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(648, 266);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 75);
-            this.button10.TabIndex = 27;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(729, 347);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(75, 26);
-            this.textBox11.TabIndex = 30;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(729, 266);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 75);
-            this.button11.TabIndex = 29;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(810, 347);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(75, 26);
-            this.textBox12.TabIndex = 32;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(810, 266);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 75);
-            this.button12.TabIndex = 31;
-            this.button12.Text = "button12";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 50);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 19);
-            this.label7.TabIndex = 33;
-            this.label7.Text = "Wybierz walutę";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 108);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(172, 19);
-            this.label8.TabIndex = 34;
-            this.label8.Text = "Wybierz metodę płatności";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(446, 401);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 19);
-            this.label9.TabIndex = 35;
-            this.label9.Text = "Do zapłaty";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(748, 401);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 19);
-            this.label10.TabIndex = 36;
-            this.label10.Text = "Wrzucone monety";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 78);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 27);
-            this.comboBox1.TabIndex = 37;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(6, 130);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 27);
-            this.comboBox2.TabIndex = 38;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(405, 423);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(165, 26);
-            this.textBox13.TabIndex = 39;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(720, 423);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(165, 26);
-            this.textBox14.TabIndex = 40;
+            this.mpTabPage3.Click += new System.EventHandler(this.mpTabPage3_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(1037, 130);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(120, 19);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Płatność kartą    ";
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(704, 480);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(165, 31);
+            this.button14.TabIndex = 42;
+            this.button14.Text = "Zwrot monet";
+            this.button14.UseVisualStyleBackColor = true;
             // 
             // button13
             // 
@@ -660,32 +380,290 @@ namespace ProjektNr1_Palacz
             this.button13.Text = "Reset";
             this.button13.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // textBox14
             // 
-            this.button14.Location = new System.Drawing.Point(720, 480);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(165, 31);
-            this.button14.TabIndex = 42;
-            this.button14.Text = "Zwrot monet";
-            this.button14.UseVisualStyleBackColor = true;
+            this.textBox14.Location = new System.Drawing.Point(704, 423);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.ReadOnly = true;
+            this.textBox14.Size = new System.Drawing.Size(165, 26);
+            this.textBox14.TabIndex = 40;
             // 
-            // button15
+            // textBox13
             // 
-            this.button15.Location = new System.Drawing.Point(1058, 234);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 43;
-            this.button15.Text = "button15";
-            this.button15.UseVisualStyleBackColor = true;
+            this.textBox13.Location = new System.Drawing.Point(405, 423);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
+            this.textBox13.Size = new System.Drawing.Size(165, 26);
+            this.textBox13.TabIndex = 39;
             // 
-            // label11
+            // mpCMBMetodaPlatnosci
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1041, 130);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(104, 19);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "Płatność kartą";
+            this.mpCMBMetodaPlatnosci.FormattingEnabled = true;
+            this.mpCMBMetodaPlatnosci.Items.AddRange(new object[] {
+            "Gotówka",
+            "Karta"});
+            this.mpCMBMetodaPlatnosci.Location = new System.Drawing.Point(6, 130);
+            this.mpCMBMetodaPlatnosci.Name = "mpCMBMetodaPlatnosci";
+            this.mpCMBMetodaPlatnosci.Size = new System.Drawing.Size(121, 27);
+            this.mpCMBMetodaPlatnosci.TabIndex = 38;
+            // 
+            // mpCMBWaluta
+            // 
+            this.mpCMBWaluta.FormattingEnabled = true;
+            this.mpCMBWaluta.Items.AddRange(new object[] {
+            "PLN",
+            "¥",
+            "€"});
+            this.mpCMBWaluta.Location = new System.Drawing.Point(6, 78);
+            this.mpCMBWaluta.Name = "mpCMBWaluta";
+            this.mpCMBWaluta.Size = new System.Drawing.Size(121, 27);
+            this.mpCMBWaluta.TabIndex = 37;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(732, 401);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 19);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "Wrzucone monety";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(446, 401);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(78, 19);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Do zapłaty";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 108);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(172, 19);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "Wybierz metodę płatności";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 19);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "Wybierz walutę";
+            // 
+            // mpTXBToughnessEmperorCena
+            // 
+            this.mpTXBToughnessEmperorCena.Location = new System.Drawing.Point(693, 329);
+            this.mpTXBToughnessEmperorCena.Name = "mpTXBToughnessEmperorCena";
+            this.mpTXBToughnessEmperorCena.ReadOnly = true;
+            this.mpTXBToughnessEmperorCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBToughnessEmperorCena.TabIndex = 28;
+            // 
+            // mpTXBToughnessInfinityCena
+            // 
+            this.mpTXBToughnessInfinityCena.Location = new System.Drawing.Point(774, 329);
+            this.mpTXBToughnessInfinityCena.Name = "mpTXBToughnessInfinityCena";
+            this.mpTXBToughnessInfinityCena.ReadOnly = true;
+            this.mpTXBToughnessInfinityCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBToughnessInfinityCena.TabIndex = 26;
+            // 
+            // mpTXBStaminanXCena
+            // 
+            this.mpTXBStaminanXCena.Location = new System.Drawing.Point(531, 216);
+            this.mpTXBStaminanXCena.Name = "mpTXBStaminanXCena";
+            this.mpTXBStaminanXCena.ReadOnly = true;
+            this.mpTXBStaminanXCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBStaminanXCena.TabIndex = 24;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(450, 216);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(80, 26);
+            this.textBox7.TabIndex = 22;
+            // 
+            // mpTXBStaminanSparkCena
+            // 
+            this.mpTXBStaminanSparkCena.Location = new System.Drawing.Point(774, 216);
+            this.mpTXBStaminanSparkCena.Name = "mpTXBStaminanSparkCena";
+            this.mpTXBStaminanSparkCena.ReadOnly = true;
+            this.mpTXBStaminanSparkCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBStaminanSparkCena.TabIndex = 20;
+            // 
+            // mpTXBStaminanRoyaleCena
+            // 
+            this.mpTXBStaminanRoyaleCena.Location = new System.Drawing.Point(693, 216);
+            this.mpTXBStaminanRoyaleCena.Name = "mpTXBStaminanRoyaleCena";
+            this.mpTXBStaminanRoyaleCena.ReadOnly = true;
+            this.mpTXBStaminanRoyaleCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBStaminanRoyaleCena.TabIndex = 18;
+            // 
+            // mpTXBStaminanXXCena
+            // 
+            this.mpTXBStaminanXXCena.Location = new System.Drawing.Point(612, 216);
+            this.mpTXBStaminanXXCena.Name = "mpTXBStaminanXXCena";
+            this.mpTXBStaminanXXCena.ReadOnly = true;
+            this.mpTXBStaminanXXCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBStaminanXXCena.TabIndex = 16;
+            // 
+            // mpTXBToughnessZZCena
+            // 
+            this.mpTXBToughnessZZCena.Location = new System.Drawing.Point(612, 329);
+            this.mpTXBToughnessZZCena.Name = "mpTXBToughnessZZCena";
+            this.mpTXBToughnessZZCena.ReadOnly = true;
+            this.mpTXBToughnessZZCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBToughnessZZCena.TabIndex = 14;
+            // 
+            // mpTXBToughnessZCena
+            // 
+            this.mpTXBToughnessZCena.Location = new System.Drawing.Point(531, 329);
+            this.mpTXBToughnessZCena.Name = "mpTXBToughnessZCena";
+            this.mpTXBToughnessZCena.ReadOnly = true;
+            this.mpTXBToughnessZCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBToughnessZCena.TabIndex = 12;
+            // 
+            // mpTXBToughnessLightCena
+            // 
+            this.mpTXBToughnessLightCena.Location = new System.Drawing.Point(450, 329);
+            this.mpTXBToughnessLightCena.Name = "mpTXBToughnessLightCena";
+            this.mpTXBToughnessLightCena.ReadOnly = true;
+            this.mpTXBToughnessLightCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBToughnessLightCena.TabIndex = 10;
+            // 
+            // mpBTNPowrot2
+            // 
+            this.mpBTNPowrot2.Location = new System.Drawing.Point(1100, 6);
+            this.mpBTNPowrot2.Name = "mpBTNPowrot2";
+            this.mpBTNPowrot2.Size = new System.Drawing.Size(165, 31);
+            this.mpBTNPowrot2.TabIndex = 8;
+            this.mpBTNPowrot2.Text = "Powrót do pulpitu";
+            this.mpBTNPowrot2.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(513, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(271, 66);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Maszyna Vendingowa\r\nAutor: Michał Palacz\r\nKarta studencka (numer): 53262";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // mpBTNPlacenieKarta
+            // 
+            this.mpBTNPlacenieKarta.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNPlacenieKarta.Image")));
+            this.mpBTNPlacenieKarta.Location = new System.Drawing.Point(1031, 152);
+            this.mpBTNPlacenieKarta.Name = "mpBTNPlacenieKarta";
+            this.mpBTNPlacenieKarta.Size = new System.Drawing.Size(113, 140);
+            this.mpBTNPlacenieKarta.TabIndex = 43;
+            this.mpBTNPlacenieKarta.UseVisualStyleBackColor = true;
+            // 
+            // mpBTNToughnessEmperor
+            // 
+            this.mpBTNToughnessEmperor.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughemp;
+            this.mpBTNToughnessEmperor.Location = new System.Drawing.Point(693, 243);
+            this.mpBTNToughnessEmperor.Name = "mpBTNToughnessEmperor";
+            this.mpBTNToughnessEmperor.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessEmperor.TabIndex = 27;
+            this.mpBTNToughnessEmperor.UseVisualStyleBackColor = true;
+            this.mpBTNToughnessEmperor.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // mpBTNToughnessInfinity
+            // 
+            this.mpBTNToughnessInfinity.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughinf;
+            this.mpBTNToughnessInfinity.Location = new System.Drawing.Point(774, 243);
+            this.mpBTNToughnessInfinity.Name = "mpBTNToughnessInfinity";
+            this.mpBTNToughnessInfinity.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessInfinity.TabIndex = 25;
+            this.mpBTNToughnessInfinity.UseVisualStyleBackColor = true;
+            this.mpBTNToughnessInfinity.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // mpBTNStaminanSpark
+            // 
+            this.mpBTNStaminanSpark.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanspark;
+            this.mpBTNStaminanSpark.Location = new System.Drawing.Point(774, 130);
+            this.mpBTNStaminanSpark.Name = "mpBTNStaminanSpark";
+            this.mpBTNStaminanSpark.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanSpark.TabIndex = 23;
+            this.mpBTNStaminanSpark.UseVisualStyleBackColor = true;
+            this.mpBTNStaminanSpark.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Tauriner;
+            this.button7.Location = new System.Drawing.Point(450, 130);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(80, 80);
+            this.button7.TabIndex = 21;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // mpBTNStaminanRoyale
+            // 
+            this.mpBTNStaminanRoyale.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Staminanroyale;
+            this.mpBTNStaminanRoyale.Location = new System.Drawing.Point(693, 130);
+            this.mpBTNStaminanRoyale.Name = "mpBTNStaminanRoyale";
+            this.mpBTNStaminanRoyale.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanRoyale.TabIndex = 19;
+            this.mpBTNStaminanRoyale.UseVisualStyleBackColor = true;
+            this.mpBTNStaminanRoyale.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // mpBTNStaminanXX
+            // 
+            this.mpBTNStaminanXX.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanxx;
+            this.mpBTNStaminanXX.Location = new System.Drawing.Point(612, 130);
+            this.mpBTNStaminanXX.Name = "mpBTNStaminanXX";
+            this.mpBTNStaminanXX.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanXX.TabIndex = 17;
+            this.mpBTNStaminanXX.UseVisualStyleBackColor = true;
+            this.mpBTNStaminanXX.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // mpBTNStaminanX
+            // 
+            this.mpBTNStaminanX.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNStaminanX.Image")));
+            this.mpBTNStaminanX.Location = new System.Drawing.Point(531, 130);
+            this.mpBTNStaminanX.Name = "mpBTNStaminanX";
+            this.mpBTNStaminanX.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanX.TabIndex = 15;
+            this.mpBTNStaminanX.UseVisualStyleBackColor = true;
+            this.mpBTNStaminanX.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // mpBTNToughnessZZ
+            // 
+            this.mpBTNToughnessZZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzedzed;
+            this.mpBTNToughnessZZ.Location = new System.Drawing.Point(612, 243);
+            this.mpBTNToughnessZZ.Name = "mpBTNToughnessZZ";
+            this.mpBTNToughnessZZ.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessZZ.TabIndex = 13;
+            this.mpBTNToughnessZZ.UseVisualStyleBackColor = true;
+            this.mpBTNToughnessZZ.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // mpBTNToughnessZ
+            // 
+            this.mpBTNToughnessZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzed;
+            this.mpBTNToughnessZ.Location = new System.Drawing.Point(531, 243);
+            this.mpBTNToughnessZ.Name = "mpBTNToughnessZ";
+            this.mpBTNToughnessZ.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessZ.TabIndex = 11;
+            this.mpBTNToughnessZ.UseVisualStyleBackColor = true;
+            this.mpBTNToughnessZ.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // mpBTNToughnessLight
+            // 
+            this.mpBTNToughnessLight.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughlite;
+            this.mpBTNToughnessLight.Location = new System.Drawing.Point(450, 243);
+            this.mpBTNToughnessLight.Name = "mpBTNToughnessLight";
+            this.mpBTNToughnessLight.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessLight.TabIndex = 9;
+            this.mpBTNToughnessLight.UseVisualStyleBackColor = true;
+            this.mpBTNToughnessLight.Click += new System.EventHandler(this.button1_Click);
             // 
             // ProjektNr1_Palacz53262
             // 
@@ -736,39 +714,35 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Button mpBTNZamknij;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button mpBTNPowrot1;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox mpTXBToughnessEmperorCena;
+        private System.Windows.Forms.Button mpBTNToughnessEmperor;
+        private System.Windows.Forms.TextBox mpTXBToughnessInfinityCena;
+        private System.Windows.Forms.Button mpBTNToughnessInfinity;
+        private System.Windows.Forms.TextBox mpTXBStaminanXCena;
+        private System.Windows.Forms.Button mpBTNStaminanSpark;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox mpTXBStaminanSparkCena;
+        private System.Windows.Forms.Button mpBTNStaminanRoyale;
+        private System.Windows.Forms.TextBox mpTXBStaminanRoyaleCena;
+        private System.Windows.Forms.Button mpBTNStaminanXX;
+        private System.Windows.Forms.TextBox mpTXBStaminanXXCena;
+        private System.Windows.Forms.Button mpBTNStaminanX;
+        private System.Windows.Forms.TextBox mpTXBToughnessZZCena;
+        private System.Windows.Forms.Button mpBTNToughnessZZ;
+        private System.Windows.Forms.TextBox mpTXBToughnessZCena;
+        private System.Windows.Forms.Button mpBTNToughnessZ;
+        private System.Windows.Forms.TextBox mpTXBToughnessLightCena;
+        private System.Windows.Forms.Button mpBTNToughnessLight;
         private System.Windows.Forms.Button mpBTNPowrot2;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button mpBTNPlacenieKarta;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox mpCMBMetodaPlatnosci;
+        private System.Windows.Forms.ComboBox mpCMBWaluta;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;

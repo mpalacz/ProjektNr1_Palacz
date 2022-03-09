@@ -83,5 +83,41 @@
   <ItemGroup>
     <None Include="Resources\Y0staminanx.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\staminanx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0toughzedzed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0staminanxx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Staminanroyale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0toughlite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0toughzed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0staminanx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0toughinf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0toughemp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tauriner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y0staminanspark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\800px-EMVCoContactlessIndicator.svg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -117,4 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Staminanroyale" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Staminanroyale.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tauriner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tauriner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0staminanspark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0staminanspark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0staminanx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0staminanx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0staminanxx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0staminanxx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0toughemp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0toughemp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0toughinf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0toughinf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0toughlite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0toughlite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0toughzed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0toughzed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y0toughzedzed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Y0toughzedzed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_800px_EMVCoContactlessIndicator_svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\800px-EMVCoContactlessIndicator.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
