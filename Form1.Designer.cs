@@ -29,6 +29,7 @@ namespace ProjektNr1_Palacz
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjektNr1_Palacz53262));
             this.mpTCZakladki = new System.Windows.Forms.TabControl();
             this.mpTabPage1 = new System.Windows.Forms.TabPage();
@@ -37,26 +38,35 @@ namespace ProjektNr1_Palacz
             this.mpBTNWyplata = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.mpTabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.mpBTNPowrot1 = new System.Windows.Forms.Button();
-            this.mpDataGridView1 = new System.Windows.Forms.DataGridView();
+            this.mpDGVListaNominalow = new System.Windows.Forms.DataGridView();
             this.LiczbaNominalow = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WartoscNominalu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RodzajNominalu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RodzajWaluty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
+            this.mpLBLWyplacaneNominaly = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.mpRDBUstawienieKontrolowane = new System.Windows.Forms.RadioButton();
-            this.mpRDBUstawienieDomyslne = new System.Windows.Forms.RadioButton();
+            this.mpBTNAkceptacjaLiczności = new System.Windows.Forms.Button();
+            this.mpRDBUstawieniePrzedziałuLiczności = new System.Windows.Forms.RadioButton();
+            this.mpRDBUstawienieLicznosciDomyslne = new System.Windows.Forms.RadioButton();
             this.mpCMBRodzajWaluty = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mpTabPage3 = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
+            this.mpBTNPlacenieKarta = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.mpTXBWrzuconeMonety = new System.Windows.Forms.TextBox();
+            this.mpTXBDoZaplaty = new System.Windows.Forms.TextBox();
             this.mpCMBMetodaPlatnosci = new System.Windows.Forms.ComboBox();
             this.mpCMBWaluta = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -64,34 +74,35 @@ namespace ProjektNr1_Palacz
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.mpTXBToughnessEmperorCena = new System.Windows.Forms.TextBox();
+            this.mpBTNToughnessEmperor = new System.Windows.Forms.Button();
             this.mpTXBToughnessInfinityCena = new System.Windows.Forms.TextBox();
+            this.mpBTNToughnessInfinity = new System.Windows.Forms.Button();
             this.mpTXBStaminanXCena = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.mpBTNStaminanSpark = new System.Windows.Forms.Button();
+            this.mpTXBTaurinerCena = new System.Windows.Forms.TextBox();
+            this.mpBTNTauriner = new System.Windows.Forms.Button();
             this.mpTXBStaminanSparkCena = new System.Windows.Forms.TextBox();
+            this.mpBTNStaminanRoyale = new System.Windows.Forms.Button();
             this.mpTXBStaminanRoyaleCena = new System.Windows.Forms.TextBox();
+            this.mpBTNStaminanXX = new System.Windows.Forms.Button();
             this.mpTXBStaminanXXCena = new System.Windows.Forms.TextBox();
+            this.mpBTNStaminanX = new System.Windows.Forms.Button();
             this.mpTXBToughnessZZCena = new System.Windows.Forms.TextBox();
+            this.mpBTNToughnessZZ = new System.Windows.Forms.Button();
             this.mpTXBToughnessZCena = new System.Windows.Forms.TextBox();
+            this.mpBTNToughnessZ = new System.Windows.Forms.Button();
             this.mpTXBToughnessLightCena = new System.Windows.Forms.TextBox();
+            this.mpBTNToughnessLight = new System.Windows.Forms.Button();
             this.mpBTNPowrot2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.mpBTNPlacenieKarta = new System.Windows.Forms.Button();
-            this.mpBTNToughnessEmperor = new System.Windows.Forms.Button();
-            this.mpBTNToughnessInfinity = new System.Windows.Forms.Button();
-            this.mpBTNStaminanSpark = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.mpBTNStaminanRoyale = new System.Windows.Forms.Button();
-            this.mpBTNStaminanXX = new System.Windows.Forms.Button();
-            this.mpBTNStaminanX = new System.Windows.Forms.Button();
-            this.mpBTNToughnessZZ = new System.Windows.Forms.Button();
-            this.mpBTNToughnessZ = new System.Windows.Forms.Button();
-            this.mpBTNToughnessLight = new System.Windows.Forms.Button();
+            this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.mpTCZakladki.SuspendLayout();
             this.mpTabPage1.SuspendLayout();
             this.mpTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mpDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpDGVListaNominalow)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.mpTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // mpTCZakladki
@@ -166,9 +177,16 @@ namespace ProjektNr1_Palacz
             // mpTabPage2
             // 
             this.mpTabPage2.BackColor = System.Drawing.Color.YellowGreen;
+            this.mpTabPage2.Controls.Add(this.textBox2);
+            this.mpTabPage2.Controls.Add(this.label13);
+            this.mpTabPage2.Controls.Add(this.button4);
+            this.mpTabPage2.Controls.Add(this.button3);
+            this.mpTabPage2.Controls.Add(this.button2);
+            this.mpTabPage2.Controls.Add(this.textBox1);
+            this.mpTabPage2.Controls.Add(this.label12);
             this.mpTabPage2.Controls.Add(this.mpBTNPowrot1);
-            this.mpTabPage2.Controls.Add(this.mpDataGridView1);
-            this.mpTabPage2.Controls.Add(this.label5);
+            this.mpTabPage2.Controls.Add(this.mpDGVListaNominalow);
+            this.mpTabPage2.Controls.Add(this.mpLBLWyplacaneNominaly);
             this.mpTabPage2.Controls.Add(this.groupBox1);
             this.mpTabPage2.Controls.Add(this.mpCMBRodzajWaluty);
             this.mpTabPage2.Controls.Add(this.label4);
@@ -181,6 +199,66 @@ namespace ProjektNr1_Palacz
             this.mpTabPage2.TabIndex = 1;
             this.mpTabPage2.Text = "Bankomat";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1104, 264);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 26);
+            this.textBox2.TabIndex = 14;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(1100, 241);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(128, 19);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Wypłacona kwota:";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1117, 364);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(87, 23);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "KONIEC";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1117, 322);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(87, 23);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "RESETUJ";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button2.Location = new System.Drawing.Point(1100, 185);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(135, 53);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "AKCEPTACJA\r\nkwoty do wypłaty";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1073, 147);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(162, 26);
+            this.textBox1.TabIndex = 9;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(1069, 106);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(166, 38);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Podaj (wpisz) wysokość \r\nkwoty do wypłaty";
+            // 
             // mpBTNPowrot1
             // 
             this.mpBTNPowrot1.Location = new System.Drawing.Point(1100, 6);
@@ -189,19 +267,21 @@ namespace ProjektNr1_Palacz
             this.mpBTNPowrot1.TabIndex = 7;
             this.mpBTNPowrot1.Text = "Powrót do pulpitu";
             this.mpBTNPowrot1.UseVisualStyleBackColor = true;
+            this.mpBTNPowrot1.Click += new System.EventHandler(this.mpBTNPowrot1_Click);
             // 
-            // mpDataGridView1
+            // mpDGVListaNominalow
             // 
-            this.mpDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.mpDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.mpDGVListaNominalow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mpDGVListaNominalow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LiczbaNominalow,
             this.WartoscNominalu,
             this.RodzajNominalu,
             this.RodzajWaluty});
-            this.mpDataGridView1.Location = new System.Drawing.Point(412, 374);
-            this.mpDataGridView1.Name = "mpDataGridView1";
-            this.mpDataGridView1.Size = new System.Drawing.Size(560, 150);
-            this.mpDataGridView1.TabIndex = 6;
+            this.mpDGVListaNominalow.Location = new System.Drawing.Point(370, 364);
+            this.mpDGVListaNominalow.Name = "mpDGVListaNominalow";
+            this.mpDGVListaNominalow.Size = new System.Drawing.Size(560, 150);
+            this.mpDGVListaNominalow.TabIndex = 6;
+            this.mpDGVListaNominalow.Visible = false;
             // 
             // LiczbaNominalow
             // 
@@ -223,48 +303,59 @@ namespace ProjektNr1_Palacz
             this.RodzajWaluty.HeaderText = "Rodzaj waluty";
             this.RodzajWaluty.Name = "RodzajWaluty";
             // 
-            // label5
+            // mpLBLWyplacaneNominaly
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(441, 314);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(443, 32);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Zawartość pojemników bankomatu";
+            this.mpLBLWyplacaneNominaly.AutoSize = true;
+            this.mpLBLWyplacaneNominaly.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpLBLWyplacaneNominaly.Location = new System.Drawing.Point(546, 342);
+            this.mpLBLWyplacaneNominaly.Name = "mpLBLWyplacaneNominaly";
+            this.mpLBLWyplacaneNominaly.Size = new System.Drawing.Size(146, 19);
+            this.mpLBLWyplacaneNominaly.TabIndex = 5;
+            this.mpLBLWyplacaneNominaly.Text = "Wypłacane nominały:";
+            this.mpLBLWyplacaneNominaly.Visible = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.mpRDBUstawienieKontrolowane);
-            this.groupBox1.Controls.Add(this.mpRDBUstawienieDomyslne);
-            this.groupBox1.Location = new System.Drawing.Point(412, 211);
+            this.groupBox1.Controls.Add(this.mpBTNAkceptacjaLiczności);
+            this.groupBox1.Controls.Add(this.mpRDBUstawieniePrzedziałuLiczności);
+            this.groupBox1.Controls.Add(this.mpRDBUstawienieLicznosciDomyslne);
+            this.groupBox1.Location = new System.Drawing.Point(370, 73);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(510, 100);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ustalenie liczności nominałów w pojemnikach bankomatu";
+            this.groupBox1.Text = "Ustalenie liczności nominałów";
             // 
-            // mpRDBUstawienieKontrolowane
+            // mpBTNAkceptacjaLiczności
             // 
-            this.mpRDBUstawienieKontrolowane.AutoSize = true;
-            this.mpRDBUstawienieKontrolowane.Location = new System.Drawing.Point(244, 36);
-            this.mpRDBUstawienieKontrolowane.Name = "mpRDBUstawienieKontrolowane";
-            this.mpRDBUstawienieKontrolowane.Size = new System.Drawing.Size(237, 42);
-            this.mpRDBUstawienieKontrolowane.TabIndex = 1;
-            this.mpRDBUstawienieKontrolowane.Text = "Ustawienie kontrolowane\r\n(w podanym przedziale liczności)";
-            this.mpRDBUstawienieKontrolowane.UseVisualStyleBackColor = true;
+            this.mpBTNAkceptacjaLiczności.Location = new System.Drawing.Point(262, 25);
+            this.mpBTNAkceptacjaLiczności.Name = "mpBTNAkceptacjaLiczności";
+            this.mpBTNAkceptacjaLiczności.Size = new System.Drawing.Size(229, 53);
+            this.mpBTNAkceptacjaLiczności.TabIndex = 2;
+            this.mpBTNAkceptacjaLiczności.Text = "Akceptacja wybranego ustawienia liczności nominałów";
+            this.mpBTNAkceptacjaLiczności.UseVisualStyleBackColor = true;
+            this.mpBTNAkceptacjaLiczności.Click += new System.EventHandler(this.mpBTNAkceptacjaLiczności_Click);
             // 
-            // mpRDBUstawienieDomyslne
+            // mpRDBUstawieniePrzedziałuLiczności
             // 
-            this.mpRDBUstawienieDomyslne.AutoSize = true;
-            this.mpRDBUstawienieDomyslne.Checked = true;
-            this.mpRDBUstawienieDomyslne.Location = new System.Drawing.Point(62, 46);
-            this.mpRDBUstawienieDomyslne.Name = "mpRDBUstawienieDomyslne";
-            this.mpRDBUstawienieDomyslne.Size = new System.Drawing.Size(163, 23);
-            this.mpRDBUstawienieDomyslne.TabIndex = 0;
-            this.mpRDBUstawienieDomyslne.TabStop = true;
-            this.mpRDBUstawienieDomyslne.Text = "Ustawienie domyślne";
-            this.mpRDBUstawienieDomyslne.UseVisualStyleBackColor = true;
+            this.mpRDBUstawieniePrzedziałuLiczności.AutoSize = true;
+            this.mpRDBUstawieniePrzedziałuLiczności.Location = new System.Drawing.Point(94, 46);
+            this.mpRDBUstawieniePrzedziałuLiczności.Name = "mpRDBUstawieniePrzedziałuLiczności";
+            this.mpRDBUstawieniePrzedziałuLiczności.Size = new System.Drawing.Size(110, 23);
+            this.mpRDBUstawieniePrzedziałuLiczności.TabIndex = 1;
+            this.mpRDBUstawieniePrzedziałuLiczności.Text = "przedziałowe";
+            this.mpRDBUstawieniePrzedziałuLiczności.UseVisualStyleBackColor = true;
+            this.mpRDBUstawieniePrzedziałuLiczności.CheckedChanged += new System.EventHandler(this.mpRDBUstawieniePrzedziałuLiczności_CheckedChanged);
+            // 
+            // mpRDBUstawienieLicznosciDomyslne
+            // 
+            this.mpRDBUstawienieLicznosciDomyslne.AutoSize = true;
+            this.mpRDBUstawienieLicznosciDomyslne.Location = new System.Drawing.Point(6, 46);
+            this.mpRDBUstawienieLicznosciDomyslne.Name = "mpRDBUstawienieLicznosciDomyslne";
+            this.mpRDBUstawienieLicznosciDomyslne.Size = new System.Drawing.Size(71, 23);
+            this.mpRDBUstawienieLicznosciDomyslne.TabIndex = 0;
+            this.mpRDBUstawienieLicznosciDomyslne.Text = "losowe";
+            this.mpRDBUstawienieLicznosciDomyslne.UseVisualStyleBackColor = true;
             // 
             // mpCMBRodzajWaluty
             // 
@@ -278,7 +369,7 @@ namespace ProjektNr1_Palacz
             this.mpCMBRodzajWaluty.Name = "mpCMBRodzajWaluty";
             this.mpCMBRodzajWaluty.Size = new System.Drawing.Size(121, 27);
             this.mpCMBRodzajWaluty.TabIndex = 3;
-            this.mpCMBRodzajWaluty.Text = "Lista walut";
+            this.mpCMBRodzajWaluty.Text = "Lista walut (wybierz jadną walute)";
             // 
             // label4
             // 
@@ -292,7 +383,7 @@ namespace ProjektNr1_Palacz
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(408, 106);
+            this.label3.Location = new System.Drawing.Point(408, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(414, 19);
             this.label3.TabIndex = 1;
@@ -302,7 +393,7 @@ namespace ProjektNr1_Palacz
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(499, 64);
+            this.label2.Location = new System.Drawing.Point(499, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(240, 42);
             this.label2.TabIndex = 0;
@@ -315,8 +406,8 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.Controls.Add(this.mpBTNPlacenieKarta);
             this.mpTabPage3.Controls.Add(this.button14);
             this.mpTabPage3.Controls.Add(this.button13);
-            this.mpTabPage3.Controls.Add(this.textBox14);
-            this.mpTabPage3.Controls.Add(this.textBox13);
+            this.mpTabPage3.Controls.Add(this.mpTXBWrzuconeMonety);
+            this.mpTabPage3.Controls.Add(this.mpTXBDoZaplaty);
             this.mpTabPage3.Controls.Add(this.mpCMBMetodaPlatnosci);
             this.mpTabPage3.Controls.Add(this.mpCMBWaluta);
             this.mpTabPage3.Controls.Add(this.label10);
@@ -329,8 +420,8 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.Controls.Add(this.mpBTNToughnessInfinity);
             this.mpTabPage3.Controls.Add(this.mpTXBStaminanXCena);
             this.mpTabPage3.Controls.Add(this.mpBTNStaminanSpark);
-            this.mpTabPage3.Controls.Add(this.textBox7);
-            this.mpTabPage3.Controls.Add(this.button7);
+            this.mpTabPage3.Controls.Add(this.mpTXBTaurinerCena);
+            this.mpTabPage3.Controls.Add(this.mpBTNTauriner);
             this.mpTabPage3.Controls.Add(this.mpTXBStaminanSparkCena);
             this.mpTabPage3.Controls.Add(this.mpBTNStaminanRoyale);
             this.mpTabPage3.Controls.Add(this.mpTXBStaminanRoyaleCena);
@@ -351,7 +442,6 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.Size = new System.Drawing.Size(1271, 561);
             this.mpTabPage3.TabIndex = 2;
             this.mpTabPage3.Text = "Automat vendingowy";
-            this.mpTabPage3.Click += new System.EventHandler(this.mpTabPage3_Click);
             // 
             // label11
             // 
@@ -361,6 +451,15 @@ namespace ProjektNr1_Palacz
             this.label11.Size = new System.Drawing.Size(120, 19);
             this.label11.TabIndex = 44;
             this.label11.Text = "Płatność kartą    ";
+            // 
+            // mpBTNPlacenieKarta
+            // 
+            this.mpBTNPlacenieKarta.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNPlacenieKarta.Image")));
+            this.mpBTNPlacenieKarta.Location = new System.Drawing.Point(1031, 152);
+            this.mpBTNPlacenieKarta.Name = "mpBTNPlacenieKarta";
+            this.mpBTNPlacenieKarta.Size = new System.Drawing.Size(113, 140);
+            this.mpBTNPlacenieKarta.TabIndex = 43;
+            this.mpBTNPlacenieKarta.UseVisualStyleBackColor = true;
             // 
             // button14
             // 
@@ -380,21 +479,21 @@ namespace ProjektNr1_Palacz
             this.button13.Text = "Reset";
             this.button13.UseVisualStyleBackColor = true;
             // 
-            // textBox14
+            // mpTXBWrzuconeMonety
             // 
-            this.textBox14.Location = new System.Drawing.Point(704, 423);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(165, 26);
-            this.textBox14.TabIndex = 40;
+            this.mpTXBWrzuconeMonety.Location = new System.Drawing.Point(704, 423);
+            this.mpTXBWrzuconeMonety.Name = "mpTXBWrzuconeMonety";
+            this.mpTXBWrzuconeMonety.ReadOnly = true;
+            this.mpTXBWrzuconeMonety.Size = new System.Drawing.Size(165, 26);
+            this.mpTXBWrzuconeMonety.TabIndex = 40;
             // 
-            // textBox13
+            // mpTXBDoZaplaty
             // 
-            this.textBox13.Location = new System.Drawing.Point(405, 423);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(165, 26);
-            this.textBox13.TabIndex = 39;
+            this.mpTXBDoZaplaty.Location = new System.Drawing.Point(405, 423);
+            this.mpTXBDoZaplaty.Name = "mpTXBDoZaplaty";
+            this.mpTXBDoZaplaty.ReadOnly = true;
+            this.mpTXBDoZaplaty.Size = new System.Drawing.Size(165, 26);
+            this.mpTXBDoZaplaty.TabIndex = 39;
             // 
             // mpCMBMetodaPlatnosci
             // 
@@ -427,7 +526,6 @@ namespace ProjektNr1_Palacz
             this.label10.Size = new System.Drawing.Size(122, 19);
             this.label10.TabIndex = 36;
             this.label10.Text = "Wrzucone monety";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label9
             // 
@@ -464,6 +562,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBToughnessEmperorCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBToughnessEmperorCena.TabIndex = 28;
             // 
+            // mpBTNToughnessEmperor
+            // 
+            this.mpBTNToughnessEmperor.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughemp;
+            this.mpBTNToughnessEmperor.Location = new System.Drawing.Point(693, 243);
+            this.mpBTNToughnessEmperor.Name = "mpBTNToughnessEmperor";
+            this.mpBTNToughnessEmperor.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessEmperor.TabIndex = 27;
+            this.mpBTNToughnessEmperor.UseVisualStyleBackColor = true;
+            // 
             // mpTXBToughnessInfinityCena
             // 
             this.mpTXBToughnessInfinityCena.Location = new System.Drawing.Point(774, 329);
@@ -471,6 +578,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBToughnessInfinityCena.ReadOnly = true;
             this.mpTXBToughnessInfinityCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBToughnessInfinityCena.TabIndex = 26;
+            // 
+            // mpBTNToughnessInfinity
+            // 
+            this.mpBTNToughnessInfinity.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughinf;
+            this.mpBTNToughnessInfinity.Location = new System.Drawing.Point(774, 243);
+            this.mpBTNToughnessInfinity.Name = "mpBTNToughnessInfinity";
+            this.mpBTNToughnessInfinity.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessInfinity.TabIndex = 25;
+            this.mpBTNToughnessInfinity.UseVisualStyleBackColor = true;
             // 
             // mpTXBStaminanXCena
             // 
@@ -480,13 +596,31 @@ namespace ProjektNr1_Palacz
             this.mpTXBStaminanXCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBStaminanXCena.TabIndex = 24;
             // 
-            // textBox7
+            // mpBTNStaminanSpark
             // 
-            this.textBox7.Location = new System.Drawing.Point(450, 216);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(80, 26);
-            this.textBox7.TabIndex = 22;
+            this.mpBTNStaminanSpark.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanspark;
+            this.mpBTNStaminanSpark.Location = new System.Drawing.Point(774, 130);
+            this.mpBTNStaminanSpark.Name = "mpBTNStaminanSpark";
+            this.mpBTNStaminanSpark.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanSpark.TabIndex = 23;
+            this.mpBTNStaminanSpark.UseVisualStyleBackColor = true;
+            // 
+            // mpTXBTaurinerCena
+            // 
+            this.mpTXBTaurinerCena.Location = new System.Drawing.Point(450, 216);
+            this.mpTXBTaurinerCena.Name = "mpTXBTaurinerCena";
+            this.mpTXBTaurinerCena.ReadOnly = true;
+            this.mpTXBTaurinerCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXBTaurinerCena.TabIndex = 22;
+            // 
+            // mpBTNTauriner
+            // 
+            this.mpBTNTauriner.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Tauriner;
+            this.mpBTNTauriner.Location = new System.Drawing.Point(450, 130);
+            this.mpBTNTauriner.Name = "mpBTNTauriner";
+            this.mpBTNTauriner.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNTauriner.TabIndex = 21;
+            this.mpBTNTauriner.UseVisualStyleBackColor = true;
             // 
             // mpTXBStaminanSparkCena
             // 
@@ -496,6 +630,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBStaminanSparkCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBStaminanSparkCena.TabIndex = 20;
             // 
+            // mpBTNStaminanRoyale
+            // 
+            this.mpBTNStaminanRoyale.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Staminanroyale;
+            this.mpBTNStaminanRoyale.Location = new System.Drawing.Point(693, 130);
+            this.mpBTNStaminanRoyale.Name = "mpBTNStaminanRoyale";
+            this.mpBTNStaminanRoyale.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanRoyale.TabIndex = 19;
+            this.mpBTNStaminanRoyale.UseVisualStyleBackColor = true;
+            // 
             // mpTXBStaminanRoyaleCena
             // 
             this.mpTXBStaminanRoyaleCena.Location = new System.Drawing.Point(693, 216);
@@ -503,6 +646,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBStaminanRoyaleCena.ReadOnly = true;
             this.mpTXBStaminanRoyaleCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBStaminanRoyaleCena.TabIndex = 18;
+            // 
+            // mpBTNStaminanXX
+            // 
+            this.mpBTNStaminanXX.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanxx;
+            this.mpBTNStaminanXX.Location = new System.Drawing.Point(612, 130);
+            this.mpBTNStaminanXX.Name = "mpBTNStaminanXX";
+            this.mpBTNStaminanXX.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanXX.TabIndex = 17;
+            this.mpBTNStaminanXX.UseVisualStyleBackColor = true;
             // 
             // mpTXBStaminanXXCena
             // 
@@ -512,6 +664,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBStaminanXXCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBStaminanXXCena.TabIndex = 16;
             // 
+            // mpBTNStaminanX
+            // 
+            this.mpBTNStaminanX.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNStaminanX.Image")));
+            this.mpBTNStaminanX.Location = new System.Drawing.Point(531, 130);
+            this.mpBTNStaminanX.Name = "mpBTNStaminanX";
+            this.mpBTNStaminanX.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNStaminanX.TabIndex = 15;
+            this.mpBTNStaminanX.UseVisualStyleBackColor = true;
+            // 
             // mpTXBToughnessZZCena
             // 
             this.mpTXBToughnessZZCena.Location = new System.Drawing.Point(612, 329);
@@ -519,6 +680,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBToughnessZZCena.ReadOnly = true;
             this.mpTXBToughnessZZCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBToughnessZZCena.TabIndex = 14;
+            // 
+            // mpBTNToughnessZZ
+            // 
+            this.mpBTNToughnessZZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzedzed;
+            this.mpBTNToughnessZZ.Location = new System.Drawing.Point(612, 243);
+            this.mpBTNToughnessZZ.Name = "mpBTNToughnessZZ";
+            this.mpBTNToughnessZZ.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessZZ.TabIndex = 13;
+            this.mpBTNToughnessZZ.UseVisualStyleBackColor = true;
             // 
             // mpTXBToughnessZCena
             // 
@@ -528,6 +698,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBToughnessZCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBToughnessZCena.TabIndex = 12;
             // 
+            // mpBTNToughnessZ
+            // 
+            this.mpBTNToughnessZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzed;
+            this.mpBTNToughnessZ.Location = new System.Drawing.Point(531, 243);
+            this.mpBTNToughnessZ.Name = "mpBTNToughnessZ";
+            this.mpBTNToughnessZ.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessZ.TabIndex = 11;
+            this.mpBTNToughnessZ.UseVisualStyleBackColor = true;
+            // 
             // mpTXBToughnessLightCena
             // 
             this.mpTXBToughnessLightCena.Location = new System.Drawing.Point(450, 329);
@@ -535,6 +714,15 @@ namespace ProjektNr1_Palacz
             this.mpTXBToughnessLightCena.ReadOnly = true;
             this.mpTXBToughnessLightCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXBToughnessLightCena.TabIndex = 10;
+            // 
+            // mpBTNToughnessLight
+            // 
+            this.mpBTNToughnessLight.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughlite;
+            this.mpBTNToughnessLight.Location = new System.Drawing.Point(450, 243);
+            this.mpBTNToughnessLight.Name = "mpBTNToughnessLight";
+            this.mpBTNToughnessLight.Size = new System.Drawing.Size(80, 80);
+            this.mpBTNToughnessLight.TabIndex = 9;
+            this.mpBTNToughnessLight.UseVisualStyleBackColor = true;
             // 
             // mpBTNPowrot2
             // 
@@ -556,114 +744,9 @@ namespace ProjektNr1_Palacz
             this.label6.Text = "Maszyna Vendingowa\r\nAutor: Michał Palacz\r\nKarta studencka (numer): 53262";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // mpBTNPlacenieKarta
+            // mpErrorProvider1
             // 
-            this.mpBTNPlacenieKarta.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNPlacenieKarta.Image")));
-            this.mpBTNPlacenieKarta.Location = new System.Drawing.Point(1031, 152);
-            this.mpBTNPlacenieKarta.Name = "mpBTNPlacenieKarta";
-            this.mpBTNPlacenieKarta.Size = new System.Drawing.Size(113, 140);
-            this.mpBTNPlacenieKarta.TabIndex = 43;
-            this.mpBTNPlacenieKarta.UseVisualStyleBackColor = true;
-            // 
-            // mpBTNToughnessEmperor
-            // 
-            this.mpBTNToughnessEmperor.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughemp;
-            this.mpBTNToughnessEmperor.Location = new System.Drawing.Point(693, 243);
-            this.mpBTNToughnessEmperor.Name = "mpBTNToughnessEmperor";
-            this.mpBTNToughnessEmperor.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNToughnessEmperor.TabIndex = 27;
-            this.mpBTNToughnessEmperor.UseVisualStyleBackColor = true;
-            this.mpBTNToughnessEmperor.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // mpBTNToughnessInfinity
-            // 
-            this.mpBTNToughnessInfinity.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughinf;
-            this.mpBTNToughnessInfinity.Location = new System.Drawing.Point(774, 243);
-            this.mpBTNToughnessInfinity.Name = "mpBTNToughnessInfinity";
-            this.mpBTNToughnessInfinity.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNToughnessInfinity.TabIndex = 25;
-            this.mpBTNToughnessInfinity.UseVisualStyleBackColor = true;
-            this.mpBTNToughnessInfinity.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // mpBTNStaminanSpark
-            // 
-            this.mpBTNStaminanSpark.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanspark;
-            this.mpBTNStaminanSpark.Location = new System.Drawing.Point(774, 130);
-            this.mpBTNStaminanSpark.Name = "mpBTNStaminanSpark";
-            this.mpBTNStaminanSpark.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNStaminanSpark.TabIndex = 23;
-            this.mpBTNStaminanSpark.UseVisualStyleBackColor = true;
-            this.mpBTNStaminanSpark.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Tauriner;
-            this.button7.Location = new System.Drawing.Point(450, 130);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(80, 80);
-            this.button7.TabIndex = 21;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // mpBTNStaminanRoyale
-            // 
-            this.mpBTNStaminanRoyale.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Staminanroyale;
-            this.mpBTNStaminanRoyale.Location = new System.Drawing.Point(693, 130);
-            this.mpBTNStaminanRoyale.Name = "mpBTNStaminanRoyale";
-            this.mpBTNStaminanRoyale.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNStaminanRoyale.TabIndex = 19;
-            this.mpBTNStaminanRoyale.UseVisualStyleBackColor = true;
-            this.mpBTNStaminanRoyale.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // mpBTNStaminanXX
-            // 
-            this.mpBTNStaminanXX.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanxx;
-            this.mpBTNStaminanXX.Location = new System.Drawing.Point(612, 130);
-            this.mpBTNStaminanXX.Name = "mpBTNStaminanXX";
-            this.mpBTNStaminanXX.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNStaminanXX.TabIndex = 17;
-            this.mpBTNStaminanXX.UseVisualStyleBackColor = true;
-            this.mpBTNStaminanXX.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // mpBTNStaminanX
-            // 
-            this.mpBTNStaminanX.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNStaminanX.Image")));
-            this.mpBTNStaminanX.Location = new System.Drawing.Point(531, 130);
-            this.mpBTNStaminanX.Name = "mpBTNStaminanX";
-            this.mpBTNStaminanX.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNStaminanX.TabIndex = 15;
-            this.mpBTNStaminanX.UseVisualStyleBackColor = true;
-            this.mpBTNStaminanX.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // mpBTNToughnessZZ
-            // 
-            this.mpBTNToughnessZZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzedzed;
-            this.mpBTNToughnessZZ.Location = new System.Drawing.Point(612, 243);
-            this.mpBTNToughnessZZ.Name = "mpBTNToughnessZZ";
-            this.mpBTNToughnessZZ.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNToughnessZZ.TabIndex = 13;
-            this.mpBTNToughnessZZ.UseVisualStyleBackColor = true;
-            this.mpBTNToughnessZZ.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // mpBTNToughnessZ
-            // 
-            this.mpBTNToughnessZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzed;
-            this.mpBTNToughnessZ.Location = new System.Drawing.Point(531, 243);
-            this.mpBTNToughnessZ.Name = "mpBTNToughnessZ";
-            this.mpBTNToughnessZ.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNToughnessZ.TabIndex = 11;
-            this.mpBTNToughnessZ.UseVisualStyleBackColor = true;
-            this.mpBTNToughnessZ.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // mpBTNToughnessLight
-            // 
-            this.mpBTNToughnessLight.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughlite;
-            this.mpBTNToughnessLight.Location = new System.Drawing.Point(450, 243);
-            this.mpBTNToughnessLight.Name = "mpBTNToughnessLight";
-            this.mpBTNToughnessLight.Size = new System.Drawing.Size(80, 80);
-            this.mpBTNToughnessLight.TabIndex = 9;
-            this.mpBTNToughnessLight.UseVisualStyleBackColor = true;
-            this.mpBTNToughnessLight.Click += new System.EventHandler(this.button1_Click);
+            this.mpErrorProvider1.ContainerControl = this;
             // 
             // ProjektNr1_Palacz53262
             // 
@@ -680,11 +763,12 @@ namespace ProjektNr1_Palacz
             this.mpTabPage1.PerformLayout();
             this.mpTabPage2.ResumeLayout(false);
             this.mpTabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mpDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpDGVListaNominalow)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.mpTabPage3.ResumeLayout(false);
             this.mpTabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -702,15 +786,15 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView mpDataGridView1;
+        private System.Windows.Forms.DataGridView mpDGVListaNominalow;
         private System.Windows.Forms.DataGridViewTextBoxColumn LiczbaNominalow;
         private System.Windows.Forms.DataGridViewTextBoxColumn WartoscNominalu;
         private System.Windows.Forms.DataGridViewTextBoxColumn RodzajNominalu;
         private System.Windows.Forms.DataGridViewTextBoxColumn RodzajWaluty;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label mpLBLWyplacaneNominaly;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton mpRDBUstawienieKontrolowane;
-        private System.Windows.Forms.RadioButton mpRDBUstawienieDomyslne;
+        private System.Windows.Forms.RadioButton mpRDBUstawieniePrzedziałuLiczności;
+        private System.Windows.Forms.RadioButton mpRDBUstawienieLicznosciDomyslne;
         private System.Windows.Forms.Button mpBTNZamknij;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button mpBTNPowrot1;
@@ -720,8 +804,8 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Button mpBTNToughnessInfinity;
         private System.Windows.Forms.TextBox mpTXBStaminanXCena;
         private System.Windows.Forms.Button mpBTNStaminanSpark;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox mpTXBTaurinerCena;
+        private System.Windows.Forms.Button mpBTNTauriner;
         private System.Windows.Forms.TextBox mpTXBStaminanSparkCena;
         private System.Windows.Forms.Button mpBTNStaminanRoyale;
         private System.Windows.Forms.TextBox mpTXBStaminanRoyaleCena;
@@ -739,14 +823,23 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Button mpBTNPlacenieKarta;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox mpTXBWrzuconeMonety;
+        private System.Windows.Forms.TextBox mpTXBDoZaplaty;
         private System.Windows.Forms.ComboBox mpCMBMetodaPlatnosci;
         private System.Windows.Forms.ComboBox mpCMBWaluta;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button mpBTNAkceptacjaLiczności;
+        private System.Windows.Forms.ErrorProvider mpErrorProvider1;
     }
 }
 
