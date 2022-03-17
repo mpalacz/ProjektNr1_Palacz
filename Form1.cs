@@ -25,17 +25,59 @@ namespace ProjektNr1_Palacz
         }
         //deklaracja zmiennej tablicowej (referencyjnej) pojemnik nominałów
         mpNominaly[] mpPojemnikNominalow;
+
+        struct mpProdukty
+        {
+            public TextBox mpTXTCena;
+            public float mpCenaPLN;
+            public ushort mpCenaYEN;
+            public float mpCenaEUR;
+            public void mpStworzProdukt(TextBox mpTXTCenaF, float mpCenaPLNF, ushort mpCenaYENF, float mpCenaEURF)
+            {
+                mpTXTCena = mpTXTCenaF;
+                mpCenaPLN = mpCenaPLNF;
+                mpCenaYEN = mpCenaYENF;
+                mpCenaEUR = mpCenaEURF;
+            }
+        }
+        mpProdukty[] mpStworzenieKonteneraProduktow()
+        {
+            mpProdukty mpTauriner = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTTaurinerCena, 0.5f, 12, 0.1f);
+            mpProdukty mpToughnessLight = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTToughnessLightCena, 1f, 30, 0.2f);
+            mpProdukty mpToughnessZ = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTToughnessZCena, 1.5f, 40, 0.3f);
+            mpProdukty mpToughnessZZ = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTToughnessZZCena, 2f, 55, 0.4f);
+            mpProdukty mpToughnessEmperor = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTToughnessEmperorCena, 4f, 110, 0.8f);
+            mpProdukty mpToughnessInfinity = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTToughnessInfinityCena, 5f, 140, 1f);
+            mpProdukty mpStaminanX = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTStaminanXCena, 2f, 55, 0.4f);
+            mpProdukty mpStaminanXX = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTStaminanXXCena, 5f, 140, 1f);
+            mpProdukty mpStaminanRoyale = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTStaminanRoyaleCena, 7.5f, 200, 1.6f);
+            mpProdukty mpStaminanSpark = new mpProdukty();
+            mpTauriner.mpStworzProdukt(mpTXTStaminanSparkCena, 10f, 275, 2.1f);
+            mpProdukty[] mpPojemnikProduktow = { mpTauriner, mpToughnessLight, mpToughnessZ, mpToughnessZZ, mpToughnessEmperor, mpToughnessInfinity, mpStaminanX, mpStaminanXX, mpStaminanRoyale, mpStaminanSpark };
+            return mpPojemnikProduktow;
+        }
         public ProjektNr1_Palacz53262()
         {
             InitializeComponent();
             // ustawienie aktywnej zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
-
             // utworzenie egzemplarza pojemnika nominałów
             mpPojemnikNominalow = new mpNominaly[mpWartoscNominalow.Length];
             mpCMBRodzajWaluty.SelectedIndex = 0;
+
             mpCMBMetodaPlatnosci.SelectedIndex = 0;
             mpCMBWaluta.SelectedIndex = 0;
+            // tworzenie i przypisywanie zmiennych do produktów
+            mpProdukty[] mpPojemnikProduktow = mpStworzenieKonteneraProduktow();
         }
         private void mpTCZakladki_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -178,7 +220,7 @@ namespace ProjektNr1_Palacz
                 case 0:
                     mpLBLPlatnoscKarta.Visible = false;
                     mpBTNPlatnoscKarta.Visible = false;
-                    //mpCMBMetodaPlatnosci_SelectedIndexChanged(sender, e);
+                    mpCMBWaluta.SelectedIndexChanged += mpCMBWaluta_SelectedIndexChanged;
                     break;
                 case 1:
                     mpGRBJeny.Visible = false;
