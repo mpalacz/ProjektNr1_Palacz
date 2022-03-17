@@ -11,12 +11,9 @@ using System.Windows.Forms;
 namespace ProjektNr1_Palacz
 {
     public partial class ProjektNr1_Palacz53262 : Form
-    {
-        // deklaracje i utworzenie egzemplarzy kontrolek, które będą umieszczone na formularzu
-        Label mpLBLEtykietaDolnejGranicyPrzedzialu = new Label();
-        Label mpLBLEtykietaGornejGranicyPrzedzialu = new Label();
-        TextBox mpTXTDolnaGranicaPrzedzialu = new TextBox();
-        TextBox mpTXTGornaGranicaPrzedzialu = new TextBox();
+    { 
+        // deklaracja tablicy aktywności zakładek formularza
+        bool[] mpStanTabPage = { true, false, false };
         // deklaracja stałych
         const ushort mpMaxLicznoscNominalow = 100;
         float[] mpWartoscNominalow = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f };
@@ -33,19 +30,62 @@ namespace ProjektNr1_Palacz
             InitializeComponent();
             // ustawienie aktywnej zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
-            mpBTNWyplata.Click += mpBTNWyplata_Click;
-            mpBTNKupno.Click += mpBTNKupno_Click;
 
             // utworzenie egzemplarza pojemnika nominałów
             mpPojemnikNominalow = new mpNominaly[mpWartoscNominalow.Length];
+            mpCMBRodzajWaluty.SelectedIndex = 0;
+            mpCMBMetodaPlatnosci.SelectedIndex = 0;
+            mpCMBWaluta.SelectedIndex = 0;
+        }
+        private void mpTCZakladki_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == mpTCZakladki.TabPages[0])
+            {
+                // sprawdzenie, czy ta zakładka może być aktywna
+                if (mpStanTabPage[0])
+                {
+                    e.Cancel = false; // zezwolenie na przejście do zakładki tabPage1
+                    mpTCZakladki.SelectedTab = mpTabPage1;
+                }
+                else
+                    e.Cancel = true; // nie będzie przejścia do zakładki tabPage1
+            }
+            else
+                if (e.TabPage == mpTCZakladki.TabPages[1])
+                // sprawdzenie, czy jest zezwolenie na przejście do zakładki tabPage2
+                if (mpStanTabPage[1])
+                {
+                    e.Cancel = false;
+                    mpTCZakladki.SelectedTab = mpTabPage2;
+                }
+                else
+                    e.Cancel = true;
+            else
+                if (e.TabPage == mpTCZakladki.TabPages[2])
+                // sprawdzenie czy otwarcie tej zakładki jest dozwolone
+                if (mpStanTabPage[2])
+                {
+                    e.Cancel = false;
+                    mpTCZakladki.SelectedTab = mpTabPage3;
+                }
+                else
+                    e.Cancel = true;
         }
         private void mpBTNWyplata_Click(object sender, EventArgs e)
-        {  
+        {
+            // zmiana stanu aktywności Pulpit
+            mpStanTabPage[0] = false;
+            // zezwolenie na przejście do zakładki Bankomat
+            mpStanTabPage[1] = true;
             // otworzenie zakładki Bankomat
             mpTCZakladki.SelectedTab = mpTabPage2;
         }
         private void mpBTNKupno_Click(object sender, EventArgs e)
         {
+            // zmiana stanu aktywności Pulpit
+            mpStanTabPage[0] = false;
+            // zezwolenie na przejście do zakładki Automat vendingowy
+            mpStanTabPage[2] = true;
             // otworzenie zakładki Automat vendingowy
             mpTCZakladki.SelectedTab = mpTabPage3;
         }
@@ -57,70 +97,33 @@ namespace ProjektNr1_Palacz
         private void mpBTNPowrot1_Click(object sender, EventArgs e)
         {
             // ustawienie stanu braku aktywności dla zakładki Bankomat
-            //StanTabPage[1] = false;
+            mpStanTabPage[1] = false;
             // ustawnienie stanu aktywności dla zakładki Pulpit
-            //StanTabPage[0] = true;
+            mpStanTabPage[0] = true;
             // przejście do zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
         }
 
         private void mpRDBUstawieniePrzedziałuLiczności_CheckedChanged(object sender, EventArgs e)
         {
-            // sprawdzanie, czy została wybrana waluta
-            if (mpCMBRodzajWaluty.SelectedIndex < 0)
-            {
-                mpErrorProvider1.SetError(mpCMBRodzajWaluty, "ERROR: musisz wybrać walutę");
-                return;
-            }
-            /* 
-             * sprawdzenie, czy zdarzenie mpRDBUstawieniePrzedziałuLiczności_CheckedChanged zostało wywołane (wygenerowane) 
-             * przez metode obsługi przycisku poleceń RESETUJ
-             */
-            if (!mpRDBUstawieniePrzedziałuLiczności.Checked)
-                // nic nie robimy
-                return;
-            // sformatowanie kontrolek, które zamierzamy umieścić na formularzu
-            mpLBLEtykietaDolnejGranicyPrzedzialu.Text = "Dolna granica przedziału liczności nominałów";
-            // ustawienie fontu
-            mpLBLEtykietaDolnejGranicyPrzedzialu.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Italic);
-            // ustalenie położenia (lokalizacji) kontrolki na formularzu
-            mpLBLEtykietaDolnejGranicyPrzedzialu.Location = new Point(250, 180);
-            mpLBLEtykietaDolnejGranicyPrzedzialu.Height = 90;
-            mpLBLEtykietaDolnejGranicyPrzedzialu.Width = 150;
-            // ustawienie kolorów
-            mpLBLEtykietaDolnejGranicyPrzedzialu.BackColor = mpTCZakladki.TabPages[1].BackColor;
-            mpLBLEtykietaDolnejGranicyPrzedzialu.ForeColor = mpTCZakladki.TabPages[1].ForeColor;
+            // ustawnienie drugiej kontrolki na wartość przeciwną
+            mpRDBUstawienieLicznosciDomyslne.Checked = !mpRDBUstawieniePrzedziałuLiczności.Checked;
+            // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
             mpLBLEtykietaDolnejGranicyPrzedzialu.Visible = true;
-            mpTCZakladki.TabPages[1].Controls.Add(mpLBLEtykietaDolnejGranicyPrzedzialu);
-            // sformatowanie kontrolki textbox
-            mpTXTDolnaGranicaPrzedzialu.BackColor = Color.White;
-            mpTXTDolnaGranicaPrzedzialu.ForeColor = Color.Black;
-            mpTXTDolnaGranicaPrzedzialu.Text = "";
-            mpTXTDolnaGranicaPrzedzialu.Font = new Font(FontFamily.GenericSansSerif, 12.25F, FontStyle.Bold);
-            mpTXTDolnaGranicaPrzedzialu.TextAlign = HorizontalAlignment.Center;
-            // lokalizacja kontrolki
-            mpTXTDolnaGranicaPrzedzialu.Location = new Point(400, 190);
-            // dodanie kontrolki do kolekcji Controls zakładki Bankomat
-            mpTCZakladki.TabPages[1].Controls.Add(mpTXTDolnaGranicaPrzedzialu);
-            // sformatowanie kontrolek dla górnej granicy przedziału liczności
-            mpLBLEtykietaGornejGranicyPrzedzialu.Text = "Górna granica przedziału liczności nominałów";
-            mpLBLEtykietaGornejGranicyPrzedzialu.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Italic);
-            mpLBLEtykietaGornejGranicyPrzedzialu.Location = new Point(510, 180);
-            mpLBLEtykietaGornejGranicyPrzedzialu.Height = 60;
-            mpLBLEtykietaGornejGranicyPrzedzialu.Width = 150;
-            mpLBLEtykietaGornejGranicyPrzedzialu.BackColor = mpTCZakladki.TabPages[1].BackColor;
-            mpLBLEtykietaGornejGranicyPrzedzialu.ForeColor = mpTCZakladki.TabPages[1].ForeColor;
-            mpTCZakladki.TabPages[1].Controls.Add(mpTXTGornaGranicaPrzedzialu);
-            // sformatowanie kontrolki TextBox dla górnej granicy przedziału liczności
-            mpTXTGornaGranicaPrzedzialu.BackColor = Color.White;
-            mpTXTGornaGranicaPrzedzialu.ForeColor = Color.Black;
-            mpTXTGornaGranicaPrzedzialu.Text = "";
-            mpTXTGornaGranicaPrzedzialu.Font = new Font(FontFamily.GenericSansSerif, 12.25F, FontStyle.Bold);
-            mpTXTGornaGranicaPrzedzialu.TextAlign = HorizontalAlignment.Center;
-            mpTXTGornaGranicaPrzedzialu.Location = new Point(665, 190);
-            mpTCZakladki.TabPages[1].Controls.Add(mpTXTGornaGranicaPrzedzialu);
+            mpLBLEtykietaGornejGranicyPrzedzialu.Visible = true;
+            mpTXTDolnaGranicaPrzedzialu.Visible = true;
+            mpTXTGornaGranicaPrzedzialu.Visible = true;
         }
-
+        private void mpRDBUstawienieLicznosciDomyslne_CheckedChanged(object sender, EventArgs e)
+        {
+            // ustawnienie drugiej kontrolki na wartość przeciwną
+            mpRDBUstawieniePrzedziałuLiczności.Checked = !mpRDBUstawienieLicznosciDomyslne.Checked;
+            // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
+            mpLBLEtykietaDolnejGranicyPrzedzialu.Visible = false;
+            mpLBLEtykietaGornejGranicyPrzedzialu.Visible = false;
+            mpTXTDolnaGranicaPrzedzialu.Visible = false;
+            mpTXTGornaGranicaPrzedzialu.Visible = false;
+        }
         private void mpBTNAkceptacjaLiczności_Click(object sender, EventArgs e)
         {
             // sprawdzanie, czy została wybrana waluta
@@ -165,6 +168,49 @@ namespace ProjektNr1_Palacz
             else
             {
 
+            }
+        }
+
+        private void mpCMBMetodaPlatnosci_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (mpCMBMetodaPlatnosci.SelectedIndex)
+            {
+                case 0:
+                    mpLBLPlatnoscKarta.Visible = false;
+                    mpBTNPlatnoscKarta.Visible = false;
+                    //mpCMBMetodaPlatnosci_SelectedIndexChanged(sender, e);
+                    break;
+                case 1:
+                    mpGRBJeny.Visible = false;
+                    mpGRBEuro.Visible = false;
+                    mpGRBZlotowki.Visible = false;
+                    mpLBLPlatnoscKarta.Visible = true;
+                    mpBTNPlatnoscKarta.Visible = true;
+                    break;
+            }
+        }
+        private void mpCMBWaluta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (mpCMBMetodaPlatnosci.SelectedIndex == 0)
+            {
+                switch (mpCMBWaluta.SelectedIndex)
+                {
+                    case 0:
+                        mpGRBEuro.Visible = false;
+                        mpGRBJeny.Visible = false;
+                        mpGRBZlotowki.Visible = true;
+                        break;
+                    case 1:
+                        mpGRBEuro.Visible = false;
+                        mpGRBJeny.Visible = true;
+                        mpGRBZlotowki.Visible = false;
+                        break;
+                    case 2:
+                        mpGRBEuro.Visible = true;
+                        mpGRBJeny.Visible = false;
+                        mpGRBZlotowki.Visible = false;
+                        break;
+                }
             }
         }
     }

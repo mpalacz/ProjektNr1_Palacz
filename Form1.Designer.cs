@@ -38,6 +38,10 @@ namespace ProjektNr1_Palacz
             this.mpBTNWyplata = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.mpTabPage2 = new System.Windows.Forms.TabPage();
+            this.mpTXTGornaGranicaPrzedzialu = new System.Windows.Forms.TextBox();
+            this.mpTXTDolnaGranicaPrzedzialu = new System.Windows.Forms.TextBox();
+            this.mpLBLEtykietaGornejGranicyPrzedzialu = new System.Windows.Forms.Label();
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -61,37 +65,52 @@ namespace ProjektNr1_Palacz
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mpTabPage3 = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.mpBTNPlacenieKarta = new System.Windows.Forms.Button();
+            this.mpGRBZlotowki = new System.Windows.Forms.GroupBox();
+            this.mpBTN1Zloty = new System.Windows.Forms.Button();
+            this.mpBTN5Zloty = new System.Windows.Forms.Button();
+            this.mpBTN2Zlote = new System.Windows.Forms.Button();
+            this.mpBTN50Groszy = new System.Windows.Forms.Button();
+            this.mpGRBJeny = new System.Windows.Forms.GroupBox();
+            this.mpBTN10Jenow = new System.Windows.Forms.Button();
+            this.mpBTN100Jenow = new System.Windows.Forms.Button();
+            this.mpBTN50Jenow = new System.Windows.Forms.Button();
+            this.mpBTN5Jenow = new System.Windows.Forms.Button();
+            this.mpGRBEuro = new System.Windows.Forms.GroupBox();
+            this.mpBTN20EuroCentow = new System.Windows.Forms.Button();
+            this.mpBTN1Euro = new System.Windows.Forms.Button();
+            this.mpBTN50EuroCentow = new System.Windows.Forms.Button();
+            this.mpBTN10EuroCentow = new System.Windows.Forms.Button();
+            this.mpLBLPlatnoscKarta = new System.Windows.Forms.Label();
+            this.mpBTNPlatnoscKarta = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.mpTXBWrzuconeMonety = new System.Windows.Forms.TextBox();
-            this.mpTXBDoZaplaty = new System.Windows.Forms.TextBox();
+            this.mpTXTWrzuconeMonety = new System.Windows.Forms.TextBox();
+            this.mpTXTDoZaplaty = new System.Windows.Forms.TextBox();
             this.mpCMBMetodaPlatnosci = new System.Windows.Forms.ComboBox();
             this.mpCMBWaluta = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.mpTXBToughnessEmperorCena = new System.Windows.Forms.TextBox();
+            this.mpTXTToughnessEmperorCena = new System.Windows.Forms.TextBox();
             this.mpBTNToughnessEmperor = new System.Windows.Forms.Button();
-            this.mpTXBToughnessInfinityCena = new System.Windows.Forms.TextBox();
+            this.mpTXTToughnessInfinityCena = new System.Windows.Forms.TextBox();
             this.mpBTNToughnessInfinity = new System.Windows.Forms.Button();
-            this.mpTXBStaminanXCena = new System.Windows.Forms.TextBox();
+            this.mpTXTStaminanXCena = new System.Windows.Forms.TextBox();
             this.mpBTNStaminanSpark = new System.Windows.Forms.Button();
-            this.mpTXBTaurinerCena = new System.Windows.Forms.TextBox();
+            this.mpTXTTaurinerCena = new System.Windows.Forms.TextBox();
             this.mpBTNTauriner = new System.Windows.Forms.Button();
-            this.mpTXBStaminanSparkCena = new System.Windows.Forms.TextBox();
+            this.mpTXTStaminanSparkCena = new System.Windows.Forms.TextBox();
             this.mpBTNStaminanRoyale = new System.Windows.Forms.Button();
-            this.mpTXBStaminanRoyaleCena = new System.Windows.Forms.TextBox();
+            this.mpTXTStaminanRoyaleCena = new System.Windows.Forms.TextBox();
             this.mpBTNStaminanXX = new System.Windows.Forms.Button();
-            this.mpTXBStaminanXXCena = new System.Windows.Forms.TextBox();
+            this.mpTXTStaminanXXCena = new System.Windows.Forms.TextBox();
             this.mpBTNStaminanX = new System.Windows.Forms.Button();
-            this.mpTXBToughnessZZCena = new System.Windows.Forms.TextBox();
+            this.mpTXTToughnessZZCena = new System.Windows.Forms.TextBox();
             this.mpBTNToughnessZZ = new System.Windows.Forms.Button();
-            this.mpTXBToughnessZCena = new System.Windows.Forms.TextBox();
+            this.mpTXTToughnessZCena = new System.Windows.Forms.TextBox();
             this.mpBTNToughnessZ = new System.Windows.Forms.Button();
-            this.mpTXBToughnessLightCena = new System.Windows.Forms.TextBox();
+            this.mpTXTToughnessLightCena = new System.Windows.Forms.TextBox();
             this.mpBTNToughnessLight = new System.Windows.Forms.Button();
             this.mpBTNPowrot2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -102,6 +121,9 @@ namespace ProjektNr1_Palacz
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVListaNominalow)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.mpTabPage3.SuspendLayout();
+            this.mpGRBZlotowki.SuspendLayout();
+            this.mpGRBJeny.SuspendLayout();
+            this.mpGRBEuro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,6 +137,7 @@ namespace ProjektNr1_Palacz
             this.mpTCZakladki.SelectedIndex = 0;
             this.mpTCZakladki.Size = new System.Drawing.Size(1279, 593);
             this.mpTCZakladki.TabIndex = 0;
+            this.mpTCZakladki.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.mpTCZakladki_Selecting);
             // 
             // mpTabPage1
             // 
@@ -177,6 +200,10 @@ namespace ProjektNr1_Palacz
             // mpTabPage2
             // 
             this.mpTabPage2.BackColor = System.Drawing.Color.YellowGreen;
+            this.mpTabPage2.Controls.Add(this.mpTXTGornaGranicaPrzedzialu);
+            this.mpTabPage2.Controls.Add(this.mpTXTDolnaGranicaPrzedzialu);
+            this.mpTabPage2.Controls.Add(this.mpLBLEtykietaGornejGranicyPrzedzialu);
+            this.mpTabPage2.Controls.Add(this.mpLBLEtykietaDolnejGranicyPrzedzialu);
             this.mpTabPage2.Controls.Add(this.textBox2);
             this.mpTabPage2.Controls.Add(this.label13);
             this.mpTabPage2.Controls.Add(this.button4);
@@ -198,6 +225,48 @@ namespace ProjektNr1_Palacz
             this.mpTabPage2.Size = new System.Drawing.Size(1271, 561);
             this.mpTabPage2.TabIndex = 1;
             this.mpTabPage2.Text = "Bankomat";
+            // 
+            // mpTXTGornaGranicaPrzedzialu
+            // 
+            this.mpTXTGornaGranicaPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.mpTXTGornaGranicaPrzedzialu.Location = new System.Drawing.Point(761, 262);
+            this.mpTXTGornaGranicaPrzedzialu.Name = "mpTXTGornaGranicaPrzedzialu";
+            this.mpTXTGornaGranicaPrzedzialu.Size = new System.Drawing.Size(100, 26);
+            this.mpTXTGornaGranicaPrzedzialu.TabIndex = 18;
+            this.mpTXTGornaGranicaPrzedzialu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mpTXTGornaGranicaPrzedzialu.Visible = false;
+            // 
+            // mpTXTDolnaGranicaPrzedzialu
+            // 
+            this.mpTXTDolnaGranicaPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpTXTDolnaGranicaPrzedzialu.Location = new System.Drawing.Point(390, 262);
+            this.mpTXTDolnaGranicaPrzedzialu.Name = "mpTXTDolnaGranicaPrzedzialu";
+            this.mpTXTDolnaGranicaPrzedzialu.Size = new System.Drawing.Size(100, 26);
+            this.mpTXTDolnaGranicaPrzedzialu.TabIndex = 17;
+            this.mpTXTDolnaGranicaPrzedzialu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mpTXTDolnaGranicaPrzedzialu.Visible = false;
+            // 
+            // mpLBLEtykietaGornejGranicyPrzedzialu
+            // 
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.AutoSize = true;
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.Location = new System.Drawing.Point(648, 189);
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.Name = "mpLBLEtykietaGornejGranicyPrzedzialu";
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.Size = new System.Drawing.Size(295, 17);
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.TabIndex = 16;
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.Text = "Górna granica przedziału liczności nominałów";
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.Visible = false;
+            // 
+            // mpLBLEtykietaDolnejGranicyPrzedzialu
+            // 
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.AutoSize = true;
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Location = new System.Drawing.Point(321, 189);
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Name = "mpLBLEtykietaDolnejGranicyPrzedzialu";
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Size = new System.Drawing.Size(292, 17);
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.TabIndex = 15;
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Text = "Dolna granica przedziału liczności nominałów";
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Visible = false;
             // 
             // textBox2
             // 
@@ -277,7 +346,7 @@ namespace ProjektNr1_Palacz
             this.WartoscNominalu,
             this.RodzajNominalu,
             this.RodzajWaluty});
-            this.mpDGVListaNominalow.Location = new System.Drawing.Point(370, 364);
+            this.mpDGVListaNominalow.Location = new System.Drawing.Point(353, 364);
             this.mpDGVListaNominalow.Name = "mpDGVListaNominalow";
             this.mpDGVListaNominalow.Size = new System.Drawing.Size(560, 150);
             this.mpDGVListaNominalow.TabIndex = 6;
@@ -350,15 +419,19 @@ namespace ProjektNr1_Palacz
             // mpRDBUstawienieLicznosciDomyslne
             // 
             this.mpRDBUstawienieLicznosciDomyslne.AutoSize = true;
+            this.mpRDBUstawienieLicznosciDomyslne.Checked = true;
             this.mpRDBUstawienieLicznosciDomyslne.Location = new System.Drawing.Point(6, 46);
             this.mpRDBUstawienieLicznosciDomyslne.Name = "mpRDBUstawienieLicznosciDomyslne";
             this.mpRDBUstawienieLicznosciDomyslne.Size = new System.Drawing.Size(71, 23);
             this.mpRDBUstawienieLicznosciDomyslne.TabIndex = 0;
+            this.mpRDBUstawienieLicznosciDomyslne.TabStop = true;
             this.mpRDBUstawienieLicznosciDomyslne.Text = "losowe";
             this.mpRDBUstawienieLicznosciDomyslne.UseVisualStyleBackColor = true;
+            this.mpRDBUstawienieLicznosciDomyslne.CheckedChanged += new System.EventHandler(this.mpRDBUstawienieLicznosciDomyslne_CheckedChanged);
             // 
             // mpCMBRodzajWaluty
             // 
+            this.mpCMBRodzajWaluty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mpCMBRodzajWaluty.FormattingEnabled = true;
             this.mpCMBRodzajWaluty.Items.AddRange(new object[] {
             "PLN",
@@ -369,7 +442,6 @@ namespace ProjektNr1_Palacz
             this.mpCMBRodzajWaluty.Name = "mpCMBRodzajWaluty";
             this.mpCMBRodzajWaluty.Size = new System.Drawing.Size(121, 27);
             this.mpCMBRodzajWaluty.TabIndex = 3;
-            this.mpCMBRodzajWaluty.Text = "Lista walut (wybierz jadną walute)";
             // 
             // label4
             // 
@@ -402,37 +474,40 @@ namespace ProjektNr1_Palacz
             // mpTabPage3
             // 
             this.mpTabPage3.BackColor = System.Drawing.Color.HotPink;
-            this.mpTabPage3.Controls.Add(this.label11);
-            this.mpTabPage3.Controls.Add(this.mpBTNPlacenieKarta);
+            this.mpTabPage3.Controls.Add(this.mpGRBZlotowki);
+            this.mpTabPage3.Controls.Add(this.mpGRBJeny);
+            this.mpTabPage3.Controls.Add(this.mpGRBEuro);
+            this.mpTabPage3.Controls.Add(this.mpLBLPlatnoscKarta);
+            this.mpTabPage3.Controls.Add(this.mpBTNPlatnoscKarta);
             this.mpTabPage3.Controls.Add(this.button14);
             this.mpTabPage3.Controls.Add(this.button13);
-            this.mpTabPage3.Controls.Add(this.mpTXBWrzuconeMonety);
-            this.mpTabPage3.Controls.Add(this.mpTXBDoZaplaty);
+            this.mpTabPage3.Controls.Add(this.mpTXTWrzuconeMonety);
+            this.mpTabPage3.Controls.Add(this.mpTXTDoZaplaty);
             this.mpTabPage3.Controls.Add(this.mpCMBMetodaPlatnosci);
             this.mpTabPage3.Controls.Add(this.mpCMBWaluta);
             this.mpTabPage3.Controls.Add(this.label10);
             this.mpTabPage3.Controls.Add(this.label9);
             this.mpTabPage3.Controls.Add(this.label8);
             this.mpTabPage3.Controls.Add(this.label7);
-            this.mpTabPage3.Controls.Add(this.mpTXBToughnessEmperorCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTToughnessEmperorCena);
             this.mpTabPage3.Controls.Add(this.mpBTNToughnessEmperor);
-            this.mpTabPage3.Controls.Add(this.mpTXBToughnessInfinityCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTToughnessInfinityCena);
             this.mpTabPage3.Controls.Add(this.mpBTNToughnessInfinity);
-            this.mpTabPage3.Controls.Add(this.mpTXBStaminanXCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTStaminanXCena);
             this.mpTabPage3.Controls.Add(this.mpBTNStaminanSpark);
-            this.mpTabPage3.Controls.Add(this.mpTXBTaurinerCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTTaurinerCena);
             this.mpTabPage3.Controls.Add(this.mpBTNTauriner);
-            this.mpTabPage3.Controls.Add(this.mpTXBStaminanSparkCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTStaminanSparkCena);
             this.mpTabPage3.Controls.Add(this.mpBTNStaminanRoyale);
-            this.mpTabPage3.Controls.Add(this.mpTXBStaminanRoyaleCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTStaminanRoyaleCena);
             this.mpTabPage3.Controls.Add(this.mpBTNStaminanXX);
-            this.mpTabPage3.Controls.Add(this.mpTXBStaminanXXCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTStaminanXXCena);
             this.mpTabPage3.Controls.Add(this.mpBTNStaminanX);
-            this.mpTabPage3.Controls.Add(this.mpTXBToughnessZZCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTToughnessZZCena);
             this.mpTabPage3.Controls.Add(this.mpBTNToughnessZZ);
-            this.mpTabPage3.Controls.Add(this.mpTXBToughnessZCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTToughnessZCena);
             this.mpTabPage3.Controls.Add(this.mpBTNToughnessZ);
-            this.mpTabPage3.Controls.Add(this.mpTXBToughnessLightCena);
+            this.mpTabPage3.Controls.Add(this.mpTXTToughnessLightCena);
             this.mpTabPage3.Controls.Add(this.mpBTNToughnessLight);
             this.mpTabPage3.Controls.Add(this.mpBTNPowrot2);
             this.mpTabPage3.Controls.Add(this.label6);
@@ -443,23 +518,174 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.TabIndex = 2;
             this.mpTabPage3.Text = "Automat vendingowy";
             // 
-            // label11
+            // mpGRBZlotowki
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1037, 130);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 19);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "Płatność kartą    ";
+            this.mpGRBZlotowki.Controls.Add(this.mpBTN1Zloty);
+            this.mpGRBZlotowki.Controls.Add(this.mpBTN5Zloty);
+            this.mpGRBZlotowki.Controls.Add(this.mpBTN2Zlote);
+            this.mpGRBZlotowki.Controls.Add(this.mpBTN50Groszy);
+            this.mpGRBZlotowki.Location = new System.Drawing.Point(10, 177);
+            this.mpGRBZlotowki.Name = "mpGRBZlotowki";
+            this.mpGRBZlotowki.Size = new System.Drawing.Size(224, 225);
+            this.mpGRBZlotowki.TabIndex = 47;
+            this.mpGRBZlotowki.TabStop = false;
+            this.mpGRBZlotowki.Text = "Wrzut monet (PLN)";
             // 
-            // mpBTNPlacenieKarta
+            // mpBTN1Zloty
             // 
-            this.mpBTNPlacenieKarta.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNPlacenieKarta.Image")));
-            this.mpBTNPlacenieKarta.Location = new System.Drawing.Point(1031, 152);
-            this.mpBTNPlacenieKarta.Name = "mpBTNPlacenieKarta";
-            this.mpBTNPlacenieKarta.Size = new System.Drawing.Size(113, 140);
-            this.mpBTNPlacenieKarta.TabIndex = 43;
-            this.mpBTNPlacenieKarta.UseVisualStyleBackColor = true;
+            this.mpBTN1Zloty.Location = new System.Drawing.Point(121, 35);
+            this.mpBTN1Zloty.Name = "mpBTN1Zloty";
+            this.mpBTN1Zloty.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN1Zloty.TabIndex = 3;
+            this.mpBTN1Zloty.Text = "1zł";
+            this.mpBTN1Zloty.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN5Zloty
+            // 
+            this.mpBTN5Zloty.Location = new System.Drawing.Point(121, 134);
+            this.mpBTN5Zloty.Name = "mpBTN5Zloty";
+            this.mpBTN5Zloty.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN5Zloty.TabIndex = 2;
+            this.mpBTN5Zloty.Text = "5zł";
+            this.mpBTN5Zloty.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN2Zlote
+            // 
+            this.mpBTN2Zlote.Location = new System.Drawing.Point(22, 134);
+            this.mpBTN2Zlote.Name = "mpBTN2Zlote";
+            this.mpBTN2Zlote.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN2Zlote.TabIndex = 1;
+            this.mpBTN2Zlote.Text = "2zł";
+            this.mpBTN2Zlote.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN50Groszy
+            // 
+            this.mpBTN50Groszy.Location = new System.Drawing.Point(22, 35);
+            this.mpBTN50Groszy.Name = "mpBTN50Groszy";
+            this.mpBTN50Groszy.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN50Groszy.TabIndex = 0;
+            this.mpBTN50Groszy.Text = "0,5zł";
+            this.mpBTN50Groszy.UseVisualStyleBackColor = true;
+            // 
+            // mpGRBJeny
+            // 
+            this.mpGRBJeny.Controls.Add(this.mpBTN10Jenow);
+            this.mpGRBJeny.Controls.Add(this.mpBTN100Jenow);
+            this.mpGRBJeny.Controls.Add(this.mpBTN50Jenow);
+            this.mpGRBJeny.Controls.Add(this.mpBTN5Jenow);
+            this.mpGRBJeny.Location = new System.Drawing.Point(10, 177);
+            this.mpGRBJeny.Name = "mpGRBJeny";
+            this.mpGRBJeny.Size = new System.Drawing.Size(224, 225);
+            this.mpGRBJeny.TabIndex = 46;
+            this.mpGRBJeny.TabStop = false;
+            this.mpGRBJeny.Text = "Wrzut monet (¥)";
+            this.mpGRBJeny.Visible = false;
+            // 
+            // mpBTN10Jenow
+            // 
+            this.mpBTN10Jenow.Location = new System.Drawing.Point(121, 35);
+            this.mpBTN10Jenow.Name = "mpBTN10Jenow";
+            this.mpBTN10Jenow.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN10Jenow.TabIndex = 3;
+            this.mpBTN10Jenow.Text = "10¥";
+            this.mpBTN10Jenow.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN100Jenow
+            // 
+            this.mpBTN100Jenow.Location = new System.Drawing.Point(121, 134);
+            this.mpBTN100Jenow.Name = "mpBTN100Jenow";
+            this.mpBTN100Jenow.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN100Jenow.TabIndex = 2;
+            this.mpBTN100Jenow.Text = "100¥";
+            this.mpBTN100Jenow.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN50Jenow
+            // 
+            this.mpBTN50Jenow.Location = new System.Drawing.Point(22, 134);
+            this.mpBTN50Jenow.Name = "mpBTN50Jenow";
+            this.mpBTN50Jenow.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN50Jenow.TabIndex = 1;
+            this.mpBTN50Jenow.Text = "50¥";
+            this.mpBTN50Jenow.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN5Jenow
+            // 
+            this.mpBTN5Jenow.Location = new System.Drawing.Point(22, 35);
+            this.mpBTN5Jenow.Name = "mpBTN5Jenow";
+            this.mpBTN5Jenow.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN5Jenow.TabIndex = 0;
+            this.mpBTN5Jenow.Text = "5¥";
+            this.mpBTN5Jenow.UseVisualStyleBackColor = true;
+            // 
+            // mpGRBEuro
+            // 
+            this.mpGRBEuro.Controls.Add(this.mpBTN20EuroCentow);
+            this.mpGRBEuro.Controls.Add(this.mpBTN1Euro);
+            this.mpGRBEuro.Controls.Add(this.mpBTN50EuroCentow);
+            this.mpGRBEuro.Controls.Add(this.mpBTN10EuroCentow);
+            this.mpGRBEuro.Location = new System.Drawing.Point(10, 177);
+            this.mpGRBEuro.Name = "mpGRBEuro";
+            this.mpGRBEuro.Size = new System.Drawing.Size(224, 225);
+            this.mpGRBEuro.TabIndex = 45;
+            this.mpGRBEuro.TabStop = false;
+            this.mpGRBEuro.Text = "Wrzut monet (€)";
+            this.mpGRBEuro.Visible = false;
+            // 
+            // mpBTN20EuroCentow
+            // 
+            this.mpBTN20EuroCentow.Location = new System.Drawing.Point(121, 35);
+            this.mpBTN20EuroCentow.Name = "mpBTN20EuroCentow";
+            this.mpBTN20EuroCentow.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN20EuroCentow.TabIndex = 3;
+            this.mpBTN20EuroCentow.Text = "0,2€";
+            this.mpBTN20EuroCentow.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN1Euro
+            // 
+            this.mpBTN1Euro.Location = new System.Drawing.Point(121, 134);
+            this.mpBTN1Euro.Name = "mpBTN1Euro";
+            this.mpBTN1Euro.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN1Euro.TabIndex = 2;
+            this.mpBTN1Euro.Text = "1€";
+            this.mpBTN1Euro.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN50EuroCentow
+            // 
+            this.mpBTN50EuroCentow.Location = new System.Drawing.Point(22, 134);
+            this.mpBTN50EuroCentow.Name = "mpBTN50EuroCentow";
+            this.mpBTN50EuroCentow.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN50EuroCentow.TabIndex = 1;
+            this.mpBTN50EuroCentow.Text = "0,5€";
+            this.mpBTN50EuroCentow.UseVisualStyleBackColor = true;
+            // 
+            // mpBTN10EuroCentow
+            // 
+            this.mpBTN10EuroCentow.Location = new System.Drawing.Point(22, 35);
+            this.mpBTN10EuroCentow.Name = "mpBTN10EuroCentow";
+            this.mpBTN10EuroCentow.Size = new System.Drawing.Size(80, 80);
+            this.mpBTN10EuroCentow.TabIndex = 0;
+            this.mpBTN10EuroCentow.Text = "0,1€";
+            this.mpBTN10EuroCentow.UseVisualStyleBackColor = true;
+            // 
+            // mpLBLPlatnoscKarta
+            // 
+            this.mpLBLPlatnoscKarta.AutoSize = true;
+            this.mpLBLPlatnoscKarta.Location = new System.Drawing.Point(1037, 130);
+            this.mpLBLPlatnoscKarta.Name = "mpLBLPlatnoscKarta";
+            this.mpLBLPlatnoscKarta.Size = new System.Drawing.Size(120, 19);
+            this.mpLBLPlatnoscKarta.TabIndex = 44;
+            this.mpLBLPlatnoscKarta.Text = "Płatność kartą    ";
+            this.mpLBLPlatnoscKarta.Visible = false;
+            // 
+            // mpBTNPlatnoscKarta
+            // 
+            this.mpBTNPlatnoscKarta.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNPlatnoscKarta.Image")));
+            this.mpBTNPlatnoscKarta.Location = new System.Drawing.Point(1031, 152);
+            this.mpBTNPlatnoscKarta.Name = "mpBTNPlatnoscKarta";
+            this.mpBTNPlatnoscKarta.Size = new System.Drawing.Size(113, 140);
+            this.mpBTNPlatnoscKarta.TabIndex = 43;
+            this.mpBTNPlatnoscKarta.UseVisualStyleBackColor = true;
+            this.mpBTNPlatnoscKarta.Visible = false;
             // 
             // button14
             // 
@@ -479,24 +705,25 @@ namespace ProjektNr1_Palacz
             this.button13.Text = "Reset";
             this.button13.UseVisualStyleBackColor = true;
             // 
-            // mpTXBWrzuconeMonety
+            // mpTXTWrzuconeMonety
             // 
-            this.mpTXBWrzuconeMonety.Location = new System.Drawing.Point(704, 423);
-            this.mpTXBWrzuconeMonety.Name = "mpTXBWrzuconeMonety";
-            this.mpTXBWrzuconeMonety.ReadOnly = true;
-            this.mpTXBWrzuconeMonety.Size = new System.Drawing.Size(165, 26);
-            this.mpTXBWrzuconeMonety.TabIndex = 40;
+            this.mpTXTWrzuconeMonety.Location = new System.Drawing.Point(704, 423);
+            this.mpTXTWrzuconeMonety.Name = "mpTXTWrzuconeMonety";
+            this.mpTXTWrzuconeMonety.ReadOnly = true;
+            this.mpTXTWrzuconeMonety.Size = new System.Drawing.Size(165, 26);
+            this.mpTXTWrzuconeMonety.TabIndex = 40;
             // 
-            // mpTXBDoZaplaty
+            // mpTXTDoZaplaty
             // 
-            this.mpTXBDoZaplaty.Location = new System.Drawing.Point(405, 423);
-            this.mpTXBDoZaplaty.Name = "mpTXBDoZaplaty";
-            this.mpTXBDoZaplaty.ReadOnly = true;
-            this.mpTXBDoZaplaty.Size = new System.Drawing.Size(165, 26);
-            this.mpTXBDoZaplaty.TabIndex = 39;
+            this.mpTXTDoZaplaty.Location = new System.Drawing.Point(405, 423);
+            this.mpTXTDoZaplaty.Name = "mpTXTDoZaplaty";
+            this.mpTXTDoZaplaty.ReadOnly = true;
+            this.mpTXTDoZaplaty.Size = new System.Drawing.Size(165, 26);
+            this.mpTXTDoZaplaty.TabIndex = 39;
             // 
             // mpCMBMetodaPlatnosci
             // 
+            this.mpCMBMetodaPlatnosci.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mpCMBMetodaPlatnosci.FormattingEnabled = true;
             this.mpCMBMetodaPlatnosci.Items.AddRange(new object[] {
             "Gotówka",
@@ -505,9 +732,11 @@ namespace ProjektNr1_Palacz
             this.mpCMBMetodaPlatnosci.Name = "mpCMBMetodaPlatnosci";
             this.mpCMBMetodaPlatnosci.Size = new System.Drawing.Size(121, 27);
             this.mpCMBMetodaPlatnosci.TabIndex = 38;
+            this.mpCMBMetodaPlatnosci.SelectedIndexChanged += new System.EventHandler(this.mpCMBMetodaPlatnosci_SelectedIndexChanged);
             // 
             // mpCMBWaluta
             // 
+            this.mpCMBWaluta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mpCMBWaluta.FormattingEnabled = true;
             this.mpCMBWaluta.Items.AddRange(new object[] {
             "PLN",
@@ -517,6 +746,7 @@ namespace ProjektNr1_Palacz
             this.mpCMBWaluta.Name = "mpCMBWaluta";
             this.mpCMBWaluta.Size = new System.Drawing.Size(121, 27);
             this.mpCMBWaluta.TabIndex = 37;
+            this.mpCMBWaluta.SelectedIndexChanged += new System.EventHandler(this.mpCMBWaluta_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -554,13 +784,13 @@ namespace ProjektNr1_Palacz
             this.label7.TabIndex = 33;
             this.label7.Text = "Wybierz walutę";
             // 
-            // mpTXBToughnessEmperorCena
+            // mpTXTToughnessEmperorCena
             // 
-            this.mpTXBToughnessEmperorCena.Location = new System.Drawing.Point(693, 329);
-            this.mpTXBToughnessEmperorCena.Name = "mpTXBToughnessEmperorCena";
-            this.mpTXBToughnessEmperorCena.ReadOnly = true;
-            this.mpTXBToughnessEmperorCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBToughnessEmperorCena.TabIndex = 28;
+            this.mpTXTToughnessEmperorCena.Location = new System.Drawing.Point(693, 329);
+            this.mpTXTToughnessEmperorCena.Name = "mpTXTToughnessEmperorCena";
+            this.mpTXTToughnessEmperorCena.ReadOnly = true;
+            this.mpTXTToughnessEmperorCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTToughnessEmperorCena.TabIndex = 28;
             // 
             // mpBTNToughnessEmperor
             // 
@@ -571,13 +801,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNToughnessEmperor.TabIndex = 27;
             this.mpBTNToughnessEmperor.UseVisualStyleBackColor = true;
             // 
-            // mpTXBToughnessInfinityCena
+            // mpTXTToughnessInfinityCena
             // 
-            this.mpTXBToughnessInfinityCena.Location = new System.Drawing.Point(774, 329);
-            this.mpTXBToughnessInfinityCena.Name = "mpTXBToughnessInfinityCena";
-            this.mpTXBToughnessInfinityCena.ReadOnly = true;
-            this.mpTXBToughnessInfinityCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBToughnessInfinityCena.TabIndex = 26;
+            this.mpTXTToughnessInfinityCena.Location = new System.Drawing.Point(774, 329);
+            this.mpTXTToughnessInfinityCena.Name = "mpTXTToughnessInfinityCena";
+            this.mpTXTToughnessInfinityCena.ReadOnly = true;
+            this.mpTXTToughnessInfinityCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTToughnessInfinityCena.TabIndex = 26;
             // 
             // mpBTNToughnessInfinity
             // 
@@ -588,13 +818,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNToughnessInfinity.TabIndex = 25;
             this.mpBTNToughnessInfinity.UseVisualStyleBackColor = true;
             // 
-            // mpTXBStaminanXCena
+            // mpTXTStaminanXCena
             // 
-            this.mpTXBStaminanXCena.Location = new System.Drawing.Point(531, 216);
-            this.mpTXBStaminanXCena.Name = "mpTXBStaminanXCena";
-            this.mpTXBStaminanXCena.ReadOnly = true;
-            this.mpTXBStaminanXCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBStaminanXCena.TabIndex = 24;
+            this.mpTXTStaminanXCena.Location = new System.Drawing.Point(531, 216);
+            this.mpTXTStaminanXCena.Name = "mpTXTStaminanXCena";
+            this.mpTXTStaminanXCena.ReadOnly = true;
+            this.mpTXTStaminanXCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTStaminanXCena.TabIndex = 24;
             // 
             // mpBTNStaminanSpark
             // 
@@ -605,13 +835,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNStaminanSpark.TabIndex = 23;
             this.mpBTNStaminanSpark.UseVisualStyleBackColor = true;
             // 
-            // mpTXBTaurinerCena
+            // mpTXTTaurinerCena
             // 
-            this.mpTXBTaurinerCena.Location = new System.Drawing.Point(450, 216);
-            this.mpTXBTaurinerCena.Name = "mpTXBTaurinerCena";
-            this.mpTXBTaurinerCena.ReadOnly = true;
-            this.mpTXBTaurinerCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBTaurinerCena.TabIndex = 22;
+            this.mpTXTTaurinerCena.Location = new System.Drawing.Point(450, 216);
+            this.mpTXTTaurinerCena.Name = "mpTXTTaurinerCena";
+            this.mpTXTTaurinerCena.ReadOnly = true;
+            this.mpTXTTaurinerCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTTaurinerCena.TabIndex = 22;
             // 
             // mpBTNTauriner
             // 
@@ -622,13 +852,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNTauriner.TabIndex = 21;
             this.mpBTNTauriner.UseVisualStyleBackColor = true;
             // 
-            // mpTXBStaminanSparkCena
+            // mpTXTStaminanSparkCena
             // 
-            this.mpTXBStaminanSparkCena.Location = new System.Drawing.Point(774, 216);
-            this.mpTXBStaminanSparkCena.Name = "mpTXBStaminanSparkCena";
-            this.mpTXBStaminanSparkCena.ReadOnly = true;
-            this.mpTXBStaminanSparkCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBStaminanSparkCena.TabIndex = 20;
+            this.mpTXTStaminanSparkCena.Location = new System.Drawing.Point(774, 216);
+            this.mpTXTStaminanSparkCena.Name = "mpTXTStaminanSparkCena";
+            this.mpTXTStaminanSparkCena.ReadOnly = true;
+            this.mpTXTStaminanSparkCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTStaminanSparkCena.TabIndex = 20;
             // 
             // mpBTNStaminanRoyale
             // 
@@ -639,13 +869,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNStaminanRoyale.TabIndex = 19;
             this.mpBTNStaminanRoyale.UseVisualStyleBackColor = true;
             // 
-            // mpTXBStaminanRoyaleCena
+            // mpTXTStaminanRoyaleCena
             // 
-            this.mpTXBStaminanRoyaleCena.Location = new System.Drawing.Point(693, 216);
-            this.mpTXBStaminanRoyaleCena.Name = "mpTXBStaminanRoyaleCena";
-            this.mpTXBStaminanRoyaleCena.ReadOnly = true;
-            this.mpTXBStaminanRoyaleCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBStaminanRoyaleCena.TabIndex = 18;
+            this.mpTXTStaminanRoyaleCena.Location = new System.Drawing.Point(693, 216);
+            this.mpTXTStaminanRoyaleCena.Name = "mpTXTStaminanRoyaleCena";
+            this.mpTXTStaminanRoyaleCena.ReadOnly = true;
+            this.mpTXTStaminanRoyaleCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTStaminanRoyaleCena.TabIndex = 18;
             // 
             // mpBTNStaminanXX
             // 
@@ -656,13 +886,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNStaminanXX.TabIndex = 17;
             this.mpBTNStaminanXX.UseVisualStyleBackColor = true;
             // 
-            // mpTXBStaminanXXCena
+            // mpTXTStaminanXXCena
             // 
-            this.mpTXBStaminanXXCena.Location = new System.Drawing.Point(612, 216);
-            this.mpTXBStaminanXXCena.Name = "mpTXBStaminanXXCena";
-            this.mpTXBStaminanXXCena.ReadOnly = true;
-            this.mpTXBStaminanXXCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBStaminanXXCena.TabIndex = 16;
+            this.mpTXTStaminanXXCena.Location = new System.Drawing.Point(612, 216);
+            this.mpTXTStaminanXXCena.Name = "mpTXTStaminanXXCena";
+            this.mpTXTStaminanXXCena.ReadOnly = true;
+            this.mpTXTStaminanXXCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTStaminanXXCena.TabIndex = 16;
             // 
             // mpBTNStaminanX
             // 
@@ -673,13 +903,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNStaminanX.TabIndex = 15;
             this.mpBTNStaminanX.UseVisualStyleBackColor = true;
             // 
-            // mpTXBToughnessZZCena
+            // mpTXTToughnessZZCena
             // 
-            this.mpTXBToughnessZZCena.Location = new System.Drawing.Point(612, 329);
-            this.mpTXBToughnessZZCena.Name = "mpTXBToughnessZZCena";
-            this.mpTXBToughnessZZCena.ReadOnly = true;
-            this.mpTXBToughnessZZCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBToughnessZZCena.TabIndex = 14;
+            this.mpTXTToughnessZZCena.Location = new System.Drawing.Point(612, 329);
+            this.mpTXTToughnessZZCena.Name = "mpTXTToughnessZZCena";
+            this.mpTXTToughnessZZCena.ReadOnly = true;
+            this.mpTXTToughnessZZCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTToughnessZZCena.TabIndex = 14;
             // 
             // mpBTNToughnessZZ
             // 
@@ -690,13 +920,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNToughnessZZ.TabIndex = 13;
             this.mpBTNToughnessZZ.UseVisualStyleBackColor = true;
             // 
-            // mpTXBToughnessZCena
+            // mpTXTToughnessZCena
             // 
-            this.mpTXBToughnessZCena.Location = new System.Drawing.Point(531, 329);
-            this.mpTXBToughnessZCena.Name = "mpTXBToughnessZCena";
-            this.mpTXBToughnessZCena.ReadOnly = true;
-            this.mpTXBToughnessZCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBToughnessZCena.TabIndex = 12;
+            this.mpTXTToughnessZCena.Location = new System.Drawing.Point(531, 329);
+            this.mpTXTToughnessZCena.Name = "mpTXTToughnessZCena";
+            this.mpTXTToughnessZCena.ReadOnly = true;
+            this.mpTXTToughnessZCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTToughnessZCena.TabIndex = 12;
             // 
             // mpBTNToughnessZ
             // 
@@ -707,13 +937,13 @@ namespace ProjektNr1_Palacz
             this.mpBTNToughnessZ.TabIndex = 11;
             this.mpBTNToughnessZ.UseVisualStyleBackColor = true;
             // 
-            // mpTXBToughnessLightCena
+            // mpTXTToughnessLightCena
             // 
-            this.mpTXBToughnessLightCena.Location = new System.Drawing.Point(450, 329);
-            this.mpTXBToughnessLightCena.Name = "mpTXBToughnessLightCena";
-            this.mpTXBToughnessLightCena.ReadOnly = true;
-            this.mpTXBToughnessLightCena.Size = new System.Drawing.Size(80, 26);
-            this.mpTXBToughnessLightCena.TabIndex = 10;
+            this.mpTXTToughnessLightCena.Location = new System.Drawing.Point(450, 329);
+            this.mpTXTToughnessLightCena.Name = "mpTXTToughnessLightCena";
+            this.mpTXTToughnessLightCena.ReadOnly = true;
+            this.mpTXTToughnessLightCena.Size = new System.Drawing.Size(80, 26);
+            this.mpTXTToughnessLightCena.TabIndex = 10;
             // 
             // mpBTNToughnessLight
             // 
@@ -768,6 +998,9 @@ namespace ProjektNr1_Palacz
             this.groupBox1.PerformLayout();
             this.mpTabPage3.ResumeLayout(false);
             this.mpTabPage3.PerformLayout();
+            this.mpGRBZlotowki.ResumeLayout(false);
+            this.mpGRBJeny.ResumeLayout(false);
+            this.mpGRBEuro.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -798,33 +1031,33 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Button mpBTNZamknij;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button mpBTNPowrot1;
-        private System.Windows.Forms.TextBox mpTXBToughnessEmperorCena;
+        private System.Windows.Forms.TextBox mpTXTToughnessEmperorCena;
         private System.Windows.Forms.Button mpBTNToughnessEmperor;
-        private System.Windows.Forms.TextBox mpTXBToughnessInfinityCena;
+        private System.Windows.Forms.TextBox mpTXTToughnessInfinityCena;
         private System.Windows.Forms.Button mpBTNToughnessInfinity;
-        private System.Windows.Forms.TextBox mpTXBStaminanXCena;
+        private System.Windows.Forms.TextBox mpTXTStaminanXCena;
         private System.Windows.Forms.Button mpBTNStaminanSpark;
-        private System.Windows.Forms.TextBox mpTXBTaurinerCena;
+        private System.Windows.Forms.TextBox mpTXTTaurinerCena;
         private System.Windows.Forms.Button mpBTNTauriner;
-        private System.Windows.Forms.TextBox mpTXBStaminanSparkCena;
+        private System.Windows.Forms.TextBox mpTXTStaminanSparkCena;
         private System.Windows.Forms.Button mpBTNStaminanRoyale;
-        private System.Windows.Forms.TextBox mpTXBStaminanRoyaleCena;
+        private System.Windows.Forms.TextBox mpTXTStaminanRoyaleCena;
         private System.Windows.Forms.Button mpBTNStaminanXX;
-        private System.Windows.Forms.TextBox mpTXBStaminanXXCena;
+        private System.Windows.Forms.TextBox mpTXTStaminanXXCena;
         private System.Windows.Forms.Button mpBTNStaminanX;
-        private System.Windows.Forms.TextBox mpTXBToughnessZZCena;
+        private System.Windows.Forms.TextBox mpTXTToughnessZZCena;
         private System.Windows.Forms.Button mpBTNToughnessZZ;
-        private System.Windows.Forms.TextBox mpTXBToughnessZCena;
+        private System.Windows.Forms.TextBox mpTXTToughnessZCena;
         private System.Windows.Forms.Button mpBTNToughnessZ;
-        private System.Windows.Forms.TextBox mpTXBToughnessLightCena;
+        private System.Windows.Forms.TextBox mpTXTToughnessLightCena;
         private System.Windows.Forms.Button mpBTNToughnessLight;
         private System.Windows.Forms.Button mpBTNPowrot2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button mpBTNPlacenieKarta;
+        private System.Windows.Forms.Label mpLBLPlatnoscKarta;
+        private System.Windows.Forms.Button mpBTNPlatnoscKarta;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.TextBox mpTXBWrzuconeMonety;
-        private System.Windows.Forms.TextBox mpTXBDoZaplaty;
+        private System.Windows.Forms.TextBox mpTXTWrzuconeMonety;
+        private System.Windows.Forms.TextBox mpTXTDoZaplaty;
         private System.Windows.Forms.ComboBox mpCMBMetodaPlatnosci;
         private System.Windows.Forms.ComboBox mpCMBWaluta;
         private System.Windows.Forms.Label label10;
@@ -840,6 +1073,25 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button mpBTNAkceptacjaLiczności;
         private System.Windows.Forms.ErrorProvider mpErrorProvider1;
+        private System.Windows.Forms.TextBox mpTXTGornaGranicaPrzedzialu;
+        private System.Windows.Forms.TextBox mpTXTDolnaGranicaPrzedzialu;
+        private System.Windows.Forms.Label mpLBLEtykietaGornejGranicyPrzedzialu;
+        private System.Windows.Forms.Label mpLBLEtykietaDolnejGranicyPrzedzialu;
+        private System.Windows.Forms.GroupBox mpGRBEuro;
+        private System.Windows.Forms.Button mpBTN20EuroCentow;
+        private System.Windows.Forms.Button mpBTN1Euro;
+        private System.Windows.Forms.Button mpBTN50EuroCentow;
+        private System.Windows.Forms.Button mpBTN10EuroCentow;
+        private System.Windows.Forms.GroupBox mpGRBJeny;
+        private System.Windows.Forms.GroupBox mpGRBZlotowki;
+        private System.Windows.Forms.Button mpBTN1Zloty;
+        private System.Windows.Forms.Button mpBTN5Zloty;
+        private System.Windows.Forms.Button mpBTN2Zlote;
+        private System.Windows.Forms.Button mpBTN50Groszy;
+        private System.Windows.Forms.Button mpBTN10Jenow;
+        private System.Windows.Forms.Button mpBTN100Jenow;
+        private System.Windows.Forms.Button mpBTN50Jenow;
+        private System.Windows.Forms.Button mpBTN5Jenow;
     }
 }
 

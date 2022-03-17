@@ -130,7 +130,7 @@
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mpBTNPlacenieKarta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="mpBTNPlatnoscKarta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAAB6CAYAAABJPva/AAABI2lDQ1BJQ0MgcHJvZmlsZQAAKM+dkM1K
         w0AUhb+24h91pbgQwSzcFty0Kzf+YOiiUNMIVlfppMViEkOSUnwD30QfpgtB8BF8AAXXnoku3GShA5fz
@@ -292,5 +292,8 @@
   </data>
   <metadata name="mpErrorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>30</value>
   </metadata>
 </root>
