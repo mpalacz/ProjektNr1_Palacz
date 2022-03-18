@@ -40,36 +40,26 @@ namespace ProjektNr1_Palacz
                 mpCenaEUR = mpCenaEURF;
             }
         }
-        mpProdukty[] mpStworzenieKonteneraProduktow()
+        MPProdukt[] mpStworzenieKonteneraProduktow()
         {
-            mpProdukty mpTauriner = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTTaurinerCena, 0.5f, 12, 0.1f);
-            mpProdukty mpToughnessLight = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTToughnessLightCena, 1f, 30, 0.2f);
-            mpProdukty mpToughnessZ = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTToughnessZCena, 1.5f, 40, 0.3f);
-            mpProdukty mpToughnessZZ = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTToughnessZZCena, 2f, 55, 0.4f);
-            mpProdukty mpToughnessEmperor = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTToughnessEmperorCena, 4f, 110, 0.8f);
-            mpProdukty mpToughnessInfinity = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTToughnessInfinityCena, 5f, 140, 1f);
-            mpProdukty mpStaminanX = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTStaminanXCena, 2f, 55, 0.4f);
-            mpProdukty mpStaminanXX = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTStaminanXXCena, 5f, 140, 1f);
-            mpProdukty mpStaminanRoyale = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTStaminanRoyaleCena, 7.5f, 200, 1.6f);
-            mpProdukty mpStaminanSpark = new mpProdukty();
-            mpTauriner.mpStworzProdukt(mpTXTStaminanSparkCena, 10f, 275, 2.1f);
-            mpProdukty[] mpPojemnikProduktow = { mpTauriner, mpToughnessLight, mpToughnessZ, mpToughnessZZ, mpToughnessEmperor, mpToughnessInfinity, mpStaminanX, mpStaminanXX, mpStaminanRoyale, mpStaminanSpark };
+            MPProdukt mpTauriner = new MPProdukt(mpTXTTaurinerCena, 0.5f, 12, 0.1f);
+            MPProdukt mpToughnessLight = new MPProdukt(mpTXTToughnessLightCena, 1f, 30, 0.2f);
+            MPProdukt mpToughnessZ = new MPProdukt(mpTXTToughnessZCena, 1.5f, 40, 0.3f);
+            MPProdukt mpToughnessZZ = new MPProdukt(mpTXTToughnessZZCena, 2f, 55, 0.4f);
+            MPProdukt mpToughnessEmperor = new MPProdukt(mpTXTToughnessEmperorCena, 4f, 110, 0.8f);
+            MPProdukt mpToughnessInfinity = new MPProdukt(mpTXTToughnessInfinityCena, 5f, 140, 1f);
+            MPProdukt mpStaminanX = new MPProdukt(mpTXTStaminanXCena, 2f, 55, 0.4f);
+            MPProdukt mpStaminanXX = new MPProdukt(mpTXTStaminanXXCena, 5f, 140, 1f);
+            MPProdukt mpStaminanRoyale = new MPProdukt(mpTXTStaminanRoyaleCena, 7.5f, 200, 1.6f);
+            MPProdukt mpStaminanSpark = new MPProdukt(mpTXTStaminanSparkCena, 10f, 275, 2.1f);
+            MPProdukt[] mpPojemnikProduktow = { mpTauriner, mpToughnessLight, mpToughnessZ, mpToughnessZZ, mpToughnessEmperor, mpToughnessInfinity, mpStaminanX, mpStaminanXX, mpStaminanRoyale, mpStaminanSpark };
             return mpPojemnikProduktow;
         }
-        mpProdukty[] mpPojemnikProduktow;
+        MPProdukt[] mpPojemnikProduktow;
         void mpWyswietlenieCen(string mpWaluta)
         {
             string mpCena = "";
-            foreach (mpProdukty mpProdukt in mpPojemnikProduktow)
+            foreach (MPProdukt mpProdukt in mpPojemnikProduktow)
             {
                 switch (mpWaluta)
                 {
@@ -278,6 +268,20 @@ namespace ProjektNr1_Palacz
                         break;
                 }
             }
+        }
+    }
+    public class MPProdukt
+    {
+        public TextBox mpTXTCena;
+        public float mpCenaPLN;
+        public ushort mpCenaYEN;
+        public float mpCenaEUR;
+        public MPProdukt(TextBox mpTXTCena, float mpCenaPLN, ushort mpCenaYEN, float mpCenaEUR)
+        {
+            this.mpTXTCena = mpTXTCena;
+            this.mpCenaPLN = mpCenaPLN;
+            this.mpCenaYEN = mpCenaYEN;
+            this.mpCenaEUR = mpCenaEUR;
         }
     }
 }
