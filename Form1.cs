@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace ProjektNr1_Palacz
 {
     public partial class ProjektNr1_Palacz53262 : Form
-    { 
+    {
         // deklaracja tablicy aktywności zakładek formularza
         bool[] mpStanTabPage = { true, false, false };
         // deklaracja stałych
@@ -65,6 +65,27 @@ namespace ProjektNr1_Palacz
             mpProdukty[] mpPojemnikProduktow = { mpTauriner, mpToughnessLight, mpToughnessZ, mpToughnessZZ, mpToughnessEmperor, mpToughnessInfinity, mpStaminanX, mpStaminanXX, mpStaminanRoyale, mpStaminanSpark };
             return mpPojemnikProduktow;
         }
+        mpProdukty[] mpPojemnikProduktow;
+        void mpWyswietlenieCen(string mpWaluta)
+        {
+            string mpCena = "";
+            foreach (mpProdukty mpProdukt in mpPojemnikProduktow)
+            {
+                switch (mpWaluta)
+                {
+                    case "PLN":
+                        mpCena = mpProdukt.mpCenaPLN + " " + mpWaluta;
+                        break;
+                    case "¥":
+                        mpCena = mpProdukt.mpCenaYEN + mpWaluta;
+                        break;
+                    case "€":
+                        mpCena = mpProdukt.mpCenaEUR + mpWaluta;
+                        break;
+                }
+                mpProdukt.mpTXTCena.Text = mpCena;
+            }
+        }
         public ProjektNr1_Palacz53262()
         {
             InitializeComponent();
@@ -74,10 +95,10 @@ namespace ProjektNr1_Palacz
             mpPojemnikNominalow = new mpNominaly[mpWartoscNominalow.Length];
             mpCMBRodzajWaluty.SelectedIndex = 0;
 
+            // tworzenie produktów i przypisywanie do nich cen
+            mpPojemnikProduktow = mpStworzenieKonteneraProduktow();
             mpCMBMetodaPlatnosci.SelectedIndex = 0;
             mpCMBWaluta.SelectedIndex = 0;
-            // tworzenie i przypisywanie zmiennych do produktów
-            mpProdukty[] mpPojemnikProduktow = mpStworzenieKonteneraProduktow();
         }
         private void mpTCZakladki_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -189,10 +210,10 @@ namespace ProjektNr1_Palacz
                 // utworzenie generatora liczb losowaych
                 Random mpRandom = new Random();
                 // wpisanie wartości nominałów oraz ich liczności w tablicy pojemnik nominałów
-                for(ushort i = 0; i < mpPojemnikNominalow.Length; i++)
+                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
                 {
                     mpPojemnikNominalow[i].mpWartosc = mpWartoscNominalow[i];
-                    mpPojemnikNominalow[i].mpLicznosc = (ushort) mpRandom.Next(mpMaxLicznoscNominalow);
+                    mpPojemnikNominalow[i].mpLicznosc = (ushort)mpRandom.Next(mpMaxLicznoscNominalow);
                 }
                 // odsłonięcie kontrolek dla wizualizacji ustalonej liczności nominałów
                 mpLBLWyplacaneNominaly.Visible = true;
@@ -200,7 +221,7 @@ namespace ProjektNr1_Palacz
                 mpDGVListaNominalow.Visible = true;
                 mpDGVListaNominalow.Rows.Clear();
                 // wpisanie liczności nominałów do kontrolki DataGridView
-                for(ushort i = 0; i < mpPojemnikNominalow.Length; i++)
+                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
                 {
                     mpDGVListaNominalow.Rows.Add();
                     mpDGVListaNominalow.Rows[i].Cells[0].Value = mpPojemnikNominalow[i].mpLicznosc;
@@ -241,16 +262,19 @@ namespace ProjektNr1_Palacz
                         mpGRBEuro.Visible = false;
                         mpGRBJeny.Visible = false;
                         mpGRBZlotowki.Visible = true;
+                        mpWyswietlenieCen("PLN");
                         break;
                     case 1:
                         mpGRBEuro.Visible = false;
                         mpGRBJeny.Visible = true;
                         mpGRBZlotowki.Visible = false;
+                        mpWyswietlenieCen("¥");
                         break;
                     case 2:
                         mpGRBEuro.Visible = true;
                         mpGRBJeny.Visible = false;
                         mpGRBZlotowki.Visible = false;
+                        mpWyswietlenieCen("€");
                         break;
                 }
             }

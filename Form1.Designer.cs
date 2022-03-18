@@ -791,6 +791,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTToughnessEmperorCena.ReadOnly = true;
             this.mpTXTToughnessEmperorCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTToughnessEmperorCena.TabIndex = 28;
+            this.mpTXTToughnessEmperorCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNToughnessEmperor
             // 
@@ -808,6 +809,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTToughnessInfinityCena.ReadOnly = true;
             this.mpTXTToughnessInfinityCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTToughnessInfinityCena.TabIndex = 26;
+            this.mpTXTToughnessInfinityCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNToughnessInfinity
             // 
@@ -825,6 +827,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTStaminanXCena.ReadOnly = true;
             this.mpTXTStaminanXCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTStaminanXCena.TabIndex = 24;
+            this.mpTXTStaminanXCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNStaminanSpark
             // 
@@ -842,6 +845,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTTaurinerCena.ReadOnly = true;
             this.mpTXTTaurinerCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTTaurinerCena.TabIndex = 22;
+            this.mpTXTTaurinerCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNTauriner
             // 
@@ -859,6 +863,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTStaminanSparkCena.ReadOnly = true;
             this.mpTXTStaminanSparkCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTStaminanSparkCena.TabIndex = 20;
+            this.mpTXTStaminanSparkCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNStaminanRoyale
             // 
@@ -876,6 +881,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTStaminanRoyaleCena.ReadOnly = true;
             this.mpTXTStaminanRoyaleCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTStaminanRoyaleCena.TabIndex = 18;
+            this.mpTXTStaminanRoyaleCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNStaminanXX
             // 
@@ -893,6 +899,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTStaminanXXCena.ReadOnly = true;
             this.mpTXTStaminanXXCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTStaminanXXCena.TabIndex = 16;
+            this.mpTXTStaminanXXCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNStaminanX
             // 
@@ -910,6 +917,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTToughnessZZCena.ReadOnly = true;
             this.mpTXTToughnessZZCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTToughnessZZCena.TabIndex = 14;
+            this.mpTXTToughnessZZCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNToughnessZZ
             // 
@@ -927,6 +935,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTToughnessZCena.ReadOnly = true;
             this.mpTXTToughnessZCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTToughnessZCena.TabIndex = 12;
+            this.mpTXTToughnessZCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNToughnessZ
             // 
@@ -944,6 +953,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTToughnessLightCena.ReadOnly = true;
             this.mpTXTToughnessLightCena.Size = new System.Drawing.Size(80, 26);
             this.mpTXTToughnessLightCena.TabIndex = 10;
+            this.mpTXTToughnessLightCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpBTNToughnessLight
             // 
