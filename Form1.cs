@@ -26,54 +26,74 @@ namespace ProjektNr1_Palacz
         //deklaracja zmiennej tablicowej (referencyjnej) pojemnik nominałów
         mpNominaly[] mpPojemnikNominalow;
 
-        struct mpProdukty
+        //                                  PLN YEN EUR                   PLN YEN EUR
+        float[] mpWartoscWrzuconychMonet = { 0f, 0f, 0f }, mpDoZaplaty = { 0f, 0f, 0f };
+        Dictionary<string, MPProdukt> mpStworzenieKonteneraProduktow()
         {
-            public TextBox mpTXTCena;
-            public float mpCenaPLN;
-            public ushort mpCenaYEN;
-            public float mpCenaEUR;
-            public void mpStworzProdukt(TextBox mpTXTCenaF, float mpCenaPLNF, ushort mpCenaYENF, float mpCenaEURF)
-            {
-                mpTXTCena = mpTXTCenaF;
-                mpCenaPLN = mpCenaPLNF;
-                mpCenaYEN = mpCenaYENF;
-                mpCenaEUR = mpCenaEURF;
-            }
-        }
-        MPProdukt[] mpStworzenieKonteneraProduktow()
-        {
-            MPProdukt mpTauriner = new MPProdukt(mpTXTTaurinerCena, 0.5f, 12, 0.1f);
-            MPProdukt mpToughnessLight = new MPProdukt(mpTXTToughnessLightCena, 1f, 30, 0.2f);
-            MPProdukt mpToughnessZ = new MPProdukt(mpTXTToughnessZCena, 1.5f, 40, 0.3f);
-            MPProdukt mpToughnessZZ = new MPProdukt(mpTXTToughnessZZCena, 2f, 55, 0.4f);
-            MPProdukt mpToughnessEmperor = new MPProdukt(mpTXTToughnessEmperorCena, 4f, 110, 0.8f);
-            MPProdukt mpToughnessInfinity = new MPProdukt(mpTXTToughnessInfinityCena, 5f, 140, 1f);
-            MPProdukt mpStaminanX = new MPProdukt(mpTXTStaminanXCena, 2f, 55, 0.4f);
-            MPProdukt mpStaminanXX = new MPProdukt(mpTXTStaminanXXCena, 5f, 140, 1f);
-            MPProdukt mpStaminanRoyale = new MPProdukt(mpTXTStaminanRoyaleCena, 7.5f, 200, 1.6f);
-            MPProdukt mpStaminanSpark = new MPProdukt(mpTXTStaminanSparkCena, 10f, 275, 2.1f);
-            MPProdukt[] mpPojemnikProduktow = { mpTauriner, mpToughnessLight, mpToughnessZ, mpToughnessZZ, mpToughnessEmperor, mpToughnessInfinity, mpStaminanX, mpStaminanXX, mpStaminanRoyale, mpStaminanSpark };
+            // stworzenie słownika do przechowywania produktów
+            Dictionary<string, MPProdukt> mpPojemnikProduktow = new Dictionary<string, MPProdukt>();
+            // tworzenie referencji dla każdego produktu
+            MPProdukt mpTauriner = new MPProdukt(mpTXTTaurinerCena, 0.5f, 12f, 0.1f);
+            MPProdukt mpToughnessLight = new MPProdukt(mpTXTToughnessLightCena, 1f, 30f, 0.2f);
+            MPProdukt mpToughnessZ = new MPProdukt(mpTXTToughnessZCena, 1.5f, 40f, 0.3f);
+            MPProdukt mpToughnessZZ = new MPProdukt(mpTXTToughnessZZCena, 2f, 55f, 0.4f);
+            MPProdukt mpToughnessEmperor = new MPProdukt(mpTXTToughnessEmperorCena, 4f, 110f, 0.8f);
+            MPProdukt mpToughnessInfinity = new MPProdukt(mpTXTToughnessInfinityCena, 5f, 140f, 1f);
+            MPProdukt mpStaminanX = new MPProdukt(mpTXTStaminanXCena, 2f, 55f, 0.4f);
+            MPProdukt mpStaminanXX = new MPProdukt(mpTXTStaminanXXCena, 5f, 140f, 1f);
+            MPProdukt mpStaminanRoyale = new MPProdukt(mpTXTStaminanRoyaleCena, 7.5f, 200f, 1.6f);
+            MPProdukt mpStaminanSpark = new MPProdukt(mpTXTStaminanSparkCena, 10f, 275f, 2.1f);
+            // dodawanie produktów do słownika
+            mpPojemnikProduktow.Add("Tauriner", mpTauriner);
+            mpPojemnikProduktow.Add("ToughnessLight", mpToughnessLight);
+            mpPojemnikProduktow.Add("ToughnessZ", mpToughnessZ);
+            mpPojemnikProduktow.Add("ToughnessZZ", mpToughnessZZ);
+            mpPojemnikProduktow.Add("ToughnessEmperor", mpToughnessEmperor);
+            mpPojemnikProduktow.Add("ToughnessInfinity", mpToughnessInfinity);
+            mpPojemnikProduktow.Add("StaminanX", mpStaminanX);
+            mpPojemnikProduktow.Add("StaminanXX", mpStaminanXX);
+            mpPojemnikProduktow.Add("StaminanRoyale", mpStaminanRoyale);
+            mpPojemnikProduktow.Add("StaminanSpark", mpStaminanSpark);
+            // zwrot słownika
             return mpPojemnikProduktow;
         }
-        MPProdukt[] mpPojemnikProduktow;
-        void mpWyswietlenieCen(string mpWaluta)
+        Dictionary<string, MPProdukt> mpPojemnikProduktow;
+        void mpWyswietlenieCen()
         {
             string mpCena = "";
-            foreach (MPProdukt mpProdukt in mpPojemnikProduktow)
+            foreach (MPProdukt mpProdukt in mpPojemnikProduktow.Values)
             {
-                switch (mpWaluta)
+                switch (mpCMBWaluta.SelectedIndex)
                 {
-                    case "PLN":
-                        mpCena = mpProdukt.mpCenaPLN + " " + mpWaluta;
+                    case 0:
+                        mpCena = mpProdukt.mpCenaPLN + " PLN";
                         break;
-                    case "¥":
-                        mpCena = mpProdukt.mpCenaYEN + mpWaluta;
+                    case 1:
+                        mpCena = mpProdukt.mpCenaYEN + "¥";
                         break;
-                    case "€":
-                        mpCena = mpProdukt.mpCenaEUR + mpWaluta;
+                    case 2:
+                        mpCena = mpProdukt.mpCenaEUR + "€";
                         break;
                 }
                 mpProdukt.mpTXTCena.Text = mpCena;
+            }
+        }
+        void mpAktualizacjaWartosciKoszykaIWrzuconychMonet()
+        {
+            switch (mpCMBWaluta.SelectedIndex)
+            {
+                case 0:
+                    mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[0]) + " PLN";
+                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWartoscWrzuconychMonet[0]) + " PLN";
+                    break;
+                case 1:
+                    mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[1]) + "¥";
+                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWartoscWrzuconychMonet[1]) + "¥";
+                    break;
+                case 2:
+                    mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[2]) + "€";
+                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWartoscWrzuconychMonet[2]) + "€";
+                    break;
             }
         }
         public ProjektNr1_Palacz53262()
@@ -242,6 +262,179 @@ namespace ProjektNr1_Palacz
                     break;
             }
         }
+
+        private void mpBTNTauriner_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["Tauriner"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["Tauriner"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["Tauriner"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["Tauriner"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNStaminanX_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["StaminanX"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanX"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanX"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanX"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNStaminanXX_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["StaminanXX"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanXX"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanXX"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanXX"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNStaminanRoyale_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["StaminanRoyale"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanRoyale"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanRoyale"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanRoyale"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNStaminanSpark_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["StaminanSpark"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanSpark"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanSpark"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanSpark"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNToughnessLight_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["ToughnessLight"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessLight"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessLight"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessLight"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNToughnessZ_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["ToughnessZ"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessZ"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessZ"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessZ"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNToughnessZZ_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["ToughnessZZ"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessZZ"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessZZ"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessZZ"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNToughnessEmperor_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["ToughnessEmperor"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessEmperor"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessEmperor"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessEmperor"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNToughnessInfinity_Click(object sender, EventArgs e)
+        {
+            mpPojemnikProduktow["ToughnessInfinity"].mpIloscZamowionych++;
+            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessInfinity"].mpCenaPLN;
+            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessInfinity"].mpCenaYEN;
+            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessInfinity"].mpCenaEUR;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN50Groszy_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[0] +=0.5f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN1Zloty_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[0] += 1f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN2Zlote_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[0] += 2f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN5Zloty_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[0] += 5f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN5Jenow_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[1] += 5f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN10Jenow_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[1] += 10f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN50Jenow_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[1] += 50f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN100Jenow_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[1] += 100f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN10EuroCentow_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[2] += 0.1f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN20EuroCentow_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[2] += 0.2f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN50EuroCentow_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[2] += 0.5f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTN1Euro_Click(object sender, EventArgs e)
+        {
+            mpWartoscWrzuconychMonet[2] += 1f;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+
+        private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mpBTNResetKoszyka_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void mpCMBWaluta_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mpCMBMetodaPlatnosci.SelectedIndex == 0)
@@ -252,36 +445,37 @@ namespace ProjektNr1_Palacz
                         mpGRBEuro.Visible = false;
                         mpGRBJeny.Visible = false;
                         mpGRBZlotowki.Visible = true;
-                        mpWyswietlenieCen("PLN");
                         break;
                     case 1:
                         mpGRBEuro.Visible = false;
                         mpGRBJeny.Visible = true;
                         mpGRBZlotowki.Visible = false;
-                        mpWyswietlenieCen("¥");
                         break;
                     case 2:
                         mpGRBEuro.Visible = true;
                         mpGRBJeny.Visible = false;
                         mpGRBZlotowki.Visible = false;
-                        mpWyswietlenieCen("€");
                         break;
                 }
             }
+            mpWyswietlenieCen();
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
         }
     }
     public class MPProdukt
     {
-        public TextBox mpTXTCena;
-        public float mpCenaPLN;
-        public ushort mpCenaYEN;
-        public float mpCenaEUR;
-        public MPProdukt(TextBox mpTXTCena, float mpCenaPLN, ushort mpCenaYEN, float mpCenaEUR)
+        public TextBox mpTXTCena { get; private set; }
+        public float mpCenaPLN { get; private set; }
+        public float mpCenaYEN { get; private set; }
+        public float mpCenaEUR { get; private set; }
+        public ushort mpIloscZamowionych { get; set; }
+        public MPProdukt(TextBox mpTXTCena, float mpCenaPLN, float mpCenaYEN, float mpCenaEUR)
         {
             this.mpTXTCena = mpTXTCena;
             this.mpCenaPLN = mpCenaPLN;
             this.mpCenaYEN = mpCenaYEN;
             this.mpCenaEUR = mpCenaEUR;
+            mpIloscZamowionych = 0;
         }
     }
 }
