@@ -83,7 +83,7 @@ namespace ProjektNr1_Palacz
             this.mpLBLPlatnoscKarta = new System.Windows.Forms.Label();
             this.mpBTNPlatnoscKarta = new System.Windows.Forms.Button();
             this.mpBTNZwrotMonet = new System.Windows.Forms.Button();
-            this.mpBTNResetKoszyka = new System.Windows.Forms.Button();
+            this.mpBTNAnulujZakupy = new System.Windows.Forms.Button();
             this.mpTXTWrzuconeMonety = new System.Windows.Forms.TextBox();
             this.mpTXTDoZaplaty = new System.Windows.Forms.TextBox();
             this.mpCMBMetodaPlatnosci = new System.Windows.Forms.ComboBox();
@@ -115,6 +115,7 @@ namespace ProjektNr1_Palacz
             this.mpBTNPowrot2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.mpBTNKupnoGotowka = new System.Windows.Forms.Button();
             this.mpTCZakladki.SuspendLayout();
             this.mpTabPage1.SuspendLayout();
             this.mpTabPage2.SuspendLayout();
@@ -474,13 +475,14 @@ namespace ProjektNr1_Palacz
             // mpTabPage3
             // 
             this.mpTabPage3.BackColor = System.Drawing.Color.HotPink;
+            this.mpTabPage3.Controls.Add(this.mpBTNKupnoGotowka);
             this.mpTabPage3.Controls.Add(this.mpGRBZlotowki);
             this.mpTabPage3.Controls.Add(this.mpGRBJeny);
             this.mpTabPage3.Controls.Add(this.mpGRBEuro);
             this.mpTabPage3.Controls.Add(this.mpLBLPlatnoscKarta);
             this.mpTabPage3.Controls.Add(this.mpBTNPlatnoscKarta);
             this.mpTabPage3.Controls.Add(this.mpBTNZwrotMonet);
-            this.mpTabPage3.Controls.Add(this.mpBTNResetKoszyka);
+            this.mpTabPage3.Controls.Add(this.mpBTNAnulujZakupy);
             this.mpTabPage3.Controls.Add(this.mpTXTWrzuconeMonety);
             this.mpTabPage3.Controls.Add(this.mpTXTDoZaplaty);
             this.mpTabPage3.Controls.Add(this.mpCMBMetodaPlatnosci);
@@ -709,15 +711,15 @@ namespace ProjektNr1_Palacz
             this.mpBTNZwrotMonet.UseVisualStyleBackColor = true;
             this.mpBTNZwrotMonet.Click += new System.EventHandler(this.mpBTNZwrotMonet_Click);
             // 
-            // mpBTNResetKoszyka
+            // mpBTNAnulujZakupy
             // 
-            this.mpBTNResetKoszyka.Location = new System.Drawing.Point(405, 480);
-            this.mpBTNResetKoszyka.Name = "mpBTNResetKoszyka";
-            this.mpBTNResetKoszyka.Size = new System.Drawing.Size(165, 31);
-            this.mpBTNResetKoszyka.TabIndex = 41;
-            this.mpBTNResetKoszyka.Text = "Reset";
-            this.mpBTNResetKoszyka.UseVisualStyleBackColor = true;
-            this.mpBTNResetKoszyka.Click += new System.EventHandler(this.mpBTNResetKoszyka_Click);
+            this.mpBTNAnulujZakupy.Location = new System.Drawing.Point(405, 480);
+            this.mpBTNAnulujZakupy.Name = "mpBTNAnulujZakupy";
+            this.mpBTNAnulujZakupy.Size = new System.Drawing.Size(165, 31);
+            this.mpBTNAnulujZakupy.TabIndex = 41;
+            this.mpBTNAnulujZakupy.Text = "Reset";
+            this.mpBTNAnulujZakupy.UseVisualStyleBackColor = true;
+            this.mpBTNAnulujZakupy.Click += new System.EventHandler(this.mpBTNAnulujZakupy_Click);
             // 
             // mpTXTWrzuconeMonety
             // 
@@ -1014,6 +1016,16 @@ namespace ProjektNr1_Palacz
             // 
             this.mpErrorProvider1.ContainerControl = this;
             // 
+            // mpBTNKupnoGotowka
+            // 
+            this.mpBTNKupnoGotowka.Location = new System.Drawing.Point(10, 425);
+            this.mpBTNKupnoGotowka.Name = "mpBTNKupnoGotowka";
+            this.mpBTNKupnoGotowka.Size = new System.Drawing.Size(87, 33);
+            this.mpBTNKupnoGotowka.TabIndex = 48;
+            this.mpBTNKupnoGotowka.Text = "Kup";
+            this.mpBTNKupnoGotowka.UseVisualStyleBackColor = true;
+            this.mpBTNKupnoGotowka.Click += new System.EventHandler(this.mpBTNKupnoGotowka_Click);
+            // 
             // ProjektNr1_Palacz53262
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -1091,7 +1103,7 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label mpLBLPlatnoscKarta;
         private System.Windows.Forms.Button mpBTNPlatnoscKarta;
         private System.Windows.Forms.Button mpBTNZwrotMonet;
-        private System.Windows.Forms.Button mpBTNResetKoszyka;
+        private System.Windows.Forms.Button mpBTNAnulujZakupy;
         private System.Windows.Forms.TextBox mpTXTWrzuconeMonety;
         private System.Windows.Forms.TextBox mpTXTDoZaplaty;
         private System.Windows.Forms.ComboBox mpCMBMetodaPlatnosci;
@@ -1128,6 +1140,7 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Button mpBTN100Jenow;
         private System.Windows.Forms.Button mpBTN50Jenow;
         private System.Windows.Forms.Button mpBTN5Jenow;
+        private System.Windows.Forms.Button mpBTNKupnoGotowka;
     }
 }
 
