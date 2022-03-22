@@ -355,77 +355,191 @@ namespace ProjektNr1_Palacz
         {
             mpDodajDoKoszyka("ToughnessInfinity");
         }
+        private void mpWrzutPieniedzy(int mpIndexWaluty,float mpKwota)
+        {
+            mpWartoscWrzuconychMonet[mpIndexWaluty] += mpKwota;
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
+        private void mpBTN1Grosz_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 0.01f);
+        }
+
+        private void mpBTN2Grosze_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 0.02f);
+        }
+
+        private void mpBTN5Groszy_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 0.05f);
+        }
+
+        private void mpBTN10Groszy_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 0.1f);
+        }
+
+        private void mpBTN20Groszy_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 0.2f);
+        }
 
         private void mpBTN50Groszy_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[0] += 0.5f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(0, 0.5f);
         }
 
         private void mpBTN1Zloty_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[0] += 1f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(0, 1f);
         }
 
         private void mpBTN2Zlote_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[0] += 2f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(0, 2f);
         }
 
         private void mpBTN5Zloty_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[0] += 5f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(0, 5f);
+        }
+        private void mpBTN10Zloty_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 10f);
+        }
+
+        private void mpBTN20Zloty_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 20f);
+        }
+
+        private void mpBTN50Zloty_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 50f);
+        }
+
+        private void mpBTN100Zloty_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 100f);
+        }
+
+        private void mpBTN200Zloty_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(0, 200f);
+        }
+
+        private void mpBTN1Jen_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(1, 1f);
         }
 
         private void mpBTN5Jenow_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[1] += 5f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(1, 5f);
         }
 
         private void mpBTN10Jenow_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[1] += 10f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(1, 10f);
         }
 
         private void mpBTN50Jenow_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[1] += 50f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(1, 50f);
         }
 
         private void mpBTN100Jenow_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[1] += 100f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(1, 100f);
+        }
+        private void mpBTN500Yen_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(1, 500f);
+        }
+
+        private void mpBTN1000Yen_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(1, 1000f);
+        }
+
+        private void mpBTN5000Jenow_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(1, 5000f);
+        }
+
+        private void mpBTN10000Jenow_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(1, 10000f);
+        }
+        private void mpBTN1EuroCent_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 0.01f);
+        }
+
+        private void mpBTN2EuroCenty_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 0.02f);
+        }
+
+        private void mpBTN5EuroCentow_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 0.05f);
         }
 
         private void mpBTN10EuroCentow_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[2] += 0.1f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(2, 0.1f);
         }
 
         private void mpBTN20EuroCentow_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[2] += 0.2f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(2, 0.2f);
         }
 
         private void mpBTN50EuroCentow_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[2] += 0.5f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(2, 0.5f);
         }
 
         private void mpBTN1Euro_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[2] += 1f;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpWrzutPieniedzy(2, 1f);
+        }
+
+        private void mpBTN2Euro_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 2f);
+        }
+
+        private void mpBTN5Euro_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 5f);
+        }
+
+        private void mpBTN10Euro_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 10f);
+        }
+
+        private void mpBTN20Euro_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 20f);
+        }
+
+        private void mpBTN50Euro_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 20f);
+        }
+
+        private void mpBTN100Euro_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 100f);
+        }
+
+        private void mpBTN200Euro_Click(object sender, EventArgs e)
+        {
+            mpWrzutPieniedzy(2, 200f);
         }
         void mpZwrotMonet()
         {
@@ -491,7 +605,6 @@ namespace ProjektNr1_Palacz
             // przejście do zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
         }
-
         private void mpBTNCofnij_Click(object sender, EventArgs e)
         {
             mpKoszyk[mpOstatniaAktywnosc]--;
@@ -499,8 +612,6 @@ namespace ProjektNr1_Palacz
                 mpKoszyk.Remove(mpOstatniaAktywnosc);
             mpBTNCofnij.Enabled = false;
         }
-
-        
     }
     public class MPProdukt
     {
