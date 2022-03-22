@@ -59,14 +59,18 @@ namespace ProjektNr1_Palacz
         }
         Dictionary<string, MPProdukt> mpPojemnikProduktow;
         Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>();
-        void mpDodanieProduktuDoKoszyka(string mpNazwaProduktu)
+        private void mpDodajDoKoszyka(string mpNazwaProduktu)
         {
-            try
+            try { mpKoszyk[mpNazwaProduktu]++; }
+            catch (Exception e) { mpKoszyk.Add(mpNazwaProduktu, 1); }
+            finally
             {
-                mpKoszyk[mpNazwaProduktu]++;
-            }catch (Exception e)
-            {
-                mpKoszyk.Add(mpNazwaProduktu, 1);
+                mpDoZaplaty[0] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaPLN;
+                mpDoZaplaty[1] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaYEN;
+                mpDoZaplaty[2] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaEUR;
+                mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+                mpOstatniaAktywnosc = mpNazwaProduktu;
+                mpBTNCofnij.Enabled = true;
             }
         }
         void mpWyswietlenieCen()
@@ -107,6 +111,7 @@ namespace ProjektNr1_Palacz
                     break;
             }
         }
+        string mpOstatniaAktywnosc;
         public ProjektNr1_Palacz53262()
         {
             InitializeComponent();
@@ -187,7 +192,6 @@ namespace ProjektNr1_Palacz
             // przejście do zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
         }
-
         private void mpRDBUstawieniePrzedziałuLiczności_CheckedChanged(object sender, EventArgs e)
         {
             // ustawnienie drugiej kontrolki na wartość przeciwną
@@ -255,6 +259,32 @@ namespace ProjektNr1_Palacz
             }
         }
 
+        private void mpCMBWaluta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (mpCMBMetodaPlatnosci.SelectedIndex == 0)
+            {
+                switch (mpCMBWaluta.SelectedIndex)
+                {
+                    case 0:
+                        mpGRBEuro.Visible = false;
+                        mpGRBJeny.Visible = false;
+                        mpGRBZlotowki.Visible = true;
+                        break;
+                    case 1:
+                        mpGRBEuro.Visible = false;
+                        mpGRBJeny.Visible = true;
+                        mpGRBZlotowki.Visible = false;
+                        break;
+                    case 2:
+                        mpGRBEuro.Visible = true;
+                        mpGRBJeny.Visible = false;
+                        mpGRBZlotowki.Visible = false;
+                        break;
+                }
+            }
+            mpWyswietlenieCen();
+            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+        }
         private void mpCMBMetodaPlatnosci_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (mpCMBMetodaPlatnosci.SelectedIndex)
@@ -278,97 +308,57 @@ namespace ProjektNr1_Palacz
 
         private void mpBTNTauriner_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("Tauriner");
-            mpDoZaplaty[0] += mpPojemnikProduktow["Tauriner"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["Tauriner"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["Tauriner"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("Tauriner");
         }
 
         private void mpBTNStaminanX_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("StaminanX");
-            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanX"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanX"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanX"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("StaminanX");
         }
 
         private void mpBTNStaminanXX_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("StaminanXX");
-            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanXX"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanXX"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanXX"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("StaminanXX");
         }
 
         private void mpBTNStaminanRoyale_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("StaminanRoyale");
-            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanRoyale"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanRoyale"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanRoyale"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("StaminanRoyale");
         }
 
         private void mpBTNStaminanSpark_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("StaminanSpark");
-            mpDoZaplaty[0] += mpPojemnikProduktow["StaminanSpark"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["StaminanSpark"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["StaminanSpark"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("StaminanSpark");
         }
 
         private void mpBTNToughnessLight_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("ToughnessLight");
-            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessLight"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessLight"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessLight"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("ToughnessLight");
         }
 
         private void mpBTNToughnessZ_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("ToughnessZ");
-            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessZ"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessZ"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessZ"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("ToughnessZ");
         }
 
         private void mpBTNToughnessZZ_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("ToughnessZZ");
-            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessZZ"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessZZ"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessZZ"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("ToughnessZZ");
         }
 
         private void mpBTNToughnessEmperor_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("ToughnessEmperor");
-            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessEmperor"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessEmperor"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessEmperor"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("ToughnessEmperor");
         }
 
         private void mpBTNToughnessInfinity_Click(object sender, EventArgs e)
         {
-            mpDodanieProduktuDoKoszyka("ToughnessInfinity");
-            mpDoZaplaty[0] += mpPojemnikProduktow["ToughnessInfinity"].mpCenaPLN;
-            mpDoZaplaty[1] += mpPojemnikProduktow["ToughnessInfinity"].mpCenaYEN;
-            mpDoZaplaty[2] += mpPojemnikProduktow["ToughnessInfinity"].mpCenaEUR;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpDodajDoKoszyka("ToughnessInfinity");
         }
 
         private void mpBTN50Groszy_Click(object sender, EventArgs e)
         {
-            mpWartoscWrzuconychMonet[0] +=0.5f;
+            mpWartoscWrzuconychMonet[0] += 0.5f;
             mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
         }
 
@@ -492,32 +482,25 @@ namespace ProjektNr1_Palacz
             mpOproznienieKoszyka();
         }
 
-        private void mpCMBWaluta_SelectedIndexChanged(object sender, EventArgs e)
+        private void mpBTNPowrot2_Click(object sender, EventArgs e)
         {
-            if (mpCMBMetodaPlatnosci.SelectedIndex == 0)
-            {
-                switch (mpCMBWaluta.SelectedIndex)
-                {
-                    case 0:
-                        mpGRBEuro.Visible = false;
-                        mpGRBJeny.Visible = false;
-                        mpGRBZlotowki.Visible = true;
-                        break;
-                    case 1:
-                        mpGRBEuro.Visible = false;
-                        mpGRBJeny.Visible = true;
-                        mpGRBZlotowki.Visible = false;
-                        break;
-                    case 2:
-                        mpGRBEuro.Visible = true;
-                        mpGRBJeny.Visible = false;
-                        mpGRBZlotowki.Visible = false;
-                        break;
-                }
-            }
-            mpWyswietlenieCen();
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            // ustawienie stanu braku aktywności dla zakładki Automat vendingowy
+            mpStanTabPage[2] = false;
+            // ustawnienie stanu aktywności dla zakładki Pulpit
+            mpStanTabPage[0] = true;
+            // przejście do zakładki Pulpit
+            mpTCZakladki.SelectedTab = mpTabPage1;
         }
+
+        private void mpBTNCofnij_Click(object sender, EventArgs e)
+        {
+            mpKoszyk[mpOstatniaAktywnosc]--;
+            if (mpKoszyk[mpOstatniaAktywnosc] == 0)
+                mpKoszyk.Remove(mpOstatniaAktywnosc);
+            mpBTNCofnij.Enabled = false;
+        }
+
+        
     }
     public class MPProdukt
     {
