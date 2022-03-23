@@ -65,6 +65,7 @@ namespace ProjektNr1_Palacz
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mpTabPage3 = new System.Windows.Forms.TabPage();
+            this.mpRTBKoszyk = new System.Windows.Forms.RichTextBox();
             this.mpBTNCofnij = new System.Windows.Forms.Button();
             this.mpBTNKupnoGotowka = new System.Windows.Forms.Button();
             this.mpGRBZlotowki = new System.Windows.Forms.GroupBox();
@@ -142,7 +143,6 @@ namespace ProjektNr1_Palacz
             this.mpBTNPowrot2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.mpRTBKoszyk = new System.Windows.Forms.RichTextBox();
             this.mpTCZakladki.SuspendLayout();
             this.mpTabPage1.SuspendLayout();
             this.mpTabPage2.SuspendLayout();
@@ -549,6 +549,15 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.TabIndex = 2;
             this.mpTabPage3.Text = "Automat vendingowy";
             // 
+            // mpRTBKoszyk
+            // 
+            this.mpRTBKoszyk.Location = new System.Drawing.Point(979, 130);
+            this.mpRTBKoszyk.Name = "mpRTBKoszyk";
+            this.mpRTBKoszyk.ReadOnly = true;
+            this.mpRTBKoszyk.Size = new System.Drawing.Size(165, 225);
+            this.mpRTBKoszyk.TabIndex = 50;
+            this.mpRTBKoszyk.Text = "";
+            // 
             // mpBTNCofnij
             // 
             this.mpBTNCofnij.Enabled = false;
@@ -754,9 +763,9 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN1Jen
             // 
-            this.mpBTN1Jen.Location = new System.Drawing.Point(11, 25);
+            this.mpBTN1Jen.Location = new System.Drawing.Point(10, 25);
             this.mpBTN1Jen.Name = "mpBTN1Jen";
-            this.mpBTN1Jen.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN1Jen.Size = new System.Drawing.Size(67, 33);
             this.mpBTN1Jen.TabIndex = 8;
             this.mpBTN1Jen.Text = "1¥";
             this.mpBTN1Jen.UseVisualStyleBackColor = true;
@@ -764,9 +773,9 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN5000Jenow
             // 
-            this.mpBTN5000Jenow.Location = new System.Drawing.Point(81, 103);
+            this.mpBTN5000Jenow.Location = new System.Drawing.Point(80, 103);
             this.mpBTN5000Jenow.Name = "mpBTN5000Jenow";
-            this.mpBTN5000Jenow.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN5000Jenow.Size = new System.Drawing.Size(67, 33);
             this.mpBTN5000Jenow.TabIndex = 7;
             this.mpBTN5000Jenow.Text = "5000¥";
             this.mpBTN5000Jenow.UseVisualStyleBackColor = true;
@@ -774,19 +783,19 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN10000Jenow
             // 
-            this.mpBTN10000Jenow.Location = new System.Drawing.Point(151, 103);
+            this.mpBTN10000Jenow.Location = new System.Drawing.Point(150, 103);
             this.mpBTN10000Jenow.Name = "mpBTN10000Jenow";
-            this.mpBTN10000Jenow.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN10000Jenow.Size = new System.Drawing.Size(67, 33);
             this.mpBTN10000Jenow.TabIndex = 6;
-            this.mpBTN10000Jenow.Text = "1000¥";
+            this.mpBTN10000Jenow.Text = "10000¥";
             this.mpBTN10000Jenow.UseVisualStyleBackColor = true;
             this.mpBTN10000Jenow.Click += new System.EventHandler(this.mpBTN10000Jenow_Click);
             // 
             // mpBTN1000Yen
             // 
-            this.mpBTN1000Yen.Location = new System.Drawing.Point(11, 103);
+            this.mpBTN1000Yen.Location = new System.Drawing.Point(10, 103);
             this.mpBTN1000Yen.Name = "mpBTN1000Yen";
-            this.mpBTN1000Yen.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN1000Yen.Size = new System.Drawing.Size(67, 33);
             this.mpBTN1000Yen.TabIndex = 5;
             this.mpBTN1000Yen.Text = "1000¥";
             this.mpBTN1000Yen.UseVisualStyleBackColor = true;
@@ -794,9 +803,9 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN500Yen
             // 
-            this.mpBTN500Yen.Location = new System.Drawing.Point(151, 64);
+            this.mpBTN500Yen.Location = new System.Drawing.Point(150, 64);
             this.mpBTN500Yen.Name = "mpBTN500Yen";
-            this.mpBTN500Yen.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN500Yen.Size = new System.Drawing.Size(67, 33);
             this.mpBTN500Yen.TabIndex = 4;
             this.mpBTN500Yen.Text = "500¥";
             this.mpBTN500Yen.UseVisualStyleBackColor = true;
@@ -804,9 +813,9 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN10Jenow
             // 
-            this.mpBTN10Jenow.Location = new System.Drawing.Point(151, 25);
+            this.mpBTN10Jenow.Location = new System.Drawing.Point(150, 25);
             this.mpBTN10Jenow.Name = "mpBTN10Jenow";
-            this.mpBTN10Jenow.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN10Jenow.Size = new System.Drawing.Size(67, 33);
             this.mpBTN10Jenow.TabIndex = 3;
             this.mpBTN10Jenow.Text = "10¥";
             this.mpBTN10Jenow.UseVisualStyleBackColor = true;
@@ -814,9 +823,9 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN100Jenow
             // 
-            this.mpBTN100Jenow.Location = new System.Drawing.Point(81, 64);
+            this.mpBTN100Jenow.Location = new System.Drawing.Point(80, 64);
             this.mpBTN100Jenow.Name = "mpBTN100Jenow";
-            this.mpBTN100Jenow.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN100Jenow.Size = new System.Drawing.Size(67, 33);
             this.mpBTN100Jenow.TabIndex = 2;
             this.mpBTN100Jenow.Text = "100¥";
             this.mpBTN100Jenow.UseVisualStyleBackColor = true;
@@ -824,9 +833,9 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN50Jenow
             // 
-            this.mpBTN50Jenow.Location = new System.Drawing.Point(11, 64);
+            this.mpBTN50Jenow.Location = new System.Drawing.Point(10, 64);
             this.mpBTN50Jenow.Name = "mpBTN50Jenow";
-            this.mpBTN50Jenow.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN50Jenow.Size = new System.Drawing.Size(67, 33);
             this.mpBTN50Jenow.TabIndex = 1;
             this.mpBTN50Jenow.Text = "50¥";
             this.mpBTN50Jenow.UseVisualStyleBackColor = true;
@@ -834,9 +843,9 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTN5Jenow
             // 
-            this.mpBTN5Jenow.Location = new System.Drawing.Point(81, 25);
+            this.mpBTN5Jenow.Location = new System.Drawing.Point(80, 25);
             this.mpBTN5Jenow.Name = "mpBTN5Jenow";
-            this.mpBTN5Jenow.Size = new System.Drawing.Size(64, 33);
+            this.mpBTN5Jenow.Size = new System.Drawing.Size(67, 33);
             this.mpBTN5Jenow.TabIndex = 0;
             this.mpBTN5Jenow.Text = "5¥";
             this.mpBTN5Jenow.UseVisualStyleBackColor = true;
@@ -1341,15 +1350,6 @@ namespace ProjektNr1_Palacz
             // mpErrorProvider1
             // 
             this.mpErrorProvider1.ContainerControl = this;
-            // 
-            // mpRTBKoszyk
-            // 
-            this.mpRTBKoszyk.Enabled = false;
-            this.mpRTBKoszyk.Location = new System.Drawing.Point(979, 130);
-            this.mpRTBKoszyk.Name = "mpRTBKoszyk";
-            this.mpRTBKoszyk.Size = new System.Drawing.Size(165, 225);
-            this.mpRTBKoszyk.TabIndex = 50;
-            this.mpRTBKoszyk.Text = "";
             // 
             // ProjektNr1_Palacz53262
             // 

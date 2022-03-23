@@ -27,8 +27,8 @@ namespace ProjektNr1_Palacz
         mpNominaly[] mpPojemnikNominalow;
 
         //                                  PLN YEN EUR                   PLN YEN EUR
-        float[] mpWartoscWrzuconychMonet = { 0f, 0f, 0f }, mpDoZaplaty = { 0f, 0f, 0f };
-        Dictionary<string, MPProdukt> mpStworzenieKonteneraProduktow()
+        private float[] mpWartoscWrzuconychMonet = { 0f, 0f, 0f }, mpDoZaplaty = { 0f, 0f, 0f };
+        private Dictionary<string, MPProdukt> mpStworzenieKonteneraProduktow()
         {
             // stworzenie słownika do przechowywania produktów
             Dictionary<string, MPProdukt> mpPojemnikProduktow = new Dictionary<string, MPProdukt>();
@@ -68,12 +68,12 @@ namespace ProjektNr1_Palacz
                 mpDoZaplaty[0] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaPLN;
                 mpDoZaplaty[1] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaYEN;
                 mpDoZaplaty[2] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaEUR;
-                mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+                mpAktualizacjaWyswietlanychDanych();
                 mpOstatniaAktywnosc = mpNazwaProduktu;
                 mpBTNCofnij.Enabled = true;
             }
         }
-        void mpWyswietlenieCen()
+        private void mpWyswietlenieCen()
         {
             string mpCena = "";
             foreach (MPProdukt mpProdukt in mpPojemnikProduktow.Values)
@@ -93,7 +93,7 @@ namespace ProjektNr1_Palacz
                 mpProdukt.mpTXTCena.Text = mpCena;
             }
         }
-        void mpAktualizacjaWartosciKoszykaIWrzuconychMonet()
+        private void mpAktualizacjaWyswietlanychDanych()
         {
             switch (mpCMBWaluta.SelectedIndex)
             {
@@ -110,8 +110,17 @@ namespace ProjektNr1_Palacz
                     mpTXTWrzuconeMonety.Text = Convert.ToString(mpWartoscWrzuconychMonet[2]) + "€";
                     break;
             }
+            // wyświetlenie koszyka
+            mpRTBKoszyk.Text = "";
+            if (mpKoszyk.Count != 0)
+            {
+                foreach (KeyValuePair<string, ushort> mpProdukt in mpKoszyk)
+                {
+                    mpRTBKoszyk.Text += $"{mpProdukt.Key} {mpProdukt.Value}x\n";
+                }
+            }
         }
-        string mpOstatniaAktywnosc;
+        private string mpOstatniaAktywnosc;
         public ProjektNr1_Palacz53262()
         {
             InitializeComponent();
@@ -283,7 +292,7 @@ namespace ProjektNr1_Palacz
                 }
             }
             mpWyswietlenieCen();
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpAktualizacjaWyswietlanychDanych();
         }
         private void mpCMBMetodaPlatnosci_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -305,52 +314,42 @@ namespace ProjektNr1_Palacz
                     break;
             }
         }
-
         private void mpBTNTauriner_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("Tauriner");
         }
-
         private void mpBTNStaminanX_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("StaminanX");
         }
-
         private void mpBTNStaminanXX_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("StaminanXX");
         }
-
         private void mpBTNStaminanRoyale_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("StaminanRoyale");
         }
-
         private void mpBTNStaminanSpark_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("StaminanSpark");
         }
-
         private void mpBTNToughnessLight_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("ToughnessLight");
         }
-
         private void mpBTNToughnessZ_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("ToughnessZ");
         }
-
         private void mpBTNToughnessZZ_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("ToughnessZZ");
         }
-
         private void mpBTNToughnessEmperor_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("ToughnessEmperor");
         }
-
         private void mpBTNToughnessInfinity_Click(object sender, EventArgs e)
         {
             mpDodajDoKoszyka("ToughnessInfinity");
@@ -358,48 +357,40 @@ namespace ProjektNr1_Palacz
         private void mpWrzutPieniedzy(int mpIndexWaluty,float mpKwota)
         {
             mpWartoscWrzuconychMonet[mpIndexWaluty] += mpKwota;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpAktualizacjaWyswietlanychDanych();
         }
         private void mpBTN1Grosz_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 0.01f);
         }
-
         private void mpBTN2Grosze_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 0.02f);
         }
-
         private void mpBTN5Groszy_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 0.05f);
         }
-
         private void mpBTN10Groszy_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 0.1f);
         }
-
         private void mpBTN20Groszy_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 0.2f);
         }
-
         private void mpBTN50Groszy_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 0.5f);
         }
-
         private void mpBTN1Zloty_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 1f);
         }
-
         private void mpBTN2Zlote_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 2f);
         }
-
         private void mpBTN5Zloty_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 5f);
@@ -408,47 +399,38 @@ namespace ProjektNr1_Palacz
         {
             mpWrzutPieniedzy(0, 10f);
         }
-
         private void mpBTN20Zloty_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 20f);
         }
-
         private void mpBTN50Zloty_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 50f);
         }
-
         private void mpBTN100Zloty_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 100f);
         }
-
         private void mpBTN200Zloty_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(0, 200f);
         }
-
         private void mpBTN1Jen_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 1f);
         }
-
         private void mpBTN5Jenow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 5f);
         }
-
         private void mpBTN10Jenow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 10f);
         }
-
         private void mpBTN50Jenow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 50f);
         }
-
         private void mpBTN100Jenow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 100f);
@@ -457,17 +439,14 @@ namespace ProjektNr1_Palacz
         {
             mpWrzutPieniedzy(1, 500f);
         }
-
         private void mpBTN1000Yen_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 1000f);
         }
-
         private void mpBTN5000Jenow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 5000f);
         }
-
         private void mpBTN10000Jenow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(1, 10000f);
@@ -476,99 +455,88 @@ namespace ProjektNr1_Palacz
         {
             mpWrzutPieniedzy(2, 0.01f);
         }
-
         private void mpBTN2EuroCenty_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 0.02f);
         }
-
         private void mpBTN5EuroCentow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 0.05f);
         }
-
         private void mpBTN10EuroCentow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 0.1f);
         }
-
         private void mpBTN20EuroCentow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 0.2f);
         }
-
         private void mpBTN50EuroCentow_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 0.5f);
         }
-
         private void mpBTN1Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 1f);
         }
-
         private void mpBTN2Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 2f);
         }
-
         private void mpBTN5Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 5f);
         }
-
         private void mpBTN10Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 10f);
         }
-
         private void mpBTN20Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 20f);
         }
-
         private void mpBTN50Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 20f);
         }
-
         private void mpBTN100Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 100f);
         }
-
         private void mpBTN200Euro_Click(object sender, EventArgs e)
         {
             mpWrzutPieniedzy(2, 200f);
         }
-        void mpZwrotMonet()
+        private void mpWyrzutMonet()
         {
             mpWartoscWrzuconychMonet[0] = 0;
             mpWartoscWrzuconychMonet[1] = 0;
             mpWartoscWrzuconychMonet[2] = 0;
-            mpAktualizacjaWartosciKoszykaIWrzuconychMonet();
+            mpAktualizacjaWyswietlanychDanych();
         }
 
         private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
         {
             DialogResult mpDialogResult = MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo);
-            if (mpDialogResult == DialogResult.Yes) mpZwrotMonet();
+            if (mpDialogResult == DialogResult.Yes) mpWyrzutMonet();
         }
-        void mpOproznienieKoszyka()
+        private void mpOproznienieKoszyka()
         {
             mpDoZaplaty[0] = 0;
             mpDoZaplaty[1] = 0;
             mpDoZaplaty[2] = 0;
             mpKoszyk = new Dictionary<string, ushort>();
+            mpAktualizacjaWyswietlanychDanych();
         }
         private void mpBTNAnulujZakupy_Click(object sender, EventArgs e)
         {
-            DialogResult mpDialogResult = MessageBox.Show("Czy na pewno chcesz zresetować?", "Reset", MessageBoxButtons.YesNo);
-            if (mpDialogResult == DialogResult.Yes)
+            if (MessageBox.Show("Czy na pewno chcesz zresetować?", "Reset", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 mpOproznienieKoszyka();
-                mpZwrotMonet();
             }
+            if (mpCMBMetodaPlatnosci.SelectedIndex == 0 && mpWartoscWrzuconychMonet[mpCMBRodzajWaluty.SelectedIndex] != 0)
+                if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    mpWyrzutMonet();
         }
 
         private void mpBTNKupnoGotowka_Click(object sender, EventArgs e)
@@ -583,16 +551,70 @@ namespace ProjektNr1_Palacz
                 MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy");
                 return;
             }
-            string mpZawartoscKoszyka = "";
-            foreach (KeyValuePair<string, ushort> mpProdukt in mpKoszyk)
+            string mpKomunikat = "Zakupiono:\n" + mpRTBKoszyk.Text + "Reszta: ";
+            float mpReszta;
+            switch (mpCMBRodzajWaluty.SelectedIndex)
             {
-                if (mpProdukt.Value == 1)
-                    mpZawartoscKoszyka += mpProdukt.Key + "\n";
-                else
-                    mpZawartoscKoszyka += mpProdukt.Value + "x " + mpProdukt.Key + "\n";
+                case 0:
+                    mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[0] - mpDoZaplaty[0]) + "PLN\n";
+                    float[] mpNominalyPLN = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
+                    for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
+                    {
+                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyPLN[mpI]);
+                        if (mpIloraz != 0)
+                        {
+                            mpKomunikat += $"{mpIloraz}x {mpNominalyPLN[mpI]} złoty\n";
+                            mpReszta -= mpNominalyPLN[mpI] * mpIloraz;
+                        }
+                    }
+                    for (int mpI = 8; mpI <= mpNominalyPLN.Length && mpReszta > 0; mpI++)
+                    {
+                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyPLN[mpI]);
+                        if (mpIloraz != 0)
+                        {
+                            mpKomunikat += $"{mpIloraz}x {mpNominalyPLN[mpI] * 100} groszy\n";
+                            mpReszta -= mpNominalyPLN[mpI] * mpIloraz;
+                        }
+                    }
+                    break;
+                case 1:
+                    mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[1] - mpDoZaplaty[1]) + "¥\n";
+                    ushort[] mpNominalyYEN = { 10000, 5000, 1000, 500, 100, 50, 10, 5, 1 };
+                    for (int mpI = 8; mpI <= mpNominalyYEN.Length && mpReszta > 0; mpI++)
+                    {
+                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyYEN[mpI]);
+                        if (mpIloraz != 0)
+                        {
+                            mpKomunikat += $"{mpIloraz}x {mpNominalyYEN[mpI] * 100} ¥\n";
+                            mpReszta -= mpNominalyYEN[mpI] * mpIloraz;
+                        }
+                    }
+                    break;
+                case 2:
+                    mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[2] - mpDoZaplaty[2]) + "€\n";
+                    float[] mpNominalyEUR = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
+                    for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
+                    {
+                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyEUR[mpI]);
+                        if (mpIloraz != 0)
+                        {
+                            mpKomunikat += $"{mpIloraz}x {mpNominalyEUR[mpI]} €\n";
+                            mpReszta -= mpNominalyEUR[mpI] * mpIloraz;
+                        }
+                    }
+                    for (int mpI = 8; mpI <= mpNominalyEUR.Length && mpReszta > 0; mpI++)
+                    {
+                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyEUR[mpI]);
+                        if (mpIloraz != 0)
+                        {
+                            mpKomunikat += $"{mpIloraz}x {mpNominalyEUR[mpI] * 100} centów\n";
+                            mpReszta -= mpNominalyEUR[mpI] * mpIloraz;
+                        }
+                    }
+                    break;
             }
-            MessageBox.Show(mpZawartoscKoszyka);
-            mpZwrotMonet();
+            MessageBox.Show(mpKomunikat);
+            mpWyrzutMonet();
             mpOproznienieKoszyka();
         }
 
@@ -607,9 +629,13 @@ namespace ProjektNr1_Palacz
         }
         private void mpBTNCofnij_Click(object sender, EventArgs e)
         {
+            mpDoZaplaty[0] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaPLN;
+            mpDoZaplaty[1] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaYEN;
+            mpDoZaplaty[2] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaEUR;
             mpKoszyk[mpOstatniaAktywnosc]--;
             if (mpKoszyk[mpOstatniaAktywnosc] == 0)
                 mpKoszyk.Remove(mpOstatniaAktywnosc);
+            mpAktualizacjaWyswietlanychDanych();
             mpBTNCofnij.Enabled = false;
         }
     }
