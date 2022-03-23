@@ -143,6 +143,7 @@ namespace ProjektNr1_Palacz
             this.mpBTNPowrot2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             this.mpTCZakladki.SuspendLayout();
             this.mpTabPage1.SuspendLayout();
             this.mpTabPage2.SuspendLayout();
@@ -502,6 +503,7 @@ namespace ProjektNr1_Palacz
             // mpTabPage3
             // 
             this.mpTabPage3.BackColor = System.Drawing.Color.HotPink;
+            this.mpTabPage3.Controls.Add(this.label5);
             this.mpTabPage3.Controls.Add(this.mpRTBKoszyk);
             this.mpTabPage3.Controls.Add(this.mpBTNCofnij);
             this.mpTabPage3.Controls.Add(this.mpBTNKupnoGotowka);
@@ -1351,6 +1353,15 @@ namespace ProjektNr1_Palacz
             // 
             this.mpErrorProvider1.ContainerControl = this;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(975, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 19);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "Koszyk";
+            // 
             // ProjektNr1_Palacz53262
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -1493,6 +1504,7 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Button mpBTN100Euro;
         private System.Windows.Forms.Button mpBTN50Euro;
         private System.Windows.Forms.RichTextBox mpRTBKoszyk;
+        private System.Windows.Forms.Label label5;
     }
 }
 

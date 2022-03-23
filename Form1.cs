@@ -517,8 +517,13 @@ namespace ProjektNr1_Palacz
 
         private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
         {
-            DialogResult mpDialogResult = MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo);
-            if (mpDialogResult == DialogResult.Yes) mpWyrzutMonet();
+            if (mpWartoscWrzuconychMonet[0] + mpWartoscWrzuconychMonet[1] + mpWartoscWrzuconychMonet[2] == 0)
+            {
+                MessageBox.Show("Nie wrzucono żadnych pieniędzy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes) 
+                mpWyrzutMonet();
         }
         private void mpOproznienieKoszyka()
         {
@@ -530,12 +535,17 @@ namespace ProjektNr1_Palacz
         }
         private void mpBTNAnulujZakupy_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Czy na pewno chcesz zresetować?", "Reset", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (mpDoZaplaty[0] + mpDoZaplaty[1] + mpDoZaplaty[2] == 0)
+            {
+                MessageBox.Show("Nie wybrano żadnego produktu!", "Pusty koszyk", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (MessageBox.Show("Czy na pewno chcesz zresetować?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 mpOproznienieKoszyka();
             }
-            if (mpCMBMetodaPlatnosci.SelectedIndex == 0 && mpWartoscWrzuconychMonet[mpCMBRodzajWaluty.SelectedIndex] != 0)
-                if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (mpCMBMetodaPlatnosci.SelectedIndex == 0 && mpWartoscWrzuconychMonet[mpCMBWaluta.SelectedIndex] != 0)
+                if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                     mpWyrzutMonet();
         }
 
@@ -543,17 +553,17 @@ namespace ProjektNr1_Palacz
         {
             if (mpKoszyk.Count() == 0)
             {
-                MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk");
+                MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
-            else if (mpWartoscWrzuconychMonet[mpCMBRodzajWaluty.SelectedIndex] < mpDoZaplaty[mpCMBRodzajWaluty.SelectedIndex])
+            else if (mpWartoscWrzuconychMonet[mpCMBWaluta.SelectedIndex] < mpDoZaplaty[mpCMBWaluta.SelectedIndex])
             {
-                MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy");
+                MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             string mpKomunikat = "Zakupiono:\n" + mpRTBKoszyk.Text + "Reszta: ";
             float mpReszta;
-            switch (mpCMBRodzajWaluty.SelectedIndex)
+            switch (mpCMBWaluta.SelectedIndex)
             {
                 case 0:
                     mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[0] - mpDoZaplaty[0]) + "PLN\n";
@@ -580,7 +590,7 @@ namespace ProjektNr1_Palacz
                 case 1:
                     mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[1] - mpDoZaplaty[1]) + "¥\n";
                     ushort[] mpNominalyYEN = { 10000, 5000, 1000, 500, 100, 50, 10, 5, 1 };
-                    for (int mpI = 8; mpI <= mpNominalyYEN.Length && mpReszta > 0; mpI++)
+                    for (int mpI = 0; mpI <= mpNominalyYEN.Length && mpReszta > 0; mpI++)
                     {
                         ushort mpIloraz = (ushort)(mpReszta / mpNominalyYEN[mpI]);
                         if (mpIloraz != 0)
@@ -613,7 +623,7 @@ namespace ProjektNr1_Palacz
                     }
                     break;
             }
-            MessageBox.Show(mpKomunikat);
+            MessageBox.Show(mpKomunikat,"Na zdrowie!",MessageBoxButtons.OK,MessageBoxIcon.Information);
             mpWyrzutMonet();
             mpOproznienieKoszyka();
         }
