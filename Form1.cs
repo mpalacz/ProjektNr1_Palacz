@@ -577,7 +577,7 @@ namespace ProjektNr1_Palacz
                             mpReszta -= mpNominalyPLN[mpI] * mpIloraz;
                         }
                     }
-                    for (int mpI = 8; mpI <= mpNominalyPLN.Length && mpReszta > 0; mpI++)
+                    for (int mpI = 8; mpI < mpNominalyPLN.Length && mpReszta > 0; mpI++)
                     {
                         ushort mpIloraz = (ushort)(mpReszta / mpNominalyPLN[mpI]);
                         if (mpIloraz != 0)
@@ -590,12 +590,12 @@ namespace ProjektNr1_Palacz
                 case 1:
                     mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[1] - mpDoZaplaty[1]) + "¥\n";
                     ushort[] mpNominalyYEN = { 10000, 5000, 1000, 500, 100, 50, 10, 5, 1 };
-                    for (int mpI = 0; mpI <= mpNominalyYEN.Length && mpReszta > 0; mpI++)
+                    for (int mpI = 0; mpI < mpNominalyYEN.Length && mpReszta > 0; mpI++)
                     {
                         ushort mpIloraz = (ushort)(mpReszta / mpNominalyYEN[mpI]);
                         if (mpIloraz != 0)
                         {
-                            mpKomunikat += $"{mpIloraz}x {mpNominalyYEN[mpI] * 100} ¥\n";
+                            mpKomunikat += $"{mpIloraz}x {mpNominalyYEN[mpI]} ¥\n";
                             mpReszta -= mpNominalyYEN[mpI] * mpIloraz;
                         }
                     }
@@ -612,7 +612,7 @@ namespace ProjektNr1_Palacz
                             mpReszta -= mpNominalyEUR[mpI] * mpIloraz;
                         }
                     }
-                    for (int mpI = 8; mpI <= mpNominalyEUR.Length && mpReszta > 0; mpI++)
+                    for (int mpI = 8; mpI < mpNominalyEUR.Length && mpReszta > 0; mpI++)
                     {
                         ushort mpIloraz = (ushort)(mpReszta / mpNominalyEUR[mpI]);
                         if (mpIloraz != 0)
