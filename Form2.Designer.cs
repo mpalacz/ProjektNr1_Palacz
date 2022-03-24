@@ -50,9 +50,13 @@ namespace ProjektNr1_Palacz
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.mpGRBZalogowano = new System.Windows.Forms.GroupBox();
+            this.mpBTNOk = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.mpGRBLogowanie.SuspendLayout();
             this.mpGRBZakladanieKonta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
+            this.mpGRBZalogowano.SuspendLayout();
             this.SuspendLayout();
             // 
             // mpGRBLogowanie
@@ -93,7 +97,6 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNZaloguj
             // 
-            this.mpBTNZaloguj.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mpBTNZaloguj.Location = new System.Drawing.Point(14, 232);
             this.mpBTNZaloguj.Name = "mpBTNZaloguj";
             this.mpBTNZaloguj.Size = new System.Drawing.Size(70, 39);
@@ -106,7 +109,7 @@ namespace ProjektNr1_Palacz
             // 
             this.mpTXTHaslo.Location = new System.Drawing.Point(14, 138);
             this.mpTXTHaslo.Name = "mpTXTHaslo";
-            this.mpTXTHaslo.Size = new System.Drawing.Size(257, 26);
+            this.mpTXTHaslo.Size = new System.Drawing.Size(247, 26);
             this.mpTXTHaslo.TabIndex = 2;
             this.mpTXTHaslo.UseSystemPasswordChar = true;
             // 
@@ -114,7 +117,7 @@ namespace ProjektNr1_Palacz
             // 
             this.mpTXTLogin.Location = new System.Drawing.Point(14, 50);
             this.mpTXTLogin.Name = "mpTXTLogin";
-            this.mpTXTLogin.Size = new System.Drawing.Size(257, 26);
+            this.mpTXTLogin.Size = new System.Drawing.Size(247, 26);
             this.mpTXTLogin.TabIndex = 1;
             // 
             // label2
@@ -179,7 +182,7 @@ namespace ProjektNr1_Palacz
             // 
             this.mpTXTHasloNowegoKonta.Location = new System.Drawing.Point(10, 146);
             this.mpTXTHasloNowegoKonta.Name = "mpTXTHasloNowegoKonta";
-            this.mpTXTHasloNowegoKonta.Size = new System.Drawing.Size(268, 26);
+            this.mpTXTHasloNowegoKonta.Size = new System.Drawing.Size(247, 26);
             this.mpTXTHasloNowegoKonta.TabIndex = 7;
             this.mpTXTHasloNowegoKonta.UseSystemPasswordChar = true;
             // 
@@ -187,7 +190,7 @@ namespace ProjektNr1_Palacz
             // 
             this.mpTXTPowtorzoneHaslo.Location = new System.Drawing.Point(10, 197);
             this.mpTXTPowtorzoneHaslo.Name = "mpTXTPowtorzoneHaslo";
-            this.mpTXTPowtorzoneHaslo.Size = new System.Drawing.Size(268, 26);
+            this.mpTXTPowtorzoneHaslo.Size = new System.Drawing.Size(247, 26);
             this.mpTXTPowtorzoneHaslo.TabIndex = 6;
             this.mpTXTPowtorzoneHaslo.UseSystemPasswordChar = true;
             // 
@@ -195,14 +198,14 @@ namespace ProjektNr1_Palacz
             // 
             this.mpTXTLoginNowegoKonta.Location = new System.Drawing.Point(10, 95);
             this.mpTXTLoginNowegoKonta.Name = "mpTXTLoginNowegoKonta";
-            this.mpTXTLoginNowegoKonta.Size = new System.Drawing.Size(268, 26);
+            this.mpTXTLoginNowegoKonta.Size = new System.Drawing.Size(247, 26);
             this.mpTXTLoginNowegoKonta.TabIndex = 5;
             // 
             // mpTXTEmailNowegoKonta
             // 
             this.mpTXTEmailNowegoKonta.Location = new System.Drawing.Point(10, 44);
             this.mpTXTEmailNowegoKonta.Name = "mpTXTEmailNowegoKonta";
-            this.mpTXTEmailNowegoKonta.Size = new System.Drawing.Size(268, 26);
+            this.mpTXTEmailNowegoKonta.Size = new System.Drawing.Size(247, 26);
             this.mpTXTEmailNowegoKonta.TabIndex = 4;
             // 
             // label6
@@ -245,25 +248,62 @@ namespace ProjektNr1_Palacz
             // 
             this.mpErrorProvider1.ContainerControl = this;
             // 
-            // mpLoginForm
+            // mpGRBZalogowano
             // 
-            this.AcceptButton = this.mpBTNZaloguj;
+            this.mpGRBZalogowano.Controls.Add(this.mpBTNOk);
+            this.mpGRBZalogowano.Controls.Add(this.label7);
+            this.mpGRBZalogowano.Location = new System.Drawing.Point(12, 12);
+            this.mpGRBZalogowano.Name = "mpGRBZalogowano";
+            this.mpGRBZalogowano.Size = new System.Drawing.Size(284, 285);
+            this.mpGRBZalogowano.TabIndex = 2;
+            this.mpGRBZalogowano.TabStop = false;
+            this.mpGRBZalogowano.Text = "Pomyślnie zalogowano";
+            this.mpGRBZalogowano.Visible = false;
+            // 
+            // mpBTNOk
+            // 
+            this.mpBTNOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mpBTNOk.Location = new System.Drawing.Point(103, 232);
+            this.mpBTNOk.Name = "mpBTNOk";
+            this.mpBTNOk.Size = new System.Drawing.Size(75, 23);
+            this.mpBTNOk.TabIndex = 1;
+            this.mpBTNOk.Text = "OK";
+            this.mpBTNOk.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(46, 66);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(204, 38);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Pomyślenie zalogowano.\r\nTransakcja została wykonana.";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Form2
+            // 
+            this.AcceptButton = this.mpBTNOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mpBTNAnuluj;
             this.ClientSize = new System.Drawing.Size(304, 304);
+            this.Controls.Add(this.mpGRBZalogowano);
             this.Controls.Add(this.mpGRBZakladanieKonta);
             this.Controls.Add(this.mpGRBLogowanie);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "mpLoginForm";
-            this.Text = "mpLoginForm";
+            this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Logowanie";
             this.mpGRBLogowanie.ResumeLayout(false);
             this.mpGRBLogowanie.PerformLayout();
             this.mpGRBZakladanieKonta.ResumeLayout(false);
             this.mpGRBZakladanieKonta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).EndInit();
+            this.mpGRBZalogowano.ResumeLayout(false);
+            this.mpGRBZalogowano.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -290,5 +330,8 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ErrorProvider mpErrorProvider1;
+        private System.Windows.Forms.Button mpBTNOk;
+        private System.Windows.Forms.GroupBox mpGRBZalogowano;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -28,6 +28,7 @@ namespace ProjektNr1_Palacz
 
         private void mpBTNZaloguj_Click(object sender, EventArgs e)
         {
+            mpErrorProvider1.Clear();
             bool mpCzyZalogowano = false;
             foreach(MPUzytkownik mpUzytkownik in mpListaUzytkownikow)
             {
@@ -44,7 +45,11 @@ namespace ProjektNr1_Palacz
             if (!mpCzyZalogowano)
             {
                 mpErrorProvider1.SetError(mpTXTLogin, "Wpisano nieporpawne dane logowania");
-                return;
+            }
+            else
+            {
+                mpGRBLogowanie.Visible = false;
+                mpGRBZalogowano.Visible = true;
             }
         }
 
@@ -58,13 +63,19 @@ namespace ProjektNr1_Palacz
 
         private void mpBTNZarejestroj_Click(object sender, EventArgs e)
         {
+            mpErrorProvider1.Clear();
             if (!mpCzyEmail(mpTXTEmailNowegoKonta.Text))
             {
                 mpErrorProvider1.SetError(mpTXTEmailNowegoKonta, "Wpisana wartośc nie jest adresem e-mail");
                 return;
             }
+            if (mpTXTHasloNowegoKonta.Text != mpTXTPowtorzoneHaslo.Text)
+            {
+                mpErrorProvider1.SetError(mpTXTPowtorzoneHaslo, "Hasła się różnią");
+                return;
+            }
             mpListaUzytkownikow.Add(new MPUzytkownik(mpTXTLoginNowegoKonta.Text, mpTXTEmailNowegoKonta.Text, mpTXTHasloNowegoKonta.Text));
-            mpBTNAnulujZakladanieKonta.Click += mpBTNAnulujZakladanieKonta_Click;
+            mpBTNAnulujZakladanieKonta.PerformClick();
         }
 
         private void mpBTNAnulujZakladanieKonta_Click(object sender, EventArgs e)
@@ -75,6 +86,7 @@ namespace ProjektNr1_Palacz
             mpTXTPowtorzoneHaslo.Text = "";
             mpGRBLogowanie.Visible = true;
             mpGRBZakladanieKonta.Visible = false;
+            mpErrorProvider1.Clear();
         }
     }
     public class MPUzytkownik 

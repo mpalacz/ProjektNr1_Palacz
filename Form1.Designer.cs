@@ -1370,8 +1370,11 @@ namespace ProjektNr1_Palacz
             this.ClientSize = new System.Drawing.Size(1304, 618);
             this.Controls.Add(this.mpTCZakladki);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "ProjektNr1_Palacz53262";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Obsługa Bankomatu i Automatu vendingowego";
             this.mpTCZakladki.ResumeLayout(false);
             this.mpTabPage1.ResumeLayout(false);

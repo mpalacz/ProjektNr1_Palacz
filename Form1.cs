@@ -316,7 +316,7 @@ namespace ProjektNr1_Palacz
                     mpLBLPlatnoscKarta.Visible = false;
                     mpBTNPlatnoscKarta.Visible = false;
                     mpBTNKupnoGotowka.Visible = true;
-                    mpCMBWaluta.SelectedIndexChanged += mpCMBWaluta_SelectedIndexChanged;
+                    mpCMBWaluta_SelectedIndexChanged(sender, e);
                     break;
                 case 1:
                     mpGRBJeny.Visible = false;
