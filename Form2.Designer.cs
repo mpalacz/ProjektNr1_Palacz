@@ -1,5 +1,5 @@
 ﻿
-namespace ProjektNr1_Palacz53262
+namespace ProjektNr1_Palacz
 {
     partial class Form2
     {

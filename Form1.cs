@@ -521,7 +521,7 @@ namespace ProjektNr1_Palacz
         {
             mpWrzutPieniedzy(2, 200f);
         }
-        private void mpWyrzutMonet()
+        private void mpZwrotPieniedzy()
         {
             mpWrzuconePieniadze[0] = 0;
             mpWrzuconePieniadze[1] = 0;
@@ -537,7 +537,7 @@ namespace ProjektNr1_Palacz
                 return;
             }
             if (MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes) 
-                mpWyrzutMonet();
+                mpZwrotPieniedzy();
         }
         private void mpOproznienieKoszyka()
         {
@@ -560,7 +560,7 @@ namespace ProjektNr1_Palacz
             }
             if (mpCMBMetodaPlatnosci.SelectedIndex == 0 && mpWrzuconePieniadze[mpCMBWaluta.SelectedIndex] != 0)
                 if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
-                    mpWyrzutMonet();
+                    mpZwrotPieniedzy();
         }
 
         private void mpBTNKupnoGotowka_Click(object sender, EventArgs e)
@@ -638,7 +638,7 @@ namespace ProjektNr1_Palacz
                     break;
             }
             MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            mpWyrzutMonet();
+            mpZwrotPieniedzy();
             mpOproznienieKoszyka();
         }
 
@@ -650,6 +650,17 @@ namespace ProjektNr1_Palacz
                 return;
             }
             Form2 mpLoginForm = new Form2();
+            mpLoginForm.ShowDialog();
+            if (mpLoginForm.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show("Zakupiono:\n" + mpRTBKoszyk.Text, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] != 0)
+                {
+                    MessageBox.Show("Zwrócono wprowadzoną gotówkę.", "Zwrot gotówki", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    mpZwrotPieniedzy();
+                }
+                mpOproznienieKoszyka();
+            }
         }
 
         private void mpBTNCofnij_Click(object sender, EventArgs e)

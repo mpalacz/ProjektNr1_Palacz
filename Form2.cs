@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjektNr1_Palacz53262
+namespace ProjektNr1_Palacz
 {
     public partial class Form2 : Form
     {

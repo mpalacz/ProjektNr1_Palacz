@@ -1159,7 +1159,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNToughnessEmperor
             // 
-            this.mpBTNToughnessEmperor.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughemp;
+            this.mpBTNToughnessEmperor.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughemp;
             this.mpBTNToughnessEmperor.Location = new System.Drawing.Point(693, 243);
             this.mpBTNToughnessEmperor.Name = "mpBTNToughnessEmperor";
             this.mpBTNToughnessEmperor.Size = new System.Drawing.Size(80, 80);
@@ -1178,7 +1178,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNToughnessInfinity
             // 
-            this.mpBTNToughnessInfinity.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughinf;
+            this.mpBTNToughnessInfinity.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughinf;
             this.mpBTNToughnessInfinity.Location = new System.Drawing.Point(774, 243);
             this.mpBTNToughnessInfinity.Name = "mpBTNToughnessInfinity";
             this.mpBTNToughnessInfinity.Size = new System.Drawing.Size(80, 80);
@@ -1197,7 +1197,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNStaminanSpark
             // 
-            this.mpBTNStaminanSpark.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanspark;
+            this.mpBTNStaminanSpark.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0staminanspark;
             this.mpBTNStaminanSpark.Location = new System.Drawing.Point(774, 130);
             this.mpBTNStaminanSpark.Name = "mpBTNStaminanSpark";
             this.mpBTNStaminanSpark.Size = new System.Drawing.Size(80, 80);
@@ -1216,7 +1216,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNTauriner
             // 
-            this.mpBTNTauriner.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Tauriner;
+            this.mpBTNTauriner.Image = global::ProjektNr1_Palacz.Properties.Resources.Tauriner;
             this.mpBTNTauriner.Location = new System.Drawing.Point(450, 130);
             this.mpBTNTauriner.Name = "mpBTNTauriner";
             this.mpBTNTauriner.Size = new System.Drawing.Size(80, 80);
@@ -1235,7 +1235,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNStaminanRoyale
             // 
-            this.mpBTNStaminanRoyale.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Staminanroyale;
+            this.mpBTNStaminanRoyale.Image = global::ProjektNr1_Palacz.Properties.Resources.Staminanroyale;
             this.mpBTNStaminanRoyale.Location = new System.Drawing.Point(693, 130);
             this.mpBTNStaminanRoyale.Name = "mpBTNStaminanRoyale";
             this.mpBTNStaminanRoyale.Size = new System.Drawing.Size(80, 80);
@@ -1254,7 +1254,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNStaminanXX
             // 
-            this.mpBTNStaminanXX.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0staminanxx;
+            this.mpBTNStaminanXX.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0staminanxx;
             this.mpBTNStaminanXX.Location = new System.Drawing.Point(612, 130);
             this.mpBTNStaminanXX.Name = "mpBTNStaminanXX";
             this.mpBTNStaminanXX.Size = new System.Drawing.Size(80, 80);
@@ -1292,7 +1292,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNToughnessZZ
             // 
-            this.mpBTNToughnessZZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzedzed;
+            this.mpBTNToughnessZZ.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughzedzed;
             this.mpBTNToughnessZZ.Location = new System.Drawing.Point(612, 243);
             this.mpBTNToughnessZZ.Name = "mpBTNToughnessZZ";
             this.mpBTNToughnessZZ.Size = new System.Drawing.Size(80, 80);
@@ -1311,7 +1311,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNToughnessZ
             // 
-            this.mpBTNToughnessZ.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughzed;
+            this.mpBTNToughnessZ.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughzed;
             this.mpBTNToughnessZ.Location = new System.Drawing.Point(531, 243);
             this.mpBTNToughnessZ.Name = "mpBTNToughnessZ";
             this.mpBTNToughnessZ.Size = new System.Drawing.Size(80, 80);
@@ -1330,7 +1330,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNToughnessLight
             // 
-            this.mpBTNToughnessLight.Image = global::ProjektNr1_Palacz53262.Properties.Resources.Y0toughlite;
+            this.mpBTNToughnessLight.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughlite;
             this.mpBTNToughnessLight.Location = new System.Drawing.Point(450, 243);
             this.mpBTNToughnessLight.Name = "mpBTNToughnessLight";
             this.mpBTNToughnessLight.Size = new System.Drawing.Size(80, 80);
