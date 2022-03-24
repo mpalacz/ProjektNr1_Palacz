@@ -23,11 +23,15 @@ namespace ProjektNr1_Palacz
             public float mpWartosc;
             public ushort mpLicznosc;
         }
-        //deklaracja zmiennej tablicowej (referencyjnej) pojemnik nominałów
+        // deklaracja zmiennej tablicowej (referencyjnej) pojemnik nominałów
         mpNominaly[] mpPojemnikNominalow;
 
+        // Automat vendingowy
         //                                  PLN YEN EUR                   PLN YEN EUR
-        private float[] mpWartoscWrzuconychMonet = { 0f, 0f, 0f }, mpDoZaplaty = { 0f, 0f, 0f };
+        private float[] mpWrzuconePieniadze = { 0f, 0f, 0f }, mpDoZaplaty = { 0f, 0f, 0f };
+        Dictionary<string, MPProdukt> mpPojemnikProduktow;
+        Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>();
+        private string mpOstatniaAktywnosc;
         private Dictionary<string, MPProdukt> mpStworzenieKonteneraProduktow()
         {
             // stworzenie słownika do przechowywania produktów
@@ -57,8 +61,6 @@ namespace ProjektNr1_Palacz
             // zwrot słownika
             return mpPojemnikProduktow;
         }
-        Dictionary<string, MPProdukt> mpPojemnikProduktow;
-        Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>();
         private void mpDodajDoKoszyka(string mpNazwaProduktu)
         {
             try { mpKoszyk[mpNazwaProduktu]++; }
@@ -99,15 +101,15 @@ namespace ProjektNr1_Palacz
             {
                 case 0:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[0]) + " PLN";
-                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWartoscWrzuconychMonet[0]) + " PLN";
+                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWrzuconePieniadze[0]) + " PLN";
                     break;
                 case 1:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[1]) + "¥";
-                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWartoscWrzuconychMonet[1]) + "¥";
+                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWrzuconePieniadze[1]) + "¥";
                     break;
                 case 2:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[2]) + "€";
-                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWartoscWrzuconychMonet[2]) + "€";
+                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWrzuconePieniadze[2]) + "€";
                     break;
             }
             // wyświetlenie koszyka
@@ -120,7 +122,6 @@ namespace ProjektNr1_Palacz
                 }
             }
         }
-        private string mpOstatniaAktywnosc;
         public ProjektNr1_Palacz53262()
         {
             InitializeComponent();
@@ -135,6 +136,7 @@ namespace ProjektNr1_Palacz
             mpCMBMetodaPlatnosci.SelectedIndex = 0;
             mpCMBWaluta.SelectedIndex = 0;
         }
+        // Manipulacja zakładkami
         private void mpTCZakladki_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPage == mpTCZakladki.TabPages[0])
@@ -169,6 +171,26 @@ namespace ProjektNr1_Palacz
                 else
                     e.Cancel = true;
         }
+        private void mpBTNPowrot1_Click(object sender, EventArgs e)
+        {
+            // ustawienie stanu braku aktywności dla zakładki Bankomat
+            mpStanTabPage[1] = false;
+            // ustawnienie stanu aktywności dla zakładki Pulpit
+            mpStanTabPage[0] = true;
+            // przejście do zakładki Pulpit
+            mpTCZakladki.SelectedTab = mpTabPage1;
+        }
+        private void mpBTNPowrot2_Click(object sender, EventArgs e)
+        {
+            // ustawienie stanu braku aktywności dla zakładki Automat vendingowy
+            mpStanTabPage[2] = false;
+            // ustawnienie stanu aktywności dla zakładki Pulpit
+            mpStanTabPage[0] = true;
+            // przejście do zakładki Pulpit
+            mpTCZakladki.SelectedTab = mpTabPage1;
+        } 
+        //Pulpit
+        // Przejście do bankomatu
         private void mpBTNWyplata_Click(object sender, EventArgs e)
         {
             // zmiana stanu aktywności Pulpit
@@ -178,6 +200,7 @@ namespace ProjektNr1_Palacz
             // otworzenie zakładki Bankomat
             mpTCZakladki.SelectedTab = mpTabPage2;
         }
+        // Przejście do automatu vendingowego
         private void mpBTNKupno_Click(object sender, EventArgs e)
         {
             // zmiana stanu aktywności Pulpit
@@ -191,16 +214,7 @@ namespace ProjektNr1_Palacz
         {
             Close();
         }
-
-        private void mpBTNPowrot1_Click(object sender, EventArgs e)
-        {
-            // ustawienie stanu braku aktywności dla zakładki Bankomat
-            mpStanTabPage[1] = false;
-            // ustawnienie stanu aktywności dla zakładki Pulpit
-            mpStanTabPage[0] = true;
-            // przejście do zakładki Pulpit
-            mpTCZakladki.SelectedTab = mpTabPage1;
-        }
+        //Bankomat
         private void mpRDBUstawieniePrzedziałuLiczności_CheckedChanged(object sender, EventArgs e)
         {
             // ustawnienie drugiej kontrolki na wartość przeciwną
@@ -267,7 +281,7 @@ namespace ProjektNr1_Palacz
 
             }
         }
-
+        //Automat vendingowy
         private void mpCMBWaluta_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mpCMBMetodaPlatnosci.SelectedIndex == 0)
@@ -356,7 +370,7 @@ namespace ProjektNr1_Palacz
         }
         private void mpWrzutPieniedzy(int mpIndexWaluty,float mpKwota)
         {
-            mpWartoscWrzuconychMonet[mpIndexWaluty] += mpKwota;
+            mpWrzuconePieniadze[mpIndexWaluty] += mpKwota;
             mpAktualizacjaWyswietlanychDanych();
         }
         private void mpBTN1Grosz_Click(object sender, EventArgs e)
@@ -509,15 +523,15 @@ namespace ProjektNr1_Palacz
         }
         private void mpWyrzutMonet()
         {
-            mpWartoscWrzuconychMonet[0] = 0;
-            mpWartoscWrzuconychMonet[1] = 0;
-            mpWartoscWrzuconychMonet[2] = 0;
+            mpWrzuconePieniadze[0] = 0;
+            mpWrzuconePieniadze[1] = 0;
+            mpWrzuconePieniadze[2] = 0;
             mpAktualizacjaWyswietlanychDanych();
         }
 
         private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
         {
-            if (mpWartoscWrzuconychMonet[0] + mpWartoscWrzuconychMonet[1] + mpWartoscWrzuconychMonet[2] == 0)
+            if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] == 0)
             {
                 MessageBox.Show("Nie wrzucono żadnych pieniędzy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -544,7 +558,7 @@ namespace ProjektNr1_Palacz
             {
                 mpOproznienieKoszyka();
             }
-            if (mpCMBMetodaPlatnosci.SelectedIndex == 0 && mpWartoscWrzuconychMonet[mpCMBWaluta.SelectedIndex] != 0)
+            if (mpCMBMetodaPlatnosci.SelectedIndex == 0 && mpWrzuconePieniadze[mpCMBWaluta.SelectedIndex] != 0)
                 if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                     mpWyrzutMonet();
         }
@@ -553,10 +567,10 @@ namespace ProjektNr1_Palacz
         {
             if (mpKoszyk.Count() == 0)
             {
-                MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (mpWartoscWrzuconychMonet[mpCMBWaluta.SelectedIndex] < mpDoZaplaty[mpCMBWaluta.SelectedIndex])
+            else if (mpWrzuconePieniadze[mpCMBWaluta.SelectedIndex] < mpDoZaplaty[mpCMBWaluta.SelectedIndex])
             {
                 MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -566,7 +580,7 @@ namespace ProjektNr1_Palacz
             switch (mpCMBWaluta.SelectedIndex)
             {
                 case 0:
-                    mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[0] - mpDoZaplaty[0]) + "PLN\n";
+                    mpKomunikat += (mpReszta = mpWrzuconePieniadze[0] - mpDoZaplaty[0]) + "PLN\n";
                     float[] mpNominalyPLN = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
                     for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
                     {
@@ -588,7 +602,7 @@ namespace ProjektNr1_Palacz
                     }
                     break;
                 case 1:
-                    mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[1] - mpDoZaplaty[1]) + "¥\n";
+                    mpKomunikat += (mpReszta = mpWrzuconePieniadze[1] - mpDoZaplaty[1]) + "¥\n";
                     ushort[] mpNominalyYEN = { 10000, 5000, 1000, 500, 100, 50, 10, 5, 1 };
                     for (int mpI = 0; mpI < mpNominalyYEN.Length && mpReszta > 0; mpI++)
                     {
@@ -601,7 +615,7 @@ namespace ProjektNr1_Palacz
                     }
                     break;
                 case 2:
-                    mpKomunikat += (mpReszta = mpWartoscWrzuconychMonet[2] - mpDoZaplaty[2]) + "€\n";
+                    mpKomunikat += (mpReszta = mpWrzuconePieniadze[2] - mpDoZaplaty[2]) + "€\n";
                     float[] mpNominalyEUR = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
                     for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
                     {
@@ -623,20 +637,21 @@ namespace ProjektNr1_Palacz
                     }
                     break;
             }
-            MessageBox.Show(mpKomunikat,"Na zdrowie!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             mpWyrzutMonet();
             mpOproznienieKoszyka();
         }
 
-        private void mpBTNPowrot2_Click(object sender, EventArgs e)
+        private void mpBTNPlatnoscKarta_Click(object sender, EventArgs e)
         {
-            // ustawienie stanu braku aktywności dla zakładki Automat vendingowy
-            mpStanTabPage[2] = false;
-            // ustawnienie stanu aktywności dla zakładki Pulpit
-            mpStanTabPage[0] = true;
-            // przejście do zakładki Pulpit
-            mpTCZakladki.SelectedTab = mpTabPage1;
+            if (mpKoszyk.Count() == 0)
+            {
+                MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Form2 mpLoginForm = new Form2();
         }
+
         private void mpBTNCofnij_Click(object sender, EventArgs e)
         {
             mpDoZaplaty[0] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaPLN;

@@ -65,6 +65,7 @@ namespace ProjektNr1_Palacz
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mpTabPage3 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.mpRTBKoszyk = new System.Windows.Forms.RichTextBox();
             this.mpBTNCofnij = new System.Windows.Forms.Button();
             this.mpBTNKupnoGotowka = new System.Windows.Forms.Button();
@@ -143,7 +144,6 @@ namespace ProjektNr1_Palacz
             this.mpBTNPowrot2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             this.mpTCZakladki.SuspendLayout();
             this.mpTabPage1.SuspendLayout();
             this.mpTabPage2.SuspendLayout();
@@ -550,6 +550,15 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.Size = new System.Drawing.Size(1271, 561);
             this.mpTabPage3.TabIndex = 2;
             this.mpTabPage3.Text = "Automat vendingowy";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(975, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 19);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "Koszyk";
             // 
             // mpRTBKoszyk
             // 
@@ -1036,6 +1045,7 @@ namespace ProjektNr1_Palacz
             this.mpBTNPlatnoscKarta.TabIndex = 43;
             this.mpBTNPlatnoscKarta.UseVisualStyleBackColor = true;
             this.mpBTNPlatnoscKarta.Visible = false;
+            this.mpBTNPlatnoscKarta.Click += new System.EventHandler(this.mpBTNPlatnoscKarta_Click);
             // 
             // mpBTNZwrotMonet
             // 
@@ -1352,15 +1362,6 @@ namespace ProjektNr1_Palacz
             // mpErrorProvider1
             // 
             this.mpErrorProvider1.ContainerControl = this;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(975, 108);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 19);
-            this.label5.TabIndex = 51;
-            this.label5.Text = "Koszyk";
             // 
             // ProjektNr1_Palacz53262
             // 
