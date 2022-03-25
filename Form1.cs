@@ -15,7 +15,9 @@ namespace ProjektNr1_Palacz
         // deklaracja tablicy aktywności zakładek formularza
         bool[] mpStanTabPage = { true, false, false };
         // deklaracja stałych
+        const ushort mpMargines = 20;
         const ushort mpMaxLicznoscNominalow = 100;
+        const ushort mpBanknotONajnizszejWartosci = 10;
         float[] mpWartoscNominalow = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f };
         // deklaracja struktury (rekordu) opisującego element tablicy PojemnikNominalow
         struct mpNominaly
@@ -661,6 +663,152 @@ namespace ProjektNr1_Palacz
                 }
                 mpOproznienieKoszyka();
             }
+        }
+
+        private void mpBTNAkceptacja_Click(object sender, EventArgs e)
+        {
+            float mpKwotaDoWypłaty;
+            mpErrorProvider1.Dispose();
+            if (string.IsNullOrEmpty(mpTXTKwotaDoWyplaty.Text)) {
+
+            } 
+            if (!float.TryParse(mpTXTKwotaDoWyplaty.Text, out mpKwotaDoWypłaty)) {
+                mpErrorProvider1.SetError(mpTXTKwotaDoWyplaty, "Error: w zapisie kwoty wystąpił niestosowny znak");
+                return;
+            }
+            if (mpKwotaDoWypłaty <= 0.0F)
+            {
+                mpErrorProvider1.SetError(mpTXTKwotaDoWyplaty, "wypłata musi wyć więskza od 0.0");
+                return;
+            }
+            if (!mpCzyWyplataMozeBycZrealizowana(mpPojemnikNominalow, mpKwotaDoWypłaty))
+            {
+                // w bankomacie nie ma odpowiedniego kapitału (liczby nominałów)
+                mpErrorProvider1.SetError(mpBTNAkceptacja, "ERROR: nie możemy zrealizować tak dużej wypłaty! PRZEPRASZAMY! Ale możesz pobrać mniejszą kwotę!");
+                return;
+            }
+
+            // realizacja wypłaty
+            // deklaracja zmiennej pomocniczej
+            float mpResztaDoWyplaty = mpKwotaDoWypłaty;
+            // rozpoczynamy wypłatę od najwyższych nominałów, czyli od pierwszej pozycji pojemnika nominałów
+            ushort mpIndexPojemnikaNominalow = 0;
+            // ustalenie atrybutów kontrolek dla prezentacji wypłaty
+            // zmiana tytułu kontrolki label opisującej kontrolkę DataGridView
+            mpLBLWyplacaneNominaly.Text = "Wypłacane nominały:";
+            // "wyczyszczenie" kontrolki DataGridView
+            mpDGVListaNominalow.Rows.Clear();
+            // ustawnienie indeksu wierszy kontrolki DataGridView
+            ushort mpIndexDGV = 0;
+            // iteracyjne dkonowanie wypłaty
+            ushort mpLiczbaNominalow;
+            while((mpResztaDoWyplaty>0.0F)&&(mpIndexPojemnikaNominalow < mpPojemnikNominalow.Length))
+            {
+                // policzenie ile nominałów byłoby potrzebnych dla zrealizowania wypłaty
+                mpLiczbaNominalow = (ushort)(mpResztaDoWyplaty / mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc);
+                // sprawdzenie czy na pozycji mpIndexPojemnikaNominalow w mpPojemnikNominalow jest taka liczba nominałów
+                if (mpLiczbaNominalow > mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc)
+                {
+                    // w pozycji mpIndexPojemnikaNominalow nie ma wymaganej liczności nominałów, to
+                    // powielamy wszystkie nominały z pozycji mpIndexPojemnikaNominalow
+                    mpLiczbaNominalow = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc;
+                    // wyzerowanie liczności nominałów
+                    mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc = 0;
+                }
+                else
+                {
+                    // z pozycji mpIndexPojemnikaNominalow pobieramy nominały o wymaganej licznośc, czyli mpLiczbaNominalow
+                    mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc = (ushort) (mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc - mpLiczbaNominalow);
+                }
+                // dokonanie (symulacja) wypłaty nominałów liczności mpLiczbaNominalow
+                if (mpLiczbaNominalow > 0)
+                {
+                    // dodanie nowego (pustego) wiersza
+                    mpDGVListaNominalow.Rows.Add();
+                    // wypełnienie poszczególnych pól (komórek) dodanego wiersza do kontrolki DataGridView
+                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[0].Value = mpLiczbaNominalow;
+                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[1].Value = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
+                    if (mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc >= mpBanknotONajnizszejWartosci)
+                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "banknot";
+                    else
+                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "moneta";
+                    // wypisanie waluty
+                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[3].Value = mpCMBRodzajWaluty.SelectedItem;
+                    // wycentrowanie zapisów w poszczególnych komórkach
+                    for (ushort i = 0; i < mpDGVListaNominalow.Columns.Count; i++)
+                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[i].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    // zwiększenie indeksu wiersza w kontrolce DataGridView
+                    mpIndexDGV++;
+                }
+                // uaktualnienie reszty do wypłaty
+                mpResztaDoWyplaty -= mpLiczbaNominalow * mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
+                // przjeście do następnej pozycji pojemnika nominałów
+                mpIndexPojemnikaNominalow++;
+            }
+            // sprawdzenie, czy wszystko zostało wypłacone
+            if (mpResztaDoWyplaty > 0)
+            {
+                // niewypłaciliśmy pełnej kwoty
+                mpErrorProvider1.SetError(mpBTNAkceptacja, "PRZEPRASZAMY: nie możemy wypłacić pełnej kwoty, " +
+                    "gdyż brak nam odpowiednich nominałów");
+                // ukrycie kontrolek  z wypłatą nominałów
+                mpLBLWyplacaneNominaly.Visible = false;
+                mpDGVListaNominalow.Visible = false;
+            }
+            else
+            {
+                // odsłaniamy kontrolki z wypłatą
+                mpLBLWyplacaneNominaly.Visible = true;
+                mpDGVListaNominalow.Visible = true;
+                // potwierdzenie wypłaty wymaganej kwoty
+                mpTXTWyplacanaKwota.Text = mpTXTKwotaDoWyplaty.Text;
+                // odsłonięcie kontrolek
+                mpTXTWyplacanaKwota.Visible = true;
+                mpLBLWyplacanaKwota.Visible = true;
+                // odsłonięcie kontrolek operacyjnych
+                mpBTNResetuj.Visible = true;
+                mpBTNWyjscie.Visible = true;
+                // ustawienie stanu aktywności dla przycisku poleceń AKCEPTACJA
+                mpBTNAkceptacja.Enabled = false;
+            }
+
+        }
+
+        static Boolean mpCzyWyplataMozeBycZrealizowana(mpNominaly[] mpPojemnikNominałów, float mpKwotaDoWypłaty)
+        {
+            float KapitałBankomatu = 0;
+            for (int psi = 0; psi < mpPojemnikNominałów.Length; psi++)
+                if (mpPojemnikNominałów[psi].mpLicznosc > 0)
+                    KapitałBankomatu = KapitałBankomatu + mpPojemnikNominałów[psi].mpLicznosc * mpPojemnikNominałów[psi].mpWartosc;
+            // zwrócenie wyniku
+            return KapitałBankomatu >= mpKwotaDoWypłaty;
+        }
+
+        private void mpBTNWyjscie_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void mpBTNResetuj_Click(object sender, EventArgs e)
+        {
+            // ustawienie "początkowe" kontrolki wyboru waluty
+            mpCMBRodzajWaluty.SelectedIndex = 0;
+            mpCMBRodzajWaluty.Enabled = true;
+            // ustawienie "początkowe" kontrolek wypłaty
+            mpTXTKwotaDoWyplaty.Text = "";
+            mpTXTKwotaDoWyplaty.Enabled = false;
+            mpLBLWyplacanaKwota.Visible = false;
+            mpTXTWyplacanaKwota.Visible = false;
+            // ukrycie przeycisków operacyjnych
+            mpBTNResetuj.Visible = false;
+            mpBTNWyjscie.Visible = false;
+            // przywrócenie stanu początkowego kontrolek do określenie liczności nominałów
+            mpBTNAkceptacjaLiczności.Enabled = true;
+            // ustawnienie braku "zaznaczenia" kontrolek Radiobutton
+            mpRDBUstawienieLicznosciDomyslne.Checked = true;
+            // ustawienie stanu aktywności kontrolek Radiobutton
+            mpRDBUstawienieLicznosciDomyslne.Enabled = true;
+            mpRDBUstawieniePrzedziałuLiczności.Enabled = true;
         }
 
         private void mpBTNCofnij_Click(object sender, EventArgs e)

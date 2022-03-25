@@ -42,12 +42,12 @@ namespace ProjektNr1_Palacz
             this.mpTXTDolnaGranicaPrzedzialu = new System.Windows.Forms.TextBox();
             this.mpLBLEtykietaGornejGranicyPrzedzialu = new System.Windows.Forms.Label();
             this.mpLBLEtykietaDolnejGranicyPrzedzialu = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.mpTXTWyplacanaKwota = new System.Windows.Forms.TextBox();
+            this.mpLBLWyplacanaKwota = new System.Windows.Forms.Label();
+            this.mpBTNWyjscie = new System.Windows.Forms.Button();
+            this.mpBTNResetuj = new System.Windows.Forms.Button();
+            this.mpBTNAkceptacja = new System.Windows.Forms.Button();
+            this.mpTXTKwotaDoWyplaty = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.mpBTNPowrot1 = new System.Windows.Forms.Button();
             this.mpDGVListaNominalow = new System.Windows.Forms.DataGridView();
@@ -233,12 +233,12 @@ namespace ProjektNr1_Palacz
             this.mpTabPage2.Controls.Add(this.mpTXTDolnaGranicaPrzedzialu);
             this.mpTabPage2.Controls.Add(this.mpLBLEtykietaGornejGranicyPrzedzialu);
             this.mpTabPage2.Controls.Add(this.mpLBLEtykietaDolnejGranicyPrzedzialu);
-            this.mpTabPage2.Controls.Add(this.textBox2);
-            this.mpTabPage2.Controls.Add(this.label13);
-            this.mpTabPage2.Controls.Add(this.button4);
-            this.mpTabPage2.Controls.Add(this.button3);
-            this.mpTabPage2.Controls.Add(this.button2);
-            this.mpTabPage2.Controls.Add(this.textBox1);
+            this.mpTabPage2.Controls.Add(this.mpTXTWyplacanaKwota);
+            this.mpTabPage2.Controls.Add(this.mpLBLWyplacanaKwota);
+            this.mpTabPage2.Controls.Add(this.mpBTNWyjscie);
+            this.mpTabPage2.Controls.Add(this.mpBTNResetuj);
+            this.mpTabPage2.Controls.Add(this.mpBTNAkceptacja);
+            this.mpTabPage2.Controls.Add(this.mpTXTKwotaDoWyplaty);
             this.mpTabPage2.Controls.Add(this.label12);
             this.mpTabPage2.Controls.Add(this.mpBTNPowrot1);
             this.mpTabPage2.Controls.Add(this.mpDGVListaNominalow);
@@ -297,56 +297,64 @@ namespace ProjektNr1_Palacz
             this.mpLBLEtykietaDolnejGranicyPrzedzialu.Text = "Dolna granica przedziału liczności nominałów";
             this.mpLBLEtykietaDolnejGranicyPrzedzialu.Visible = false;
             // 
-            // textBox2
+            // mpTXTWyplacanaKwota
             // 
-            this.textBox2.Location = new System.Drawing.Point(1104, 264);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 26);
-            this.textBox2.TabIndex = 14;
+            this.mpTXTWyplacanaKwota.Enabled = false;
+            this.mpTXTWyplacanaKwota.Location = new System.Drawing.Point(1104, 264);
+            this.mpTXTWyplacanaKwota.Name = "mpTXTWyplacanaKwota";
+            this.mpTXTWyplacanaKwota.Size = new System.Drawing.Size(100, 26);
+            this.mpTXTWyplacanaKwota.TabIndex = 14;
+            this.mpTXTWyplacanaKwota.Visible = false;
             // 
-            // label13
+            // mpLBLWyplacanaKwota
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1100, 241);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(128, 19);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "Wypłacona kwota:";
+            this.mpLBLWyplacanaKwota.AutoSize = true;
+            this.mpLBLWyplacanaKwota.Location = new System.Drawing.Point(1100, 241);
+            this.mpLBLWyplacanaKwota.Name = "mpLBLWyplacanaKwota";
+            this.mpLBLWyplacanaKwota.Size = new System.Drawing.Size(128, 19);
+            this.mpLBLWyplacanaKwota.TabIndex = 13;
+            this.mpLBLWyplacanaKwota.Text = "Wypłacona kwota:";
+            this.mpLBLWyplacanaKwota.Visible = false;
             // 
-            // button4
+            // mpBTNWyjscie
             // 
-            this.button4.Location = new System.Drawing.Point(1117, 364);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(87, 23);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "KONIEC";
-            this.button4.UseVisualStyleBackColor = true;
+            this.mpBTNWyjscie.Location = new System.Drawing.Point(1117, 364);
+            this.mpBTNWyjscie.Name = "mpBTNWyjscie";
+            this.mpBTNWyjscie.Size = new System.Drawing.Size(87, 23);
+            this.mpBTNWyjscie.TabIndex = 12;
+            this.mpBTNWyjscie.Text = "KONIEC";
+            this.mpBTNWyjscie.UseVisualStyleBackColor = true;
+            this.mpBTNWyjscie.Visible = false;
+            this.mpBTNWyjscie.Click += new System.EventHandler(this.mpBTNWyjscie_Click);
             // 
-            // button3
+            // mpBTNResetuj
             // 
-            this.button3.Location = new System.Drawing.Point(1117, 322);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 23);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "RESETUJ";
-            this.button3.UseVisualStyleBackColor = true;
+            this.mpBTNResetuj.Location = new System.Drawing.Point(1117, 322);
+            this.mpBTNResetuj.Name = "mpBTNResetuj";
+            this.mpBTNResetuj.Size = new System.Drawing.Size(87, 23);
+            this.mpBTNResetuj.TabIndex = 11;
+            this.mpBTNResetuj.Text = "RESETUJ";
+            this.mpBTNResetuj.UseVisualStyleBackColor = true;
+            this.mpBTNResetuj.Visible = false;
+            this.mpBTNResetuj.Click += new System.EventHandler(this.mpBTNResetuj_Click);
             // 
-            // button2
+            // mpBTNAkceptacja
             // 
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(1100, 185);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 53);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "AKCEPTACJA\r\nkwoty do wypłaty";
-            this.button2.UseVisualStyleBackColor = true;
+            this.mpBTNAkceptacja.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpBTNAkceptacja.Location = new System.Drawing.Point(1100, 185);
+            this.mpBTNAkceptacja.Name = "mpBTNAkceptacja";
+            this.mpBTNAkceptacja.Size = new System.Drawing.Size(135, 53);
+            this.mpBTNAkceptacja.TabIndex = 10;
+            this.mpBTNAkceptacja.Text = "AKCEPTACJA\r\nkwoty do wypłaty";
+            this.mpBTNAkceptacja.UseVisualStyleBackColor = true;
+            this.mpBTNAkceptacja.Click += new System.EventHandler(this.mpBTNAkceptacja_Click);
             // 
-            // textBox1
+            // mpTXTKwotaDoWyplaty
             // 
-            this.textBox1.Location = new System.Drawing.Point(1073, 147);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(162, 26);
-            this.textBox1.TabIndex = 9;
+            this.mpTXTKwotaDoWyplaty.Location = new System.Drawing.Point(1073, 147);
+            this.mpTXTKwotaDoWyplaty.Name = "mpTXTKwotaDoWyplaty";
+            this.mpTXTKwotaDoWyplaty.Size = new System.Drawing.Size(162, 26);
+            this.mpTXTKwotaDoWyplaty.TabIndex = 9;
             // 
             // label12
             // 
@@ -1452,12 +1460,12 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox mpTXTWyplacanaKwota;
+        private System.Windows.Forms.Label mpLBLWyplacanaKwota;
+        private System.Windows.Forms.Button mpBTNWyjscie;
+        private System.Windows.Forms.Button mpBTNResetuj;
+        private System.Windows.Forms.Button mpBTNAkceptacja;
+        private System.Windows.Forms.TextBox mpTXTKwotaDoWyplaty;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button mpBTNAkceptacjaLiczności;
         private System.Windows.Forms.ErrorProvider mpErrorProvider1;
