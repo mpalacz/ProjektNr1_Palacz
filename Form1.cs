@@ -29,11 +29,14 @@ namespace ProjektNr1_Palacz
         mpNominaly[] mpPojemnikNominalow;
 
         // Automat vendingowy
-        //                                  PLN YEN EUR                   PLN YEN EUR
-        private float[] mpWrzuconePieniadze = { 0f, 0f, 0f }, mpDoZaplaty = { 0f, 0f, 0f };
-        Dictionary<string, MPProdukt> mpPojemnikProduktow;
-        Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>();
-        private string mpOstatniaAktywnosc;
+        // waluty po kolei: PLN, YEN, EUR
+        private float[] mpWrzuconePieniadze = { 0f, 0f, 0f }, // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie
+            mpDoZaplaty = { 0f, 0f, 0f }; // tablica przechowująca łączną wartośc wybranych produktów
+        private Dictionary<string, MPProdukt> mpPojemnikProduktow; // słownik przechowujący wszystkie produkty w automacie
+        private Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>(); // słownik przechowujący produkty znajdujące się w koszyku
+        private string mpOstatniaAktywnosc; // zmienna przechowująca ostatnio wybrany produkt
+
+        // funkcja wypełniająca mpPojemnikProduktow
         private Dictionary<string, MPProdukt> mpStworzenieKonteneraProduktow()
         {
             // stworzenie słownika do przechowywania produktów
@@ -63,43 +66,53 @@ namespace ProjektNr1_Palacz
             // zwrot słownika
             return mpPojemnikProduktow;
         }
+
+        // funkcja dodająca do koszyka wybrany produkt
         private void mpDodajDoKoszyka(string mpNazwaProduktu)
         {
-            try { mpKoszyk[mpNazwaProduktu]++; }
-            catch (Exception e) { mpKoszyk.Add(mpNazwaProduktu, 1); }
+            try { mpKoszyk[mpNazwaProduktu]++; } // próba zwiększenia ilości produktu w koszyku, jeśli dany produkt został wcześniej dodany do koszyka
+            catch { mpKoszyk.Add(mpNazwaProduktu, 1); } // dodanie produktu do koszyka jeśli wcześniej nie zostało to wykonane
             finally
             {
+                // zwiększenie wartości do zapłaty w każdej walucie
                 mpDoZaplaty[0] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaPLN;
                 mpDoZaplaty[1] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaYEN;
                 mpDoZaplaty[2] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaEUR;
-                mpAktualizacjaWyswietlanychDanych();
-                mpOstatniaAktywnosc = mpNazwaProduktu;
-                mpBTNCofnij.Enabled = true;
+                mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
+                mpOstatniaAktywnosc = mpNazwaProduktu; // zapisanie aktywności dodania produtku
+                mpBTNCofnij.Enabled = true; // udostępnienie funkcji cofnięcia dodania produktu
             }
         }
+
+        // funcka służąca wyświetleniu cen każdego produktu w wybranej walucie
         private void mpWyswietlenieCen()
         {
             string mpCena = "";
-            foreach (MPProdukt mpProdukt in mpPojemnikProduktow.Values)
+            foreach (MPProdukt mpProdukt in mpPojemnikProduktow.Values) // iterowanie przez każdy produkt
             {
-                switch (mpCMBWaluta.SelectedIndex)
+                // sprawdzenie która waluta została wybrana 
+                switch (mpCMBRodzajWalutyAutomat.SelectedIndex)  
                 {
-                    case 0:
+                    case 0: // PLN
                         mpCena = mpProdukt.mpCenaPLN + " PLN";
                         break;
-                    case 1:
+                    case 1: // YEN
                         mpCena = mpProdukt.mpCenaYEN + "¥";
                         break;
-                    case 2:
+                    case 2: // EUR
                         mpCena = mpProdukt.mpCenaEUR + "€";
                         break;
                 }
-                mpProdukt.mpTXTCena.Text = mpCena;
-            }
+                mpProdukt.mpTXTCena.Text = mpCena; // wyświetlenie ceny produktu we właściwej walucie w odpowiednim textBox
+            } // czynność wykonywana dla każdego produktu
         }
-        private void mpAktualizacjaWyswietlanychDanych()
+
+        // wyświetlenie wartości mpWrzuconePieniadze, mpDoZaplaty oraz zawartości koszyka
+        private void mpWyświetelnieDanych()
         {
-            switch (mpCMBWaluta.SelectedIndex)
+            // sprawdznie jaka waluta została wybrana 
+            // i wyświetlenie wartości mpWrzuconePieniadze i mpDoZaplaty w wybranej walucie
+            switch (mpCMBRodzajWalutyAutomat.SelectedIndex)
             {
                 case 0:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[0]) + " PLN";
@@ -115,15 +128,16 @@ namespace ProjektNr1_Palacz
                     break;
             }
             // wyświetlenie koszyka
-            mpRTBKoszyk.Text = "";
-            if (mpKoszyk.Count != 0)
+            mpRTBKoszyk.Text = ""; // wyczyszczenie textBoxa z zawartością koszyka
+            if (mpKoszyk.Count != 0) // sprawdzenie czy koszyk nie jest pusty
             {
-                foreach (KeyValuePair<string, ushort> mpProdukt in mpKoszyk)
+                foreach (KeyValuePair<string, ushort> mpProdukt in mpKoszyk) // iteropwanie przez kazdy produkt w koszyku
                 {
-                    mpRTBKoszyk.Text += $"{mpProdukt.Key} {mpProdukt.Value}x\n";
+                    mpRTBKoszyk.Text += $"{mpProdukt.Key} {mpProdukt.Value}x\n"; // dodanie nazwy i ilości wybranego produktu do textBoxa wyświetlającego koszyk
                 }
             }
         }
+
         public ProjektNr1_Palacz53262()
         {
             InitializeComponent();
@@ -135,9 +149,11 @@ namespace ProjektNr1_Palacz
 
             // tworzenie produktów i przypisywanie do nich cen
             mpPojemnikProduktow = mpStworzenieKonteneraProduktow();
+            // ustawienie początkowych wartości dla metody płatności i rodzaju waluty
             mpCMBMetodaPlatnosci.SelectedIndex = 0;
-            mpCMBWaluta.SelectedIndex = 0;
+            mpCMBRodzajWalutyAutomat.SelectedIndex = 0;
         }
+
         // Manipulacja zakładkami
         private void mpTCZakladki_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -173,6 +189,8 @@ namespace ProjektNr1_Palacz
                 else
                     e.Cancel = true;
         }
+
+        // powrót do pulpitu
         private void mpBTNPowrot1_Click(object sender, EventArgs e)
         {
             // ustawienie stanu braku aktywności dla zakładki Bankomat
@@ -182,6 +200,7 @@ namespace ProjektNr1_Palacz
             // przejście do zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
         }
+
         private void mpBTNPowrot2_Click(object sender, EventArgs e)
         {
             // ustawienie stanu braku aktywności dla zakładki Automat vendingowy
@@ -191,7 +210,8 @@ namespace ProjektNr1_Palacz
             // przejście do zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
         } 
-        //Pulpit
+
+        // Pulpit
         // Przejście do bankomatu
         private void mpBTNWyplata_Click(object sender, EventArgs e)
         {
@@ -202,6 +222,7 @@ namespace ProjektNr1_Palacz
             // otworzenie zakładki Bankomat
             mpTCZakladki.SelectedTab = mpTabPage2;
         }
+
         // Przejście do automatu vendingowego
         private void mpBTNKupno_Click(object sender, EventArgs e)
         {
@@ -212,10 +233,13 @@ namespace ProjektNr1_Palacz
             // otworzenie zakładki Automat vendingowy
             mpTCZakladki.SelectedTab = mpTabPage3;
         }
+
+        // zamknięcie aplikacji
         private void mpBTNZamknij_Click(object sender, EventArgs e)
         {
             Close();
         }
+
         //Bankomat
         private void mpRDBUstawieniePrzedziałuLiczności_CheckedChanged(object sender, EventArgs e)
         {
@@ -283,44 +307,200 @@ namespace ProjektNr1_Palacz
 
             }
         }
-        //Automat vendingowy
-        private void mpCMBWaluta_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void mpBTNAkceptacja_Click(object sender, EventArgs e)
         {
-            if (mpCMBMetodaPlatnosci.SelectedIndex == 0)
+            float mpKwotaDoWypłaty;
+            mpErrorProvider1.Dispose();
+            if (string.IsNullOrEmpty(mpTXTKwotaDoWyplaty.Text))
             {
-                switch (mpCMBWaluta.SelectedIndex)
+
+            }
+            if (!float.TryParse(mpTXTKwotaDoWyplaty.Text, out mpKwotaDoWypłaty))
+            {
+                mpErrorProvider1.SetError(mpTXTKwotaDoWyplaty, "Error: w zapisie kwoty wystąpił niestosowny znak");
+                return;
+            }
+            if (mpKwotaDoWypłaty <= 0.0F)
+            {
+                mpErrorProvider1.SetError(mpTXTKwotaDoWyplaty, "wypłata musi wyć więskza od 0.0");
+                return;
+            }
+            if (!mpCzyWyplataMozeBycZrealizowana(mpPojemnikNominalow, mpKwotaDoWypłaty))
+            {
+                // w bankomacie nie ma odpowiedniego kapitału (liczby nominałów)
+                mpErrorProvider1.SetError(mpBTNAkceptacja, "ERROR: nie możemy zrealizować tak dużej wypłaty! PRZEPRASZAMY! Ale możesz pobrać mniejszą kwotę!");
+                return;
+            }
+
+            // realizacja wypłaty
+            // deklaracja zmiennej pomocniczej
+            float mpResztaDoWyplaty = mpKwotaDoWypłaty;
+            // rozpoczynamy wypłatę od najwyższych nominałów, czyli od pierwszej pozycji pojemnika nominałów
+            ushort mpIndexPojemnikaNominalow = 0;
+            // ustalenie atrybutów kontrolek dla prezentacji wypłaty
+            // zmiana tytułu kontrolki label opisującej kontrolkę DataGridView
+            mpLBLWyplacaneNominaly.Text = "Wypłacane nominały:";
+            // "wyczyszczenie" kontrolki DataGridView
+            mpDGVListaNominalow.Rows.Clear();
+            // ustawnienie indeksu wierszy kontrolki DataGridView
+            ushort mpIndexDGV = 0;
+            // iteracyjne dkonowanie wypłaty
+            ushort mpLiczbaNominalow;
+            while ((mpResztaDoWyplaty > 0.0F) && (mpIndexPojemnikaNominalow < mpPojemnikNominalow.Length))
+            {
+                // policzenie ile nominałów byłoby potrzebnych dla zrealizowania wypłaty
+                mpLiczbaNominalow = (ushort)(mpResztaDoWyplaty / mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc);
+                // sprawdzenie czy na pozycji mpIndexPojemnikaNominalow w mpPojemnikNominalow jest taka liczba nominałów
+                if (mpLiczbaNominalow > mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc)
                 {
-                    case 0:
+                    // w pozycji mpIndexPojemnikaNominalow nie ma wymaganej liczności nominałów, to
+                    // powielamy wszystkie nominały z pozycji mpIndexPojemnikaNominalow
+                    mpLiczbaNominalow = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc;
+                    // wyzerowanie liczności nominałów
+                    mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc = 0;
+                }
+                else
+                {
+                    // z pozycji mpIndexPojemnikaNominalow pobieramy nominały o wymaganej licznośc, czyli mpLiczbaNominalow
+                    mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc = (ushort)(mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc - mpLiczbaNominalow);
+                }
+                // dokonanie (symulacja) wypłaty nominałów liczności mpLiczbaNominalow
+                if (mpLiczbaNominalow > 0)
+                {
+                    // dodanie nowego (pustego) wiersza
+                    mpDGVListaNominalow.Rows.Add();
+                    // wypełnienie poszczególnych pól (komórek) dodanego wiersza do kontrolki DataGridView
+                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[0].Value = mpLiczbaNominalow;
+                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[1].Value = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
+                    if (mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc >= mpBanknotONajnizszejWartosci)
+                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "banknot";
+                    else
+                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "moneta";
+                    // wypisanie waluty
+                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[3].Value = mpCMBRodzajWaluty.SelectedItem;
+                    // wycentrowanie zapisów w poszczególnych komórkach
+                    for (ushort i = 0; i < mpDGVListaNominalow.Columns.Count; i++)
+                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[i].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    // zwiększenie indeksu wiersza w kontrolce DataGridView
+                    mpIndexDGV++;
+                }
+                // uaktualnienie reszty do wypłaty
+                mpResztaDoWyplaty -= mpLiczbaNominalow * mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
+                // przjeście do następnej pozycji pojemnika nominałów
+                mpIndexPojemnikaNominalow++;
+            }
+            // sprawdzenie, czy wszystko zostało wypłacone
+            if (mpResztaDoWyplaty > 0)
+            {
+                // niewypłaciliśmy pełnej kwoty
+                mpErrorProvider1.SetError(mpBTNAkceptacja, "PRZEPRASZAMY: nie możemy wypłacić pełnej kwoty, " +
+                    "gdyż brak nam odpowiednich nominałów");
+                // ukrycie kontrolek  z wypłatą nominałów
+                mpLBLWyplacaneNominaly.Visible = false;
+                mpDGVListaNominalow.Visible = false;
+            }
+            else
+            {
+                // odsłaniamy kontrolki z wypłatą
+                mpLBLWyplacaneNominaly.Visible = true;
+                mpDGVListaNominalow.Visible = true;
+                // potwierdzenie wypłaty wymaganej kwoty
+                mpTXTWyplacanaKwota.Text = mpTXTKwotaDoWyplaty.Text;
+                // odsłonięcie kontrolek
+                mpTXTWyplacanaKwota.Visible = true;
+                mpLBLWyplacanaKwota.Visible = true;
+                // odsłonięcie kontrolek operacyjnych
+                mpBTNResetuj.Visible = true;
+                mpBTNWyjscie.Visible = true;
+                // ustawienie stanu aktywności dla przycisku poleceń AKCEPTACJA
+                mpBTNAkceptacja.Enabled = false;
+            }
+
+        }
+
+        static Boolean mpCzyWyplataMozeBycZrealizowana(mpNominaly[] mpPojemnikNominałów, float mpKwotaDoWypłaty)
+        {
+            float KapitałBankomatu = 0;
+            for (int psi = 0; psi < mpPojemnikNominałów.Length; psi++)
+                if (mpPojemnikNominałów[psi].mpLicznosc > 0)
+                    KapitałBankomatu = KapitałBankomatu + mpPojemnikNominałów[psi].mpLicznosc * mpPojemnikNominałów[psi].mpWartosc;
+            // zwrócenie wyniku
+            return KapitałBankomatu >= mpKwotaDoWypłaty;
+        }
+
+        private void mpBTNWyjscie_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void mpBTNResetuj_Click(object sender, EventArgs e)
+        {
+            // ustawienie "początkowe" kontrolki wyboru waluty
+            mpCMBRodzajWaluty.SelectedIndex = 0;
+            mpCMBRodzajWaluty.Enabled = true;
+            // ustawienie "początkowe" kontrolek wypłaty
+            mpTXTKwotaDoWyplaty.Text = "";
+            mpTXTKwotaDoWyplaty.Enabled = false;
+            mpLBLWyplacanaKwota.Visible = false;
+            mpTXTWyplacanaKwota.Visible = false;
+            // ukrycie przeycisków operacyjnych
+            mpBTNResetuj.Visible = false;
+            mpBTNWyjscie.Visible = false;
+            // przywrócenie stanu początkowego kontrolek do określenie liczności nominałów
+            mpBTNAkceptacjaLiczności.Enabled = true;
+            // ustawnienie braku "zaznaczenia" kontrolek Radiobutton
+            mpRDBUstawienieLicznosciDomyslne.Checked = true;
+            // ustawienie stanu aktywności kontrolek Radiobutton
+            mpRDBUstawienieLicznosciDomyslne.Enabled = true;
+            mpRDBUstawieniePrzedziałuLiczności.Enabled = true;
+        }
+
+        //Automat vendingowy
+        // funkcja obsługująca zdarzenie zmiany waluty
+        private void mpCMBRodzajWalutyAutomat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (mpCMBMetodaPlatnosci.SelectedIndex == 0) // sprawdzenie czy została wybrana płatność gotówką
+            {
+                // sprawdzenie która waluta została wybrana i wyświetlenie stosownego onka z nominałami
+                switch (mpCMBRodzajWalutyAutomat.SelectedIndex) 
+                {
+                    case 0: // PLN
                         mpGRBEuro.Visible = false;
                         mpGRBJeny.Visible = false;
                         mpGRBZlotowki.Visible = true;
                         break;
-                    case 1:
+                    case 1: // YEN
                         mpGRBEuro.Visible = false;
                         mpGRBJeny.Visible = true;
                         mpGRBZlotowki.Visible = false;
                         break;
-                    case 2:
+                    case 2: // EUR
                         mpGRBEuro.Visible = true;
                         mpGRBJeny.Visible = false;
                         mpGRBZlotowki.Visible = false;
                         break;
                 }
             }
+            // aktualizacja wyświetlanych danych
             mpWyswietlenieCen();
-            mpAktualizacjaWyswietlanychDanych();
+            mpWyświetelnieDanych();
         }
+
+        // funkcja obsługująca zdarzenie zmiany metody płatności
         private void mpCMBMetodaPlatnosci_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // sprawdzenie która metoda płatności została wybrana i wyświetlenie stosownych kontrolek
             switch (mpCMBMetodaPlatnosci.SelectedIndex)
             {
-                case 0:
+                case 0: // gotówka
                     mpLBLPlatnoscKarta.Visible = false;
                     mpBTNPlatnoscKarta.Visible = false;
                     mpBTNKupnoGotowka.Visible = true;
-                    mpCMBWaluta_SelectedIndexChanged(sender, e);
+                    // wyświetlenie odpowieniej kontrolki, zawierającaj nominały o wybranej walucie
+                    mpCMBRodzajWalutyAutomat_SelectedIndexChanged(sender, e);
                     break;
-                case 1:
+                case 1: // karta
                     mpGRBJeny.Visible = false;
                     mpGRBEuro.Visible = false;
                     mpGRBZlotowki.Visible = false;
@@ -330,9 +510,11 @@ namespace ProjektNr1_Palacz
                     break;
             }
         }
+
+        // obsługa przycisków służących do wyboru produktów
         private void mpBTNTauriner_Click(object sender, EventArgs e)
         {
-            mpDodajDoKoszyka("Tauriner");
+            mpDodajDoKoszyka("Tauriner"); 
         }
         private void mpBTNStaminanX_Click(object sender, EventArgs e)
         {
@@ -370,14 +552,18 @@ namespace ProjektNr1_Palacz
         {
             mpDodajDoKoszyka("ToughnessInfinity");
         }
-        private void mpWrzutPieniedzy(int mpIndexWaluty,float mpKwota)
+
+        // funkcja dodająca środki za pomocą gotówki
+        private void mpWrzutPieniedzy(int mpIndexWaluty, float mpKwota)
         {
-            mpWrzuconePieniadze[mpIndexWaluty] += mpKwota;
-            mpAktualizacjaWyswietlanychDanych();
+            mpWrzuconePieniadze[mpIndexWaluty] += mpKwota; // zwiększenie wartości wrzuconych pieniędzy
+            mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
+
+        // obsługa przycisków służących do wrzucenia gotówki
         private void mpBTN1Grosz_Click(object sender, EventArgs e)
         {
-            mpWrzutPieniedzy(0, 0.01f);
+            mpWrzutPieniedzy(0, 0.01f); 
         }
         private void mpBTN2Grosze_Click(object sender, EventArgs e)
         {
@@ -523,75 +709,94 @@ namespace ProjektNr1_Palacz
         {
             mpWrzutPieniedzy(2, 200f);
         }
+
+        // funkcja zwracająca wrzuconą gotówkę
         private void mpZwrotPieniedzy()
         {
+            // wyzerowanie wartości wrzyconych pieniędzy
             mpWrzuconePieniadze[0] = 0;
             mpWrzuconePieniadze[1] = 0;
             mpWrzuconePieniadze[2] = 0;
-            mpAktualizacjaWyswietlanychDanych();
+            mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
 
+
+        // kliknięcie przycisku obsługującego zwrot gotówki
         private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
         {
-            if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] == 0)
+            if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] == 0) // sprawdzenie czy nie zostały dodane środki za pomocą gotówki
             {
                 MessageBox.Show("Nie wrzucono żadnych pieniędzy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            // upewnienie sie czy użytkownik jest pewny swojej decyzji
             if (MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes) 
-                mpZwrotPieniedzy();
+                mpZwrotPieniedzy(); 
         }
+
+        // funkcja orpóżniająca (resetująca) koszyk
         private void mpOproznienieKoszyka()
         {
+            // wyzerowanie wartości do zapłaty
             mpDoZaplaty[0] = 0;
             mpDoZaplaty[1] = 0;
             mpDoZaplaty[2] = 0;
-            mpKoszyk = new Dictionary<string, ushort>();
-            mpAktualizacjaWyswietlanychDanych();
+            mpKoszyk = new Dictionary<string, ushort>(); // przypisanie nowego pustego słownika do koszyka
+            mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
-        private void mpBTNAnulujZakupy_Click(object sender, EventArgs e)
+
+        // kliknięcie przycisku obsługującego reset koszyka
+        private void mpBTNResetKoszyka_Click(object sender, EventArgs e)
         {
-            if (mpDoZaplaty[0] + mpDoZaplaty[1] + mpDoZaplaty[2] == 0)
+            if (mpKoszyk.Count == 0) // sprawdzenie czy koszyk jest pusty
             {
                 MessageBox.Show("Nie wybrano żadnego produktu!", "Pusty koszyk", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            // upewnienie sie czy użytkownik jest pewny swojej decyzji
             if (MessageBox.Show("Czy na pewno chcesz zresetować?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                mpOproznienieKoszyka();
+                mpOproznienieKoszyka(); 
             }
-            if (mpCMBMetodaPlatnosci.SelectedIndex == 0 && mpWrzuconePieniadze[mpCMBWaluta.SelectedIndex] != 0)
-                if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
-                    mpZwrotPieniedzy();
+            // sprawdzenie czy zostały dodane środki w formie gotówki
+            if (mpWrzuconePieniadze[mpCMBRodzajWalutyAutomat.SelectedIndex] != 0)
+                // sprawdzenie czy użtywkownik chce dodatkowo otrzymać zwrot gotówki
+                if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    mpZwrotPieniedzy(); 
         }
 
+        // kliknięcie przycisku obsługującego zakup za pomocą gotówki
         private void mpBTNKupnoGotowka_Click(object sender, EventArgs e)
         {
-            if (mpKoszyk.Count() == 0)
+            if (mpKoszyk.Count() == 0) // sprawdzenie czy koszyk jest pusty
             {
                 MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (mpWrzuconePieniadze[mpCMBWaluta.SelectedIndex] < mpDoZaplaty[mpCMBWaluta.SelectedIndex])
+            // sprawdzenie czy dodana kwota nie jest wystarczająca do zakupu produktów w wybranej walucie
+            else if (mpWrzuconePieniadze[mpCMBRodzajWalutyAutomat.SelectedIndex] < mpDoZaplaty[mpCMBRodzajWalutyAutomat.SelectedIndex]) 
             {
                 MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            string mpKomunikat = "Zakupiono:\n" + mpRTBKoszyk.Text + "Reszta: ";
-            float mpReszta;
-            switch (mpCMBWaluta.SelectedIndex)
+            string mpKomunikat = "Zakupiono:\n" + mpRTBKoszyk.Text + "Reszta: "; // zmienna przchowująca komunikat z listą produtków i resztą
+            float mpReszta; // zmienna przechowująca resztę
+            switch (mpCMBRodzajWalutyAutomat.SelectedIndex) // sprawdzenie wybranej waluty
             {
-                case 0:
+                case 0: // PLN
                     mpKomunikat += (mpReszta = mpWrzuconePieniadze[0] - mpDoZaplaty[0]) + "PLN\n";
+                    // tablica ze wszystkimi nominałami PLN
                     float[] mpNominalyPLN = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
-                    for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
+                    for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++) // iterowanie przez wszystkie nominały niezdawkowe dopuki reszta jest różna od 0
                     {
-                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyPLN[mpI]);
-                        if (mpIloraz != 0)
+                        // obliczenie ile w wartości reszty mieści się monet/banknotów o danej wartości
+                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyPLN[mpI]); 
+                        if (mpIloraz != 0) 
                         {
-                            mpKomunikat += $"{mpIloraz}x {mpNominalyPLN[mpI]} złoty\n";
-                            mpReszta -= mpNominalyPLN[mpI] * mpIloraz;
+                            mpKomunikat += $"{mpIloraz}x {mpNominalyPLN[mpI]} złoty\n"; // dodanie do komuniaktu ilości wydawanego nominału nominału
+                            mpReszta -= mpNominalyPLN[mpI] * mpIloraz; // odjęcie od reszty wydanych nominałów
                         }
+                        // ten sam algorymt wykonywany jest dla wszystkich pozostałych nominałów we wszytkich walutach
                     }
                     for (int mpI = 8; mpI < mpNominalyPLN.Length && mpReszta > 0; mpI++)
                     {
@@ -603,10 +808,11 @@ namespace ProjektNr1_Palacz
                         }
                     }
                     break;
-                case 1:
+                case 1: // YEN
                     mpKomunikat += (mpReszta = mpWrzuconePieniadze[1] - mpDoZaplaty[1]) + "¥\n";
                     ushort[] mpNominalyYEN = { 10000, 5000, 1000, 500, 100, 50, 10, 5, 1 };
-                    for (int mpI = 0; mpI < mpNominalyYEN.Length && mpReszta > 0; mpI++)
+                    // iterowanie po wszystkich nominałach, bo w jenie japońskim nie występują monety zdawkowe
+                    for (int mpI = 0; mpI < mpNominalyYEN.Length && mpReszta > 0; mpI++) 
                     {
                         ushort mpIloraz = (ushort)(mpReszta / mpNominalyYEN[mpI]);
                         if (mpIloraz != 0)
@@ -616,7 +822,7 @@ namespace ProjektNr1_Palacz
                         }
                     }
                     break;
-                case 2:
+                case 2: // EUR
                     mpKomunikat += (mpReszta = mpWrzuconePieniadze[2] - mpDoZaplaty[2]) + "€\n";
                     float[] mpNominalyEUR = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
                     for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
@@ -639,24 +845,29 @@ namespace ProjektNr1_Palacz
                     }
                     break;
             }
-            MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie komuniakatu
+            // wyzerowanie zmiennych mpDoZaplaty i mpWrzuconePieniadze
             mpZwrotPieniedzy();
             mpOproznienieKoszyka();
+            // zresetowanie i zablokowanie funkcji cofania
+            mpOstatniaAktywnosc = "";
+            mpBTNCofnij.Enabled = false;
         }
 
+        // kliknięcie przycisku obsługującego zakup za pomocą karty
         private void mpBTNPlatnoscKarta_Click(object sender, EventArgs e)
         {
-            if (mpKoszyk.Count() == 0)
+            if (mpKoszyk.Count() == 0) // sprawdzenie czy koszyk jest pusty
             {
                 MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Form2 mpLoginForm = new Form2();
-            mpLoginForm.ShowDialog();
-            if (mpLoginForm.DialogResult == DialogResult.OK)
+            Form2 mpLoginForm = new Form2(); // utworzenie obiektu drugiego okna, służącego do zalogowania się
+            mpLoginForm.ShowDialog(); // wyświetlenie okna
+            if (mpLoginForm.DialogResult == DialogResult.OK) // sprawdzenie czy logowanie zostało wykonane pomyślnie
             {
                 MessageBox.Show("Zakupiono:\n" + mpRTBKoszyk.Text, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] != 0)
+                if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] != 0) // sprawdzenie czy do automatu została wrzucona gotówka
                 {
                     MessageBox.Show("Zwrócono wprowadzoną gotówkę.", "Zwrot gotówki", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     mpZwrotPieniedzy();
@@ -665,164 +876,23 @@ namespace ProjektNr1_Palacz
             }
         }
 
-        private void mpBTNAkceptacja_Click(object sender, EventArgs e)
-        {
-            float mpKwotaDoWypłaty;
-            mpErrorProvider1.Dispose();
-            if (string.IsNullOrEmpty(mpTXTKwotaDoWyplaty.Text)) {
 
-            } 
-            if (!float.TryParse(mpTXTKwotaDoWyplaty.Text, out mpKwotaDoWypłaty)) {
-                mpErrorProvider1.SetError(mpTXTKwotaDoWyplaty, "Error: w zapisie kwoty wystąpił niestosowny znak");
-                return;
-            }
-            if (mpKwotaDoWypłaty <= 0.0F)
-            {
-                mpErrorProvider1.SetError(mpTXTKwotaDoWyplaty, "wypłata musi wyć więskza od 0.0");
-                return;
-            }
-            if (!mpCzyWyplataMozeBycZrealizowana(mpPojemnikNominalow, mpKwotaDoWypłaty))
-            {
-                // w bankomacie nie ma odpowiedniego kapitału (liczby nominałów)
-                mpErrorProvider1.SetError(mpBTNAkceptacja, "ERROR: nie możemy zrealizować tak dużej wypłaty! PRZEPRASZAMY! Ale możesz pobrać mniejszą kwotę!");
-                return;
-            }
-
-            // realizacja wypłaty
-            // deklaracja zmiennej pomocniczej
-            float mpResztaDoWyplaty = mpKwotaDoWypłaty;
-            // rozpoczynamy wypłatę od najwyższych nominałów, czyli od pierwszej pozycji pojemnika nominałów
-            ushort mpIndexPojemnikaNominalow = 0;
-            // ustalenie atrybutów kontrolek dla prezentacji wypłaty
-            // zmiana tytułu kontrolki label opisującej kontrolkę DataGridView
-            mpLBLWyplacaneNominaly.Text = "Wypłacane nominały:";
-            // "wyczyszczenie" kontrolki DataGridView
-            mpDGVListaNominalow.Rows.Clear();
-            // ustawnienie indeksu wierszy kontrolki DataGridView
-            ushort mpIndexDGV = 0;
-            // iteracyjne dkonowanie wypłaty
-            ushort mpLiczbaNominalow;
-            while((mpResztaDoWyplaty>0.0F)&&(mpIndexPojemnikaNominalow < mpPojemnikNominalow.Length))
-            {
-                // policzenie ile nominałów byłoby potrzebnych dla zrealizowania wypłaty
-                mpLiczbaNominalow = (ushort)(mpResztaDoWyplaty / mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc);
-                // sprawdzenie czy na pozycji mpIndexPojemnikaNominalow w mpPojemnikNominalow jest taka liczba nominałów
-                if (mpLiczbaNominalow > mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc)
-                {
-                    // w pozycji mpIndexPojemnikaNominalow nie ma wymaganej liczności nominałów, to
-                    // powielamy wszystkie nominały z pozycji mpIndexPojemnikaNominalow
-                    mpLiczbaNominalow = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc;
-                    // wyzerowanie liczności nominałów
-                    mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc = 0;
-                }
-                else
-                {
-                    // z pozycji mpIndexPojemnikaNominalow pobieramy nominały o wymaganej licznośc, czyli mpLiczbaNominalow
-                    mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc = (ushort) (mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpLicznosc - mpLiczbaNominalow);
-                }
-                // dokonanie (symulacja) wypłaty nominałów liczności mpLiczbaNominalow
-                if (mpLiczbaNominalow > 0)
-                {
-                    // dodanie nowego (pustego) wiersza
-                    mpDGVListaNominalow.Rows.Add();
-                    // wypełnienie poszczególnych pól (komórek) dodanego wiersza do kontrolki DataGridView
-                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[0].Value = mpLiczbaNominalow;
-                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[1].Value = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
-                    if (mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc >= mpBanknotONajnizszejWartosci)
-                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "banknot";
-                    else
-                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "moneta";
-                    // wypisanie waluty
-                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[3].Value = mpCMBRodzajWaluty.SelectedItem;
-                    // wycentrowanie zapisów w poszczególnych komórkach
-                    for (ushort i = 0; i < mpDGVListaNominalow.Columns.Count; i++)
-                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[i].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    // zwiększenie indeksu wiersza w kontrolce DataGridView
-                    mpIndexDGV++;
-                }
-                // uaktualnienie reszty do wypłaty
-                mpResztaDoWyplaty -= mpLiczbaNominalow * mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
-                // przjeście do następnej pozycji pojemnika nominałów
-                mpIndexPojemnikaNominalow++;
-            }
-            // sprawdzenie, czy wszystko zostało wypłacone
-            if (mpResztaDoWyplaty > 0)
-            {
-                // niewypłaciliśmy pełnej kwoty
-                mpErrorProvider1.SetError(mpBTNAkceptacja, "PRZEPRASZAMY: nie możemy wypłacić pełnej kwoty, " +
-                    "gdyż brak nam odpowiednich nominałów");
-                // ukrycie kontrolek  z wypłatą nominałów
-                mpLBLWyplacaneNominaly.Visible = false;
-                mpDGVListaNominalow.Visible = false;
-            }
-            else
-            {
-                // odsłaniamy kontrolki z wypłatą
-                mpLBLWyplacaneNominaly.Visible = true;
-                mpDGVListaNominalow.Visible = true;
-                // potwierdzenie wypłaty wymaganej kwoty
-                mpTXTWyplacanaKwota.Text = mpTXTKwotaDoWyplaty.Text;
-                // odsłonięcie kontrolek
-                mpTXTWyplacanaKwota.Visible = true;
-                mpLBLWyplacanaKwota.Visible = true;
-                // odsłonięcie kontrolek operacyjnych
-                mpBTNResetuj.Visible = true;
-                mpBTNWyjscie.Visible = true;
-                // ustawienie stanu aktywności dla przycisku poleceń AKCEPTACJA
-                mpBTNAkceptacja.Enabled = false;
-            }
-
-        }
-
-        static Boolean mpCzyWyplataMozeBycZrealizowana(mpNominaly[] mpPojemnikNominałów, float mpKwotaDoWypłaty)
-        {
-            float KapitałBankomatu = 0;
-            for (int psi = 0; psi < mpPojemnikNominałów.Length; psi++)
-                if (mpPojemnikNominałów[psi].mpLicznosc > 0)
-                    KapitałBankomatu = KapitałBankomatu + mpPojemnikNominałów[psi].mpLicznosc * mpPojemnikNominałów[psi].mpWartosc;
-            // zwrócenie wyniku
-            return KapitałBankomatu >= mpKwotaDoWypłaty;
-        }
-
-        private void mpBTNWyjscie_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void mpBTNResetuj_Click(object sender, EventArgs e)
-        {
-            // ustawienie "początkowe" kontrolki wyboru waluty
-            mpCMBRodzajWaluty.SelectedIndex = 0;
-            mpCMBRodzajWaluty.Enabled = true;
-            // ustawienie "początkowe" kontrolek wypłaty
-            mpTXTKwotaDoWyplaty.Text = "";
-            mpTXTKwotaDoWyplaty.Enabled = false;
-            mpLBLWyplacanaKwota.Visible = false;
-            mpTXTWyplacanaKwota.Visible = false;
-            // ukrycie przeycisków operacyjnych
-            mpBTNResetuj.Visible = false;
-            mpBTNWyjscie.Visible = false;
-            // przywrócenie stanu początkowego kontrolek do określenie liczności nominałów
-            mpBTNAkceptacjaLiczności.Enabled = true;
-            // ustawnienie braku "zaznaczenia" kontrolek Radiobutton
-            mpRDBUstawienieLicznosciDomyslne.Checked = true;
-            // ustawienie stanu aktywności kontrolek Radiobutton
-            mpRDBUstawienieLicznosciDomyslne.Enabled = true;
-            mpRDBUstawieniePrzedziałuLiczności.Enabled = true;
-        }
-
+        // kliknięcie przycisku obsługującego cofnięcie ostatniego dodanie produktu do koszyka
         private void mpBTNCofnij_Click(object sender, EventArgs e)
         {
+            // zmiejszenie mpDoZaplaty o wartość ostatnio dodanego produktu
             mpDoZaplaty[0] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaPLN;
             mpDoZaplaty[1] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaYEN;
             mpDoZaplaty[2] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaEUR;
-            mpKoszyk[mpOstatniaAktywnosc]--;
-            if (mpKoszyk[mpOstatniaAktywnosc] == 0)
-                mpKoszyk.Remove(mpOstatniaAktywnosc);
-            mpAktualizacjaWyswietlanychDanych();
-            mpBTNCofnij.Enabled = false;
+            mpKoszyk[mpOstatniaAktywnosc]--; // zmiejszenie ilości ostatnio dodanego produktu w koszyku o 1
+            if (mpKoszyk[mpOstatniaAktywnosc] == 0) // sprawdzenie czy cofnięty produkt, był ostatnim egzemplarzem w koszyku
+                mpKoszyk.Remove(mpOstatniaAktywnosc); // usunięcie typu produktu z koszyka
+            mpWyświetelnieDanych(); // aktualizacja wyświetlanych danyhc
+            mpBTNCofnij.Enabled = false; // zablokowanie funkcji cofnięcia
         }
     }
+
+    // klasa przechowująca wszystkie informacje o produkcie
     public class MPProdukt
     {
         public TextBox mpTXTCena { get; private set; }
