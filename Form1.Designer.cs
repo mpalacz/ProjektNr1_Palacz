@@ -113,7 +113,7 @@ namespace ProjektNr1_Palacz
             this.mpBTNPlatnoscKarta = new System.Windows.Forms.Button();
             this.mpBTNZwrotMonet = new System.Windows.Forms.Button();
             this.mpBTNResetKoszyka = new System.Windows.Forms.Button();
-            this.mpTXTWrzuconeMonety = new System.Windows.Forms.TextBox();
+            this.mpTXTDodaneSrodki = new System.Windows.Forms.TextBox();
             this.mpTXTDoZaplaty = new System.Windows.Forms.TextBox();
             this.mpCMBMetodaPlatnosci = new System.Windows.Forms.ComboBox();
             this.mpCMBRodzajWalutyAutomat = new System.Windows.Forms.ComboBox();
@@ -522,7 +522,7 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.Controls.Add(this.mpBTNPlatnoscKarta);
             this.mpTabPage3.Controls.Add(this.mpBTNZwrotMonet);
             this.mpTabPage3.Controls.Add(this.mpBTNResetKoszyka);
-            this.mpTabPage3.Controls.Add(this.mpTXTWrzuconeMonety);
+            this.mpTabPage3.Controls.Add(this.mpTXTDodaneSrodki);
             this.mpTabPage3.Controls.Add(this.mpTXTDoZaplaty);
             this.mpTabPage3.Controls.Add(this.mpCMBMetodaPlatnosci);
             this.mpTabPage3.Controls.Add(this.mpCMBRodzajWalutyAutomat);
@@ -573,7 +573,7 @@ namespace ProjektNr1_Palacz
             this.mpRTBKoszyk.Location = new System.Drawing.Point(979, 130);
             this.mpRTBKoszyk.Name = "mpRTBKoszyk";
             this.mpRTBKoszyk.ReadOnly = true;
-            this.mpRTBKoszyk.Size = new System.Drawing.Size(165, 225);
+            this.mpRTBKoszyk.Size = new System.Drawing.Size(245, 225);
             this.mpRTBKoszyk.TabIndex = 50;
             this.mpRTBKoszyk.Text = "";
             // 
@@ -1075,14 +1075,14 @@ namespace ProjektNr1_Palacz
             this.mpBTNResetKoszyka.UseVisualStyleBackColor = true;
             this.mpBTNResetKoszyka.Click += new System.EventHandler(this.mpBTNResetKoszyka_Click);
             // 
-            // mpTXTWrzuconeMonety
+            // mpTXTDodaneSrodki
             // 
-            this.mpTXTWrzuconeMonety.Location = new System.Drawing.Point(704, 423);
-            this.mpTXTWrzuconeMonety.Name = "mpTXTWrzuconeMonety";
-            this.mpTXTWrzuconeMonety.ReadOnly = true;
-            this.mpTXTWrzuconeMonety.Size = new System.Drawing.Size(165, 26);
-            this.mpTXTWrzuconeMonety.TabIndex = 40;
-            this.mpTXTWrzuconeMonety.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mpTXTDodaneSrodki.Location = new System.Drawing.Point(704, 423);
+            this.mpTXTDodaneSrodki.Name = "mpTXTDodaneSrodki";
+            this.mpTXTDodaneSrodki.ReadOnly = true;
+            this.mpTXTDodaneSrodki.Size = new System.Drawing.Size(165, 26);
+            this.mpTXTDodaneSrodki.TabIndex = 40;
+            this.mpTXTDodaneSrodki.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mpTXTDoZaplaty
             // 
@@ -1125,9 +1125,9 @@ namespace ProjektNr1_Palacz
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(732, 401);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 19);
+            this.label10.Size = new System.Drawing.Size(102, 19);
             this.label10.TabIndex = 36;
-            this.label10.Text = "Wrzucone monety";
+            this.label10.Text = "Dodane środki";
             // 
             // label9
             // 
@@ -1452,7 +1452,7 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Button mpBTNPlatnoscKarta;
         private System.Windows.Forms.Button mpBTNZwrotMonet;
         private System.Windows.Forms.Button mpBTNResetKoszyka;
-        private System.Windows.Forms.TextBox mpTXTWrzuconeMonety;
+        private System.Windows.Forms.TextBox mpTXTDodaneSrodki;
         private System.Windows.Forms.TextBox mpTXTDoZaplaty;
         private System.Windows.Forms.ComboBox mpCMBMetodaPlatnosci;
         private System.Windows.Forms.ComboBox mpCMBRodzajWalutyAutomat;

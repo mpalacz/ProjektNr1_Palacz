@@ -35,7 +35,7 @@ namespace ProjektNr1_Palacz
                 {
                     if (!mpUzytkownik.mpCzyPoprawneHaslo(mpTXTHaslo.Text)) // sprawdzenie czy hasło jest błędne
                     {
-                        MessageBox.Show("Wpisano niepoprawne hasło.", "Błędne hasło", 
+                        MessageBox.Show("Wpisano nieprawidłowe hasło.", "Błędne hasło", 
                             MessageBoxButtons.OK, MessageBoxIcon.Error); 
                         return; 
                     }

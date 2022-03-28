@@ -30,11 +30,11 @@ namespace ProjektNr1_Palacz
 
         // Automat vendingowy
         // waluty po kolei: PLN, YEN, EUR
-        private float[] mpWrzuconePieniadze = { 0f, 0f, 0f }, // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie
+        private float[] mpDodaneSrodki = { 0f, 0f, 0f }, // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie
             mpDoZaplaty = { 0f, 0f, 0f }; // tablica przechowująca łączną wartośc wybranych produktów
         private Dictionary<string, MPProdukt> mpPojemnikProduktow; // słownik przechowujący wszystkie produkty w automacie
         private Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>(); // słownik przechowujący produkty znajdujące się w koszyku
-        private string mpOstatniaAktywnosc; // zmienna przechowująca ostatnio wybrany produkt
+        private List<string> mpOstatnieAktywnosci = new List<string>(); // lista przechowująca ostatnie wykonane aktywności
 
         // funkcja wypełniająca mpPojemnikProduktow
         private Dictionary<string, MPProdukt> mpStworzenieKonteneraProduktow()
@@ -79,7 +79,7 @@ namespace ProjektNr1_Palacz
                 mpDoZaplaty[1] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaYEN;
                 mpDoZaplaty[2] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaEUR;
                 mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
-                mpOstatniaAktywnosc = mpNazwaProduktu; // zapisanie aktywności dodania produtku
+                mpOstatnieAktywnosci.Add(mpNazwaProduktu); // zapisanie aktywności dodania produtku
                 mpBTNCofnij.Enabled = true; // udostępnienie funkcji cofnięcia dodania produktu
             }
         }
@@ -116,15 +116,15 @@ namespace ProjektNr1_Palacz
             {
                 case 0:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[0]) + " PLN";
-                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWrzuconePieniadze[0]) + " PLN";
+                    mpTXTDodaneSrodki.Text = Convert.ToString(mpDodaneSrodki[0]) + " PLN";
                     break;
                 case 1:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[1]) + "¥";
-                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWrzuconePieniadze[1]) + "¥";
+                    mpTXTDodaneSrodki.Text = Convert.ToString(mpDodaneSrodki[1]) + "¥";
                     break;
                 case 2:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[2]) + "€";
-                    mpTXTWrzuconeMonety.Text = Convert.ToString(mpWrzuconePieniadze[2]) + "€";
+                    mpTXTDodaneSrodki.Text = Convert.ToString(mpDodaneSrodki[2]) + "€";
                     break;
             }
             // wyświetlenie koszyka
@@ -556,7 +556,7 @@ namespace ProjektNr1_Palacz
         // funkcja dodająca środki za pomocą gotówki
         private void mpWrzutPieniedzy(int mpIndexWaluty, float mpKwota)
         {
-            mpWrzuconePieniadze[mpIndexWaluty] += mpKwota; // zwiększenie wartości wrzuconych pieniędzy
+            mpDodaneSrodki[mpIndexWaluty] += mpKwota; // zwiększenie wartości wrzuconych pieniędzy
             mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
 
@@ -714,9 +714,9 @@ namespace ProjektNr1_Palacz
         private void mpZwrotPieniedzy()
         {
             // wyzerowanie wartości wrzyconych pieniędzy
-            mpWrzuconePieniadze[0] = 0;
-            mpWrzuconePieniadze[1] = 0;
-            mpWrzuconePieniadze[2] = 0;
+            mpDodaneSrodki[0] = 0;
+            mpDodaneSrodki[1] = 0;
+            mpDodaneSrodki[2] = 0;
             mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
 
@@ -724,7 +724,7 @@ namespace ProjektNr1_Palacz
         // kliknięcie przycisku obsługującego zwrot gotówki
         private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
         {
-            if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] == 0) // sprawdzenie czy nie zostały dodane środki za pomocą gotówki
+            if (mpDodaneSrodki[0] + mpDodaneSrodki[1] + mpDodaneSrodki[2] == 0) // sprawdzenie czy nie zostały dodane środki za pomocą gotówki
             {
                 MessageBox.Show("Nie wrzucono żadnych pieniędzy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -754,15 +754,18 @@ namespace ProjektNr1_Palacz
                 return;
             }
             // upewnienie sie czy użytkownik jest pewny swojej decyzji
-            if (MessageBox.Show("Czy na pewno chcesz zresetować?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Czy na pewno chcesz zresetować koszyk?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                mpOproznienieKoszyka(); 
+                mpOproznienieKoszyka();
+                // sprawdzenie czy zostały dodane środki w formie gotówki
+                if (mpDodaneSrodki[mpCMBRodzajWalutyAutomat.SelectedIndex] != 0)
+                    // sprawdzenie czy użtywkownik chce dodatkowo otrzymać zwrot gotówki
+                    if (MessageBox.Show("Czy zwrócić dodane środki?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        mpZwrotPieniedzy();
+                // reset funkcji cofania
+                mpOstatnieAktywnosci = new List<string>();
+                mpBTNCofnij.Enabled = false;
             }
-            // sprawdzenie czy zostały dodane środki w formie gotówki
-            if (mpWrzuconePieniadze[mpCMBRodzajWalutyAutomat.SelectedIndex] != 0)
-                // sprawdzenie czy użtywkownik chce dodatkowo otrzymać zwrot gotówki
-                if (MessageBox.Show("Czy zwrócić wrzucone monety?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    mpZwrotPieniedzy(); 
         }
 
         // kliknięcie przycisku obsługującego zakup za pomocą gotówki
@@ -774,7 +777,7 @@ namespace ProjektNr1_Palacz
                 return;
             }
             // sprawdzenie czy dodana kwota nie jest wystarczająca do zakupu produktów w wybranej walucie
-            else if (mpWrzuconePieniadze[mpCMBRodzajWalutyAutomat.SelectedIndex] < mpDoZaplaty[mpCMBRodzajWalutyAutomat.SelectedIndex]) 
+            else if (mpDodaneSrodki[mpCMBRodzajWalutyAutomat.SelectedIndex] < mpDoZaplaty[mpCMBRodzajWalutyAutomat.SelectedIndex]) 
             {
                 MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -784,7 +787,7 @@ namespace ProjektNr1_Palacz
             switch (mpCMBRodzajWalutyAutomat.SelectedIndex) // sprawdzenie wybranej waluty
             {
                 case 0: // PLN
-                    mpKomunikat += (mpReszta = mpWrzuconePieniadze[0] - mpDoZaplaty[0]) + "PLN\n";
+                    mpKomunikat += (mpReszta = mpDodaneSrodki[0] - mpDoZaplaty[0]) + "PLN\n";
                     // tablica ze wszystkimi nominałami PLN
                     float[] mpNominalyPLN = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
                     for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++) // iterowanie przez wszystkie nominały niezdawkowe dopuki reszta jest różna od 0
@@ -807,9 +810,12 @@ namespace ProjektNr1_Palacz
                             mpReszta -= mpNominalyPLN[mpI] * mpIloraz;
                         }
                     }
-                    break;
+                    // sprawdzenie czy wrzucono pieniądze w pozostałych walutach
+                    if (mpDodaneSrodki[1] + mpDodaneSrodki[2] != 0)
+                        mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki.";
+                    break; // podobny algorytm jest wykonywany dla pozostałych walut
                 case 1: // YEN
-                    mpKomunikat += (mpReszta = mpWrzuconePieniadze[1] - mpDoZaplaty[1]) + "¥\n";
+                    mpKomunikat += (mpReszta = mpDodaneSrodki[1] - mpDoZaplaty[1]) + "¥\n";
                     ushort[] mpNominalyYEN = { 10000, 5000, 1000, 500, 100, 50, 10, 5, 1 };
                     // iterowanie po wszystkich nominałach, bo w jenie japońskim nie występują monety zdawkowe
                     for (int mpI = 0; mpI < mpNominalyYEN.Length && mpReszta > 0; mpI++) 
@@ -821,9 +827,11 @@ namespace ProjektNr1_Palacz
                             mpReszta -= mpNominalyYEN[mpI] * mpIloraz;
                         }
                     }
+                    if (mpDodaneSrodki[0] + mpDodaneSrodki[2] != 0)
+                        mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki";
                     break;
                 case 2: // EUR
-                    mpKomunikat += (mpReszta = mpWrzuconePieniadze[2] - mpDoZaplaty[2]) + "€\n";
+                    mpKomunikat += (mpReszta = mpDodaneSrodki[2] - mpDoZaplaty[2]) + "€\n";
                     float[] mpNominalyEUR = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
                     for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
                     {
@@ -843,6 +851,8 @@ namespace ProjektNr1_Palacz
                             mpReszta -= mpNominalyEUR[mpI] * mpIloraz;
                         }
                     }
+                    if (mpDodaneSrodki[1] + mpDodaneSrodki[0] != 0)
+                        mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki";
                     break;
             }
             MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie komuniakatu
@@ -850,7 +860,7 @@ namespace ProjektNr1_Palacz
             mpZwrotPieniedzy();
             mpOproznienieKoszyka();
             // zresetowanie i zablokowanie funkcji cofania
-            mpOstatniaAktywnosc = "";
+            mpOstatnieAktywnosci = new List<string>();
             mpBTNCofnij.Enabled = false;
         }
 
@@ -866,8 +876,25 @@ namespace ProjektNr1_Palacz
             mpLoginForm.ShowDialog(); // wyświetlenie okna
             if (mpLoginForm.DialogResult == DialogResult.OK) // sprawdzenie czy logowanie zostało wykonane pomyślnie
             {
-                MessageBox.Show("Zakupiono:\n" + mpRTBKoszyk.Text, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (mpWrzuconePieniadze[0] + mpWrzuconePieniadze[1] + mpWrzuconePieniadze[2] != 0) // sprawdzenie czy do automatu została wrzucona gotówka
+                string mpWaluta = ""; // zmienna przechowująca oznaczenie wybranej waluty
+                // sprawdzenie która waluta została wybrana
+                // i przypisanie odpowiedniej wartości do mpWaluta
+                switch (mpCMBRodzajWalutyAutomat.SelectedIndex) 
+                {
+                    case 0:
+                        mpWaluta = "PLN";
+                        break;
+                    case 1:
+                        mpWaluta = "¥";
+                        break;
+                    case 2:
+                        mpWaluta = "€";
+                        break;
+                }
+                MessageBox.Show("Zakupiono:\n" + mpRTBKoszyk.Text + "Łączna kwota: " +
+                    mpDoZaplaty[mpCMBRodzajWalutyAutomat.SelectedIndex] + mpWaluta, "Na zdrowie!"
+                    , MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie zawartości koszyka i jego wartości
+                if (mpDodaneSrodki[0] + mpDodaneSrodki[1] + mpDodaneSrodki[2] != 0) // sprawdzenie czy do automatu została wrzucona gotówka
                 {
                     MessageBox.Show("Zwrócono wprowadzoną gotówkę.", "Zwrot gotówki", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     mpZwrotPieniedzy();
@@ -881,14 +908,16 @@ namespace ProjektNr1_Palacz
         private void mpBTNCofnij_Click(object sender, EventArgs e)
         {
             // zmiejszenie mpDoZaplaty o wartość ostatnio dodanego produktu
-            mpDoZaplaty[0] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaPLN;
-            mpDoZaplaty[1] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaYEN;
-            mpDoZaplaty[2] -= mpPojemnikProduktow[mpOstatniaAktywnosc].mpCenaEUR;
-            mpKoszyk[mpOstatniaAktywnosc]--; // zmiejszenie ilości ostatnio dodanego produktu w koszyku o 1
-            if (mpKoszyk[mpOstatniaAktywnosc] == 0) // sprawdzenie czy cofnięty produkt, był ostatnim egzemplarzem w koszyku
-                mpKoszyk.Remove(mpOstatniaAktywnosc); // usunięcie typu produktu z koszyka
-            mpWyświetelnieDanych(); // aktualizacja wyświetlanych danyhc
-            mpBTNCofnij.Enabled = false; // zablokowanie funkcji cofnięcia
+            mpDoZaplaty[0] -= mpPojemnikProduktow[mpOstatnieAktywnosci[mpOstatnieAktywnosci.Count - 1]].mpCenaPLN;
+            mpDoZaplaty[1] -= mpPojemnikProduktow[mpOstatnieAktywnosci[mpOstatnieAktywnosci.Count - 1]].mpCenaYEN;
+            mpDoZaplaty[2] -= mpPojemnikProduktow[mpOstatnieAktywnosci[mpOstatnieAktywnosci.Count - 1]].mpCenaEUR;
+            mpKoszyk[mpOstatnieAktywnosci[mpOstatnieAktywnosci.Count - 1]]--; // zmiejszenie ilości ostatnio dodanego produktu w koszyku o 1
+            if (mpKoszyk[mpOstatnieAktywnosci[mpOstatnieAktywnosci.Count - 1]] == 0) // sprawdzenie czy cofnięty produkt, był ostatnim egzemplarzem w koszyku
+                mpKoszyk.Remove(mpOstatnieAktywnosci[mpOstatnieAktywnosci.Count - 1]); // usunięcie typu produktu z koszyka
+            mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
+            mpOstatnieAktywnosci.RemoveAt(mpOstatnieAktywnosci.Count - 1); // usunięcie ostatniej aktywności, która została właśnie cofnięta
+            if (mpOstatnieAktywnosci.Count == 0) // sprawdzenie czy lista ostatnich aktywności jest pusta
+                mpBTNCofnij.Enabled = false; // zablokowanie funkcji cofnięcia
         }
     }
 
