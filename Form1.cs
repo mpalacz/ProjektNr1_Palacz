@@ -24,6 +24,11 @@ namespace ProjektNr1_Palacz
         {
             public float mpWartosc;
             public ushort mpLicznosc;
+            public mpNominaly(float mpWartosc, ushort mpLicznosc)
+            {
+                this.mpWartosc = mpWartosc;
+                this.mpLicznosc = mpLicznosc;
+            }
         }
         // deklaracja zmiennej tablicowej (referencyjnej) pojemnik nominałów
         mpNominaly[] mpPojemnikNominalow;
@@ -35,6 +40,21 @@ namespace ProjektNr1_Palacz
         private Dictionary<string, MPProdukt> mpPojemnikProduktow; // słownik przechowujący wszystkie produkty w automacie
         private Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>(); // słownik przechowujący produkty znajdujące się w koszyku
         private List<string> mpOstatnieAktywnosci = new List<string>(); // lista przechowująca ostatnie wykonane aktywności
+
+        // deklaracja tablicy przechowujących nominały PLN
+        mpNominaly[] mpPojemnikNominalowPLN = { new mpNominaly(200, 0), new mpNominaly(100, 0), new mpNominaly(50, 0),
+            new mpNominaly(20, 0), new mpNominaly(10, 0), new mpNominaly(5, 0), new mpNominaly(2, 0), new mpNominaly(1, 0),
+            new mpNominaly(0.5f, 0), new mpNominaly(0.2f, 0), new mpNominaly(0.1f, 0), new mpNominaly(0.05f, 0), new mpNominaly(0.02f, 0),
+            new mpNominaly(0.01f, 0) };
+        // deklaracja tablicy przechowującej nominały YEN
+        mpNominaly[] mpPojemnikNominalowYEN = { new mpNominaly(10000, 0), new mpNominaly(5000, 0), new mpNominaly(1000, 0),
+            new mpNominaly(500, 0), new mpNominaly(100, 0), new mpNominaly(50, 0), new mpNominaly(10, 0), new mpNominaly(5, 0),
+            new mpNominaly(1, 0) };
+        // deklaracja tablicy przechowujących nominały EUR
+        mpNominaly[] mpPojemnikNominalowEUR = { new mpNominaly(200, 0), new mpNominaly(100, 0), new mpNominaly(50, 0),
+            new mpNominaly(20, 0), new mpNominaly(10, 0), new mpNominaly(5, 0), new mpNominaly(2, 0), new mpNominaly(1, 0),
+            new mpNominaly(0.5f, 0), new mpNominaly(0.2f, 0), new mpNominaly(0.1f, 0), new mpNominaly(0.05f, 0), new mpNominaly(0.02f, 0),
+            new mpNominaly(0.01f, 0) };
 
         // funkcja wypełniająca mpPojemnikProduktow
         private Dictionary<string, MPProdukt> mpStworzenieKonteneraProduktow()
@@ -84,7 +104,7 @@ namespace ProjektNr1_Palacz
             }
         }
 
-        // funcka służąca wyświetleniu cen każdego produktu w wybranej walucie
+        // funkcja służąca wyświetleniu cen każdego produktu w wybranej walucie
         private void mpWyswietlenieCen()
         {
             string mpCena = "";
@@ -146,12 +166,6 @@ namespace ProjektNr1_Palacz
             // utworzenie egzemplarza pojemnika nominałów
             mpPojemnikNominalow = new mpNominaly[mpWartoscNominalow.Length];
             mpCMBRodzajWaluty.SelectedIndex = 0;
-
-            // tworzenie produktów i przypisywanie do nich cen
-            mpPojemnikProduktow = mpStworzenieKonteneraProduktow();
-            // ustawienie początkowych wartości dla metody płatności i rodzaju waluty
-            mpCMBMetodaPlatnosci.SelectedIndex = 0;
-            mpCMBRodzajWalutyAutomat.SelectedIndex = 0;
         }
 
         // Manipulacja zakładkami
@@ -232,6 +246,14 @@ namespace ProjektNr1_Palacz
             mpStanTabPage[2] = true;
             // otworzenie zakładki Automat vendingowy
             mpTCZakladki.SelectedTab = mpTabPage3;
+
+            // tworzenie produktów i przypisywanie do nich cen
+            mpPojemnikProduktow = mpStworzenieKonteneraProduktow();
+            // ustawienie początkowych wartości dla metody płatności i rodzaju waluty
+            mpCMBMetodaPlatnosci.SelectedIndex = 0;
+            mpCMBRodzajWalutyAutomat.SelectedIndex = 0;
+            // domyśle wygenerowanie losowych wartości liczności nominałów
+            mpBTNAkceptacjaLicznościAutomat.PerformClick();
         }
 
         // zamknięcie aplikacji
@@ -272,17 +294,17 @@ namespace ProjektNr1_Palacz
             // sprawdzenie, czyzostała wybrana kontrolka RadioButton dla określenia sposobu wyznaczenia liczności
             if (!(mpRDBUstawienieLicznosciDomyslne.Checked || mpRDBUstawieniePrzedziałuLiczności.Checked))
             {
-                mpErrorProvider1.SetError(mpBTNAkceptacjaLiczności, "ERROR: musisz wybrać spodów ustalenia licznośc nominałów");
+                mpErrorProvider1.SetError(mpBTNAkceptacjaLicznościBankomat, "ERROR: musisz wybrać spodów ustalenia licznośc nominałów");
                 return;
             }
             // ustawienie stanu braku aktywności kontrolek RadioButton
             mpRDBUstawienieLicznosciDomyslne.Enabled = false;
             mpRDBUstawieniePrzedziałuLiczności.Enabled = false;
+            // utworzenie generatora liczb losowaych
+            Random mpRandom = new Random();
             //rozpoznanie która z kontrolek została wybrana
             if (mpRDBUstawienieLicznosciDomyslne.Checked)
             {
-                // utworzenie generatora liczb losowaych
-                Random mpRandom = new Random();
                 // wpisanie wartości nominałów oraz ich liczności w tablicy pojemnik nominałów
                 for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
                 {
@@ -292,19 +314,36 @@ namespace ProjektNr1_Palacz
                 // odsłonięcie kontrolek dla wizualizacji ustalonej liczności nominałów
                 mpLBLWyplacaneNominaly.Visible = true;
                 mpLBLWyplacaneNominaly.Text = "Wylosowane liczności nominałów";
-                mpDGVListaNominalow.Visible = true;
-                mpDGVListaNominalow.Rows.Clear();
+                mpDGVListaNominalowBankomat.Visible = true;
+                mpDGVListaNominalowBankomat.Rows.Clear();
                 // wpisanie liczności nominałów do kontrolki DataGridView
                 for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
                 {
-                    mpDGVListaNominalow.Rows.Add();
-                    mpDGVListaNominalow.Rows[i].Cells[0].Value = mpPojemnikNominalow[i].mpLicznosc;
-                    mpDGVListaNominalow.Rows[i].Cells[0].Value = mpPojemnikNominalow[i].mpWartosc;
+                    mpDGVListaNominalowBankomat.Rows.Add();
+                    mpDGVListaNominalowBankomat.Rows[i].Cells[0].Value = mpPojemnikNominalow[i].mpLicznosc;
+                    mpDGVListaNominalowBankomat.Rows[i].Cells[1].Value = mpPojemnikNominalow[i].mpWartosc;
                 }
             }
             else
             {
-
+                // wpisanie wartości nominałów oraz ich liczności w tablicy pojemnik nominałów
+                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
+                {
+                    mpPojemnikNominalow[i].mpWartosc = mpWartoscNominalow[i];
+                    mpPojemnikNominalow[i].mpLicznosc = (ushort)mpRandom.Next(Convert.ToInt32(mpTXTDolnaGranicaPrzedzialu.Text), Convert.ToInt32(mpTXTGornaGranicaPrzedzialu.Text));
+                }
+                // odsłonięcie kontrolek dla wizualizacji ustalonej liczności nominałów
+                mpLBLWyplacaneNominaly.Visible = true;
+                mpLBLWyplacaneNominaly.Text = "Wylosowane liczności nominałów";
+                mpDGVListaNominalowBankomat.Visible = true;
+                mpDGVListaNominalowBankomat.Rows.Clear();
+                // wpisanie liczności nominałów do kontrolki DataGridView
+                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
+                {
+                    mpDGVListaNominalowBankomat.Rows.Add();
+                    mpDGVListaNominalowBankomat.Rows[i].Cells[0].Value = mpPojemnikNominalow[i].mpLicznosc;
+                    mpDGVListaNominalowBankomat.Rows[i].Cells[1].Value = mpPojemnikNominalow[i].mpWartosc;
+                }
             }
         }
 
@@ -342,7 +381,7 @@ namespace ProjektNr1_Palacz
             // zmiana tytułu kontrolki label opisującej kontrolkę DataGridView
             mpLBLWyplacaneNominaly.Text = "Wypłacane nominały:";
             // "wyczyszczenie" kontrolki DataGridView
-            mpDGVListaNominalow.Rows.Clear();
+            mpDGVListaNominalowBankomat.Rows.Clear();
             // ustawnienie indeksu wierszy kontrolki DataGridView
             ushort mpIndexDGV = 0;
             // iteracyjne dkonowanie wypłaty
@@ -369,19 +408,19 @@ namespace ProjektNr1_Palacz
                 if (mpLiczbaNominalow > 0)
                 {
                     // dodanie nowego (pustego) wiersza
-                    mpDGVListaNominalow.Rows.Add();
+                    mpDGVListaNominalowBankomat.Rows.Add();
                     // wypełnienie poszczególnych pól (komórek) dodanego wiersza do kontrolki DataGridView
-                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[0].Value = mpLiczbaNominalow;
-                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[1].Value = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
+                    mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[0].Value = mpLiczbaNominalow;
+                    mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[1].Value = mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc;
                     if (mpPojemnikNominalow[mpIndexPojemnikaNominalow].mpWartosc >= mpBanknotONajnizszejWartosci)
-                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "banknot";
+                        mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[2].Value = "banknot";
                     else
-                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[2].Value = "moneta";
+                        mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[2].Value = "moneta";
                     // wypisanie waluty
-                    mpDGVListaNominalow.Rows[mpIndexDGV].Cells[3].Value = mpCMBRodzajWaluty.SelectedItem;
+                    mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[3].Value = mpCMBRodzajWaluty.SelectedItem;
                     // wycentrowanie zapisów w poszczególnych komórkach
-                    for (ushort i = 0; i < mpDGVListaNominalow.Columns.Count; i++)
-                        mpDGVListaNominalow.Rows[mpIndexDGV].Cells[i].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    for (ushort i = 0; i < mpDGVListaNominalowBankomat.Columns.Count; i++)
+                        mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[i].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     // zwiększenie indeksu wiersza w kontrolce DataGridView
                     mpIndexDGV++;
                 }
@@ -398,13 +437,13 @@ namespace ProjektNr1_Palacz
                     "gdyż brak nam odpowiednich nominałów");
                 // ukrycie kontrolek  z wypłatą nominałów
                 mpLBLWyplacaneNominaly.Visible = false;
-                mpDGVListaNominalow.Visible = false;
+                mpDGVListaNominalowBankomat.Visible = false;
             }
             else
             {
                 // odsłaniamy kontrolki z wypłatą
                 mpLBLWyplacaneNominaly.Visible = true;
-                mpDGVListaNominalow.Visible = true;
+                mpDGVListaNominalowBankomat.Visible = true;
                 // potwierdzenie wypłaty wymaganej kwoty
                 mpTXTWyplacanaKwota.Text = mpTXTKwotaDoWyplaty.Text;
                 // odsłonięcie kontrolek
@@ -448,7 +487,7 @@ namespace ProjektNr1_Palacz
             mpBTNResetuj.Visible = false;
             mpBTNWyjscie.Visible = false;
             // przywrócenie stanu początkowego kontrolek do określenie liczności nominałów
-            mpBTNAkceptacjaLiczności.Enabled = true;
+            mpBTNAkceptacjaLicznościBankomat.Enabled = true;
             // ustawnienie braku "zaznaczenia" kontrolek Radiobutton
             mpRDBUstawienieLicznosciDomyslne.Checked = true;
             // ustawienie stanu aktywności kontrolek Radiobutton
@@ -768,6 +807,100 @@ namespace ProjektNr1_Palacz
             }
         }
 
+        private void mpRDBLosowyPrzedzialLicznosciAutomat_CheckedChanged(object sender, EventArgs e)
+        {
+            // ustawnienie drugiej kontrolki na wartość przeciwną
+            mpRDBUstalonyPrzedzialLicznosciAutomat.Checked = !mpRDBLosowyPrzedzialLicznosciAutomat.Checked;
+            // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
+            mpLBLDolnaGranicaLicznosciAutomat.Visible = false;
+            mpLBLGornaGranicaLicznosciAutomat.Visible = false;
+            mpTXTDolnaGranicaLicznosciAutomat.Visible = false;
+            mpTXTGornaGranicaLicznosciAutomat.Visible = false;
+        }
+
+        private void mpRDBUstalonyPrzedzialLicznosciAutomat_CheckedChanged(object sender, EventArgs e)
+        {
+            // ustawnienie drugiej kontrolki na wartość przeciwną
+            mpRDBUstalonyPrzedzialLicznosciAutomat.Checked = !mpRDBLosowyPrzedzialLicznosciAutomat.Checked;
+            // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
+            mpLBLDolnaGranicaLicznosciAutomat.Visible = true;
+            mpLBLGornaGranicaLicznosciAutomat.Visible = true;
+            mpTXTDolnaGranicaLicznosciAutomat.Visible = true;
+            mpTXTGornaGranicaLicznosciAutomat.Visible = true;
+        }
+
+        // funkcja wyświetlajaca liczność nominałów w kontrolce mpDGVListaNominalowAutomat
+        private void mpWyswietlenieLicznosci()
+        {
+            mpDGVListaNominalowAutomat.Rows.Clear(); // wyczyszczenie kontrolki mpDGVListaNominalowAutomat
+            for (ushort mpI = 0; mpI < mpPojemnikNominalowPLN.Length; mpI++) // iterowanie przez elementy tablicy mpPojemnikNominalowPLN
+            {
+                mpDGVListaNominalowAutomat.Rows.Add(); // dodanie wiersza do mpDGVListaNominalowAutomat
+                mpDGVListaNominalowAutomat.Rows[mpI].Cells[0].Value = mpPojemnikNominalowPLN[mpI].mpWartosc + " PLN"; // wyświetlenie wartości namonału
+                mpDGVListaNominalowAutomat.Rows[mpI].Cells[1].Value = mpPojemnikNominalowPLN[mpI].mpLicznosc; // wyświetlenie liczności nominału
+            }
+            // Ten sam algorymt jest wykonywany, dla pozostałych walut, z tą różnicą, że do indeksu wiersza kontrolki
+            // mpDGVListaNominalowAutomat dodawana jest długość tablicy pojemnika nominałów wcześniej ziterowanej waluty,
+            // by móc iterować przez kolejne wiersze kontrolki mpDGVListaNominalowAutomat.
+            for (ushort mpI = 0; mpI < mpPojemnikNominalowYEN.Length; mpI++)
+            {
+                mpDGVListaNominalowAutomat.Rows.Add();
+                mpDGVListaNominalowAutomat.Rows[mpI + mpPojemnikNominalowPLN.Length].Cells[0].Value = mpPojemnikNominalowYEN[mpI].mpWartosc + "¥";
+                mpDGVListaNominalowAutomat.Rows[mpI + mpPojemnikNominalowPLN.Length].Cells[1].Value = mpPojemnikNominalowYEN[mpI].mpLicznosc;
+            }
+            for (ushort mpI = 0; mpI < mpPojemnikNominalowEUR.Length; mpI++)
+            {
+                mpDGVListaNominalowAutomat.Rows.Add();
+                mpDGVListaNominalowAutomat.Rows[mpI + mpPojemnikNominalowPLN.Length + mpPojemnikNominalowYEN.Length].Cells[0].Value =
+                    mpPojemnikNominalowEUR[mpI].mpWartosc + "€";
+                mpDGVListaNominalowAutomat.Rows[mpI + mpPojemnikNominalowPLN.Length + mpPojemnikNominalowYEN.Length].Cells[1].Value = mpPojemnikNominalowEUR[mpI].mpLicznosc;
+            }
+        }
+
+        // kliknięcie przycisku obsługującego losowanie liczności nominałów
+        private void mpBTNAkceptacjaLicznościAutomat_Click(object sender, EventArgs e)
+        {
+            mpErrorProvider1.Clear(); // wyczyszczenie kontrolki mpErrorProvider1
+            ushort mpDolnaGranicaLicznosciAutomat, mpGornaGranicaLicznosciAutomat; // zmienne przechowujące dolną i górną granicę licznośći
+            if (mpRDBLosowyPrzedzialLicznosciAutomat.Checked) // jeśli mpRDBLosowyPrzedzialLicznosciAutomat jest zaznaczony, ustawiane są wartości domyślne
+            {
+                mpDolnaGranicaLicznosciAutomat = 0; // 0 jest najmniejszym możliwym minimum (liczność nie może być mniejsza od zera)
+                mpGornaGranicaLicznosciAutomat = mpMaxLicznoscNominalow; // stała pochądząca z projektu Bankomat, definiująca domyślą górną granicę liczności
+            }
+            else // jeśli mpRDBUstalonyPrzedzialLicznosciAutomat jest zaznaczony, przedziały liczności są podawane przez użytkownika administratora (w domyśle adminitratora)
+            {
+                // sprawdzenie czy w textBoxach wpisano liczby naturalne
+                if (!ushort.TryParse(mpTXTDolnaGranicaLicznosciAutomat.Text, out mpDolnaGranicaLicznosciAutomat))
+                {
+                    mpErrorProvider1.SetError(mpTXTDolnaGranicaLicznosciAutomat, "Wpisano nie właściwy znak, podaj liczbę naturalną...");
+                    return;
+                }
+                if (!ushort.TryParse(mpTXTGornaGranicaLicznosciAutomat.Text, out mpGornaGranicaLicznosciAutomat))
+                {
+                    mpErrorProvider1.SetError(mpTXTGornaGranicaLicznosciAutomat, "Wpisano nie właściwy znak, podaj liczbę naturalną...");
+                    return;
+                }
+                // sprawdzenie czy dolna granica przedziału jest mniejsza do górnej
+                if (mpDolnaGranicaLicznosciAutomat >= mpGornaGranicaLicznosciAutomat)
+                {
+                    mpErrorProvider1.SetError(mpRDBUstalonyPrzedzialLicznosciAutomat, "Dolna granica przedziału liczności, musi być mnijesza niż górna.");
+                    return;
+                }
+            }
+            Random mpRandom = new Random(); // wywołanie generatora liczb losowych
+            for (ushort mpI = 0; mpI < mpPojemnikNominalowPLN.Length; mpI++) // iterowanie przez indeksy mpPojemnikNominalowPLN
+            {
+                // przypisywanie losowych wartośc w ustawionych granicach (losowane są jednocześnie liczności
+                // dla nominałów w mpPojemnikNominalowPLN i mpPojemnikNominalowEUR, gdyż obie talice tablice mają tą samą długość)
+                mpPojemnikNominalowPLN[mpI].mpLicznosc = (ushort)(mpRandom.Next(mpDolnaGranicaLicznosciAutomat, mpGornaGranicaLicznosciAutomat));
+                mpPojemnikNominalowEUR[mpI].mpLicznosc = (ushort)(mpRandom.Next(mpDolnaGranicaLicznosciAutomat, mpGornaGranicaLicznosciAutomat));
+            }
+            // ta sama czynność dla mpPojemnikNominalowYEN
+            for (ushort mpI = 0; mpI < mpPojemnikNominalowYEN.Length; mpI++)
+                mpPojemnikNominalowYEN[mpI].mpLicznosc = (ushort)(mpRandom.Next(mpDolnaGranicaLicznosciAutomat, mpGornaGranicaLicznosciAutomat));
+            mpWyswietlenieLicznosci(); // wyświetlenie wyników w kontrolce mpDGVListaNominalowAutomat
+        }
+
         // kliknięcie przycisku obsługującego zakup za pomocą gotówki
         private void mpBTNKupnoGotowka_Click(object sender, EventArgs e)
         {
@@ -783,31 +916,38 @@ namespace ProjektNr1_Palacz
                 return;
             }
             string mpKomunikat = "Zakupiono:\n" + mpRTBKoszyk.Text + "Reszta: "; // zmienna przchowująca komunikat z listą produtków i resztą
-            float mpReszta; // zmienna przechowująca resztę
+            float mpReszta = 0; // zmienna przechowująca resztę
+            ushort mpIloscNominalowDoWydania;
             switch (mpCMBRodzajWalutyAutomat.SelectedIndex) // sprawdzenie wybranej waluty
             {
                 case 0: // PLN
                     mpKomunikat += (mpReszta = mpDodaneSrodki[0] - mpDoZaplaty[0]) + "PLN\n";
-                    // tablica ze wszystkimi nominałami PLN
-                    float[] mpNominalyPLN = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
                     for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++) // iterowanie przez wszystkie nominały niezdawkowe dopuki reszta jest różna od 0
                     {
+                        // jeśli w automacie brakuje środków o danym nominale, wykonywane jest przejście to do kolejnego mniejszego nominału
+                        if (mpPojemnikNominalowPLN[mpI].mpLicznosc == 0) continue;
                         // obliczenie ile w wartości reszty mieści się monet/banknotów o danej wartości
-                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyPLN[mpI]); 
-                        if (mpIloraz != 0) 
+                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowPLN[mpI].mpWartosc);
+                        if (mpIloscNominalowDoWydania != 0) // sprawdzenie czy mpIloscNominalowDoWydania jest różne od 0
                         {
-                            mpKomunikat += $"{mpIloraz}x {mpNominalyPLN[mpI]} złoty\n"; // dodanie do komuniaktu ilości wydawanego nominału nominału
-                            mpReszta -= mpNominalyPLN[mpI] * mpIloraz; // odjęcie od reszty wydanych nominałów
+                            // jeśli mpIloscNominalowDoWydania jest większa od zasobów automatu, do mpIloscNominalowDoWydania przypisywana jest liczność danego nominału
+                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowPLN[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowPLN[mpI].mpLicznosc;
+                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowPLN[mpI].mpWartosc} złoty\n"; // dodanie do komuniaktu ilości wydawanego nominału nominału
+                            mpReszta -= mpPojemnikNominalowPLN[mpI].mpWartosc * mpIloscNominalowDoWydania; // odjęcie od reszty wydanych nominałów
+                            mpPojemnikNominalowPLN[mpI].mpLicznosc -= mpIloscNominalowDoWydania; // zmiejszenie ilości nominałów o wydawaną resztę
                         }
                         // ten sam algorymt wykonywany jest dla wszystkich pozostałych nominałów we wszytkich walutach
                     }
-                    for (int mpI = 8; mpI < mpNominalyPLN.Length && mpReszta > 0; mpI++)
+                    for (int mpI = 8; mpI < mpPojemnikNominalowPLN.Length && mpReszta > 0; mpI++)
                     {
-                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyPLN[mpI]);
-                        if (mpIloraz != 0)
+                        if (mpPojemnikNominalowPLN[mpI].mpLicznosc == 0) continue;
+                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowPLN[mpI].mpWartosc);
+                        if (mpIloscNominalowDoWydania != 0)
                         {
-                            mpKomunikat += $"{mpIloraz}x {mpNominalyPLN[mpI] * 100} groszy\n";
-                            mpReszta -= mpNominalyPLN[mpI] * mpIloraz;
+                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowPLN[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowPLN[mpI].mpLicznosc;
+                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowPLN[mpI].mpWartosc * 100} groszy\n";
+                            mpReszta -= mpPojemnikNominalowPLN[mpI].mpWartosc * mpIloscNominalowDoWydania;
+                            mpPojemnikNominalowPLN[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
                         }
                     }
                     // sprawdzenie czy wrzucono pieniądze w pozostałych walutach
@@ -816,15 +956,17 @@ namespace ProjektNr1_Palacz
                     break; // podobny algorytm jest wykonywany dla pozostałych walut
                 case 1: // YEN
                     mpKomunikat += (mpReszta = mpDodaneSrodki[1] - mpDoZaplaty[1]) + "¥\n";
-                    ushort[] mpNominalyYEN = { 10000, 5000, 1000, 500, 100, 50, 10, 5, 1 };
                     // iterowanie po wszystkich nominałach, bo w jenie japońskim nie występują monety zdawkowe
-                    for (int mpI = 0; mpI < mpNominalyYEN.Length && mpReszta > 0; mpI++) 
+                    for (int mpI = 0; mpI < mpPojemnikNominalowYEN.Length && mpReszta > 0; mpI++)
                     {
-                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyYEN[mpI]);
-                        if (mpIloraz != 0)
+                        if (mpPojemnikNominalowYEN[mpI].mpLicznosc == 0) continue;
+                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowYEN[mpI].mpWartosc);
+                        if (mpIloscNominalowDoWydania != 0)
                         {
-                            mpKomunikat += $"{mpIloraz}x {mpNominalyYEN[mpI]} ¥\n";
-                            mpReszta -= mpNominalyYEN[mpI] * mpIloraz;
+                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowYEN[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowYEN[mpI].mpLicznosc;
+                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowYEN[mpI].mpWartosc} ¥\n";
+                            mpReszta -= mpPojemnikNominalowYEN[mpI].mpWartosc * mpIloscNominalowDoWydania;
+                            mpPojemnikNominalowYEN[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
                         }
                     }
                     if (mpDodaneSrodki[0] + mpDodaneSrodki[2] != 0)
@@ -832,33 +974,47 @@ namespace ProjektNr1_Palacz
                     break;
                 case 2: // EUR
                     mpKomunikat += (mpReszta = mpDodaneSrodki[2] - mpDoZaplaty[2]) + "€\n";
-                    float[] mpNominalyEUR = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
                     for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
                     {
-                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyEUR[mpI]);
-                        if (mpIloraz != 0)
+                        if (mpPojemnikNominalowEUR[mpI].mpLicznosc == 0) continue;
+                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowEUR[mpI].mpWartosc);
+                        if (mpIloscNominalowDoWydania != 0)
                         {
-                            mpKomunikat += $"{mpIloraz}x {mpNominalyEUR[mpI]} €\n";
-                            mpReszta -= mpNominalyEUR[mpI] * mpIloraz;
+                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowEUR[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowEUR[mpI].mpLicznosc;
+                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowEUR[mpI].mpWartosc} €\n";
+                            mpReszta -= mpPojemnikNominalowEUR[mpI].mpWartosc * mpIloscNominalowDoWydania;
+                            mpPojemnikNominalowEUR[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
                         }
                     }
-                    for (int mpI = 8; mpI < mpNominalyEUR.Length && mpReszta > 0; mpI++)
+                    for (int mpI = 8; mpI < mpPojemnikNominalowEUR.Length && mpReszta > 0; mpI++)
                     {
-                        ushort mpIloraz = (ushort)(mpReszta / mpNominalyEUR[mpI]);
-                        if (mpIloraz != 0)
+                        if (mpPojemnikNominalowEUR[mpI].mpLicznosc == 0) continue;
+                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowEUR[mpI].mpWartosc);
+                        if (mpIloscNominalowDoWydania != 0)
                         {
-                            mpKomunikat += $"{mpIloraz}x {mpNominalyEUR[mpI] * 100} centów\n";
-                            mpReszta -= mpNominalyEUR[mpI] * mpIloraz;
+                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowEUR[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowEUR[mpI].mpLicznosc;
+                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowEUR[mpI].mpWartosc * 100} centów\n";
+                            mpReszta -= mpPojemnikNominalowEUR[mpI].mpWartosc * mpIloscNominalowDoWydania;
+                            mpPojemnikNominalowEUR[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
                         }
                     }
                     if (mpDodaneSrodki[1] + mpDodaneSrodki[0] != 0)
                         mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki";
                     break;
             }
+            if (mpReszta > 0)
+            {
+                MessageBox.Show("Nie można zrealizować opecji, gdyż automat nie posiada wystarczającej ilości sródków do wydania reszty." +
+                    "\nProszę wykorzystać inne nominały lub walutę, albo skorzystać z płatności kartą.", "Nie można wydać reszty", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie komuniakatu
             // wyzerowanie zmiennych mpDoZaplaty i mpWrzuconePieniadze
             mpZwrotPieniedzy();
             mpOproznienieKoszyka();
+            // wyświetlenie zaktualizowanych danych dotyczących liczności każdego nominału
+            mpWyswietlenieLicznosci();
             // zresetowanie i zablokowanie funkcji cofania
             mpOstatnieAktywnosci = new List<string>();
             mpBTNCofnij.Enabled = false;
@@ -902,7 +1058,6 @@ namespace ProjektNr1_Palacz
                 mpOproznienieKoszyka();
             }
         }
-
 
         // kliknięcie przycisku obsługującego cofnięcie ostatniego dodanie produktu do koszyka
         private void mpBTNCofnij_Click(object sender, EventArgs e)
