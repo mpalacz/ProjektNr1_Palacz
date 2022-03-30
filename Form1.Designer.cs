@@ -635,7 +635,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTGornaGranicaLicznosciAutomat
             // 
-            this.mpTXTGornaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.mpTXTGornaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
             this.mpTXTGornaGranicaLicznosciAutomat.Location = new System.Drawing.Point(1036, 297);
             this.mpTXTGornaGranicaLicznosciAutomat.Name = "mpTXTGornaGranicaLicznosciAutomat";
             this.mpTXTGornaGranicaLicznosciAutomat.Size = new System.Drawing.Size(100, 26);
@@ -645,7 +645,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTDolnaGranicaLicznosciAutomat
             // 
-            this.mpTXTDolnaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpTXTDolnaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
             this.mpTXTDolnaGranicaLicznosciAutomat.Location = new System.Drawing.Point(1036, 231);
             this.mpTXTDolnaGranicaLicznosciAutomat.Name = "mpTXTDolnaGranicaLicznosciAutomat";
             this.mpTXTDolnaGranicaLicznosciAutomat.Size = new System.Drawing.Size(100, 26);
