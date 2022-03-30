@@ -34,14 +34,15 @@ namespace ProjektNr1_Palacz
         mpNominaly[] mpPojemnikNominalow;
 
         // Automat vendingowy
+        private int mpIndexWaluty; // zmienna przechowująca indeks wybranej waluty (zmienna stworzona tylko w celach stylistycznych
         // waluty po kolei: PLN, YEN, EUR
-        private float[] mpDodaneSrodki = { 0f, 0f, 0f }, // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie
-            mpDoZaplaty = { 0f, 0f, 0f }; // tablica przechowująca łączną wartośc wybranych produktów
+        private Dictionary<float, ushort>[] mpDodaneSrodki = { new Dictionary<float, ushort>(), new Dictionary<float, ushort>(), new Dictionary<float, ushort>() }; // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie
+        private float[] mpDoZaplaty = { 0f, 0f, 0f }; // tablica przechowująca łączną wartośc wybranych produktów
         private Dictionary<string, MPProdukt> mpPojemnikProduktow; // słownik przechowujący wszystkie produkty w automacie
         private Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>(); // słownik przechowujący produkty znajdujące się w koszyku
         private List<string> mpOstatnieAktywnosci = new List<string>(); // lista przechowująca ostatnie wykonane aktywności
 
-        // deklaracja tablicy przechowujących nominały PLN
+        // deklaracja tablicy przechowującej nominały PLN
         mpNominaly[] mpPojemnikNominalowPLN = { new mpNominaly(200, 0), new mpNominaly(100, 0), new mpNominaly(50, 0),
             new mpNominaly(20, 0), new mpNominaly(10, 0), new mpNominaly(5, 0), new mpNominaly(2, 0), new mpNominaly(1, 0),
             new mpNominaly(0.5f, 0), new mpNominaly(0.2f, 0), new mpNominaly(0.1f, 0), new mpNominaly(0.05f, 0), new mpNominaly(0.02f, 0),
@@ -50,7 +51,7 @@ namespace ProjektNr1_Palacz
         mpNominaly[] mpPojemnikNominalowYEN = { new mpNominaly(10000, 0), new mpNominaly(5000, 0), new mpNominaly(1000, 0),
             new mpNominaly(500, 0), new mpNominaly(100, 0), new mpNominaly(50, 0), new mpNominaly(10, 0), new mpNominaly(5, 0),
             new mpNominaly(1, 0) };
-        // deklaracja tablicy przechowujących nominały EUR
+        // deklaracja tablicy przechowującej nominały EUR
         mpNominaly[] mpPojemnikNominalowEUR = { new mpNominaly(200, 0), new mpNominaly(100, 0), new mpNominaly(50, 0),
             new mpNominaly(20, 0), new mpNominaly(10, 0), new mpNominaly(5, 0), new mpNominaly(2, 0), new mpNominaly(1, 0),
             new mpNominaly(0.5f, 0), new mpNominaly(0.2f, 0), new mpNominaly(0.1f, 0), new mpNominaly(0.05f, 0), new mpNominaly(0.02f, 0),
@@ -87,21 +88,14 @@ namespace ProjektNr1_Palacz
             return mpPojemnikProduktow;
         }
 
-        // funkcja dodająca do koszyka wybrany produkt
-        private void mpDodajDoKoszyka(string mpNazwaProduktu)
+        private float mpSumaDodanychSrodkow(int mpIndexWaluty)
         {
-            try { mpKoszyk[mpNazwaProduktu]++; } // próba zwiększenia ilości produktu w koszyku, jeśli dany produkt został wcześniej dodany do koszyka
-            catch { mpKoszyk.Add(mpNazwaProduktu, 1); } // dodanie produktu do koszyka jeśli wcześniej nie zostało to wykonane
-            finally
-            {
-                // zwiększenie wartości do zapłaty w każdej walucie
-                mpDoZaplaty[0] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaPLN;
-                mpDoZaplaty[1] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaYEN;
-                mpDoZaplaty[2] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaEUR;
-                mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
-                mpOstatnieAktywnosci.Add(mpNazwaProduktu); // zapisanie aktywności dodania produtku
-                mpBTNCofnij.Enabled = true; // udostępnienie funkcji cofnięcia dodania produktu
-            }
+            if (mpDodaneSrodki[mpIndexWaluty].Count == 0)
+                return 0;
+            float mpSuma = 0;
+            foreach (KeyValuePair<float, ushort> mpNominal in mpDodaneSrodki[mpIndexWaluty])
+                mpSuma += mpNominal.Key * mpNominal.Value;
+            return mpSuma;
         }
 
         // funkcja służąca wyświetleniu cen każdego produktu w wybranej walucie
@@ -111,7 +105,7 @@ namespace ProjektNr1_Palacz
             foreach (MPProdukt mpProdukt in mpPojemnikProduktow.Values) // iterowanie przez każdy produkt
             {
                 // sprawdzenie która waluta została wybrana 
-                switch (mpCMBRodzajWalutyAutomat.SelectedIndex)  
+                switch (mpIndexWaluty)  
                 {
                     case 0: // PLN
                         mpCena = mpProdukt.mpCenaPLN + " PLN";
@@ -132,19 +126,19 @@ namespace ProjektNr1_Palacz
         {
             // sprawdznie jaka waluta została wybrana 
             // i wyświetlenie wartości mpWrzuconePieniadze i mpDoZaplaty w wybranej walucie
-            switch (mpCMBRodzajWalutyAutomat.SelectedIndex)
+            switch (mpIndexWaluty)
             {
                 case 0:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[0]) + " PLN";
-                    mpTXTDodaneSrodki.Text = Convert.ToString(mpDodaneSrodki[0]) + " PLN";
+                    mpTXTDodaneSrodki.Text = Convert.ToString(mpSumaDodanychSrodkow(0)) + " PLN";
                     break;
                 case 1:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[1]) + "¥";
-                    mpTXTDodaneSrodki.Text = Convert.ToString(mpDodaneSrodki[1]) + "¥";
+                    mpTXTDodaneSrodki.Text = Convert.ToString(mpSumaDodanychSrodkow(1)) + "¥";
                     break;
                 case 2:
                     mpTXTDoZaplaty.Text = Convert.ToString(mpDoZaplaty[2]) + "€";
-                    mpTXTDodaneSrodki.Text = Convert.ToString(mpDodaneSrodki[2]) + "€";
+                    mpTXTDodaneSrodki.Text = Convert.ToString(mpSumaDodanychSrodkow(2)) + "€";
                     break;
             }
             // wyświetlenie koszyka
@@ -499,10 +493,11 @@ namespace ProjektNr1_Palacz
         // funkcja obsługująca zdarzenie zmiany waluty
         private void mpCMBRodzajWalutyAutomat_SelectedIndexChanged(object sender, EventArgs e)
         {
+            mpIndexWaluty = mpCMBRodzajWalutyAutomat.SelectedIndex; // przypisanie wybranego indexu kontrolki do 
             if (mpCMBMetodaPlatnosci.SelectedIndex == 0) // sprawdzenie czy została wybrana płatność gotówką
             {
                 // sprawdzenie która waluta została wybrana i wyświetlenie stosownego onka z nominałami
-                switch (mpCMBRodzajWalutyAutomat.SelectedIndex) 
+                switch (mpIndexWaluty) 
                 {
                     case 0: // PLN
                         mpGRBEuro.Visible = false;
@@ -547,6 +542,23 @@ namespace ProjektNr1_Palacz
                     mpBTNPlatnoscKarta.Visible = true;
                     mpBTNKupnoGotowka.Visible = false;
                     break;
+            }
+        }
+
+        // funkcja dodająca do koszyka wybrany produkt
+        private void mpDodajDoKoszyka(string mpNazwaProduktu)
+        {
+            try { mpKoszyk[mpNazwaProduktu]++; } // próba zwiększenia ilości produktu w koszyku, jeśli dany produkt został wcześniej dodany do koszyka
+            catch { mpKoszyk.Add(mpNazwaProduktu, 1); } // dodanie produktu do koszyka jeśli wcześniej nie zostało to wykonane
+            finally
+            {
+                // zwiększenie wartości do zapłaty w każdej walucie
+                mpDoZaplaty[0] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaPLN;
+                mpDoZaplaty[1] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaYEN;
+                mpDoZaplaty[2] += mpPojemnikProduktow[mpNazwaProduktu].mpCenaEUR;
+                mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
+                mpOstatnieAktywnosci.Add(mpNazwaProduktu); // zapisanie aktywności dodania produtku
+                mpBTNCofnij.Enabled = true; // udostępnienie funkcji cofnięcia dodania produktu
             }
         }
 
@@ -595,7 +607,15 @@ namespace ProjektNr1_Palacz
         // funkcja dodająca środki za pomocą gotówki
         private void mpWrzutPieniedzy(int mpIndexWaluty, float mpKwota)
         {
-            mpDodaneSrodki[mpIndexWaluty] += mpKwota; // zwiększenie wartości wrzuconych pieniędzy
+            if (!mpDodaneSrodki[mpIndexWaluty].ContainsKey(mpKwota))
+                mpDodaneSrodki[mpIndexWaluty].Add(mpKwota, 1);
+            else
+                for (ushort mpI = 0; mpI < mpDodaneSrodki[mpIndexWaluty].Count; mpI++)
+                {
+                    KeyValuePair<float, ushort> mpElement = mpDodaneSrodki[mpIndexWaluty].ElementAt(mpI);
+                    if (mpElement.Key == mpKwota)
+                        mpDodaneSrodki[mpIndexWaluty][mpI]++;
+                }
             mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
 
@@ -753,9 +773,9 @@ namespace ProjektNr1_Palacz
         private void mpZwrotPieniedzy()
         {
             // wyzerowanie wartości wrzyconych pieniędzy
-            mpDodaneSrodki[0] = 0;
-            mpDodaneSrodki[1] = 0;
-            mpDodaneSrodki[2] = 0;
+            mpDodaneSrodki[0] = new Dictionary<float, ushort>();
+            mpDodaneSrodki[1] = new Dictionary<float, ushort>();
+            mpDodaneSrodki[2] = new Dictionary<float, ushort>();
             mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
 
@@ -763,7 +783,7 @@ namespace ProjektNr1_Palacz
         // kliknięcie przycisku obsługującego zwrot gotówki
         private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
         {
-            if (mpDodaneSrodki[0] + mpDodaneSrodki[1] + mpDodaneSrodki[2] == 0) // sprawdzenie czy nie zostały dodane środki za pomocą gotówki
+            if (mpSumaDodanychSrodkow(0) + mpSumaDodanychSrodkow(1) + mpSumaDodanychSrodkow(2) == 0) // sprawdzenie czy nie zostały dodane środki za pomocą gotówki
             {
                 MessageBox.Show("Nie wrzucono żadnych pieniędzy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -797,7 +817,7 @@ namespace ProjektNr1_Palacz
             {
                 mpOproznienieKoszyka();
                 // sprawdzenie czy zostały dodane środki w formie gotówki
-                if (mpDodaneSrodki[mpCMBRodzajWalutyAutomat.SelectedIndex] != 0)
+                if (mpSumaDodanychSrodkow(mpIndexWaluty) != 0)
                     // sprawdzenie czy użtywkownik chce dodatkowo otrzymać zwrot gotówki
                     if (MessageBox.Show("Czy zwrócić dodane środki?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         mpZwrotPieniedzy();
@@ -910,106 +930,91 @@ namespace ProjektNr1_Palacz
                 return;
             }
             // sprawdzenie czy dodana kwota nie jest wystarczająca do zakupu produktów w wybranej walucie
-            else if (mpDodaneSrodki[mpCMBRodzajWalutyAutomat.SelectedIndex] < mpDoZaplaty[mpCMBRodzajWalutyAutomat.SelectedIndex]) 
+            else if (mpSumaDodanychSrodkow(mpIndexWaluty) < mpDoZaplaty[mpIndexWaluty]) 
             {
                 MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             string mpKomunikat = "Zakupiono:\n" + mpRTBKoszyk.Text + "Reszta: "; // zmienna przchowująca komunikat z listą produtków i resztą
+            string mpNazwaWaluty = "", mpNazwaZdawkowej = ""; // zmienne przechowujące nazwy wybranej waluty
+            // zmienna określająca liczbę nominałów w danej walucie
+            // (potrzebne przy iterowaniu przez nominały, by wypisać odpowienią nazwę)
+            ushort mpLiczbaNiezdawkowych = 0; 
+            List<mpNominaly[]> mpPojemnikNominalow = new List<mpNominaly[]>(); // lista przechowujące tablice nominalów w każdej walucie
+            mpPojemnikNominalow.Add(mpPojemnikNominalowPLN);
+            mpPojemnikNominalow.Add(mpPojemnikNominalowYEN);
+            mpPojemnikNominalow.Add(mpPojemnikNominalowEUR);
             float mpReszta = 0; // zmienna przechowująca resztę
             ushort mpIloscNominalowDoWydania;
-            switch (mpCMBRodzajWalutyAutomat.SelectedIndex) // sprawdzenie wybranej waluty
+            switch (mpIndexWaluty)
             {
-                case 0: // PLN
-                    mpKomunikat += (mpReszta = mpDodaneSrodki[0] - mpDoZaplaty[0]) + "PLN\n";
-                    for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++) // iterowanie przez wszystkie nominały niezdawkowe dopuki reszta jest różna od 0
-                    {
-                        // jeśli w automacie brakuje środków o danym nominale, wykonywane jest przejście to do kolejnego mniejszego nominału
-                        if (mpPojemnikNominalowPLN[mpI].mpLicznosc == 0) continue;
-                        // obliczenie ile w wartości reszty mieści się monet/banknotów o danej wartości
-                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowPLN[mpI].mpWartosc);
-                        if (mpIloscNominalowDoWydania != 0) // sprawdzenie czy mpIloscNominalowDoWydania jest różne od 0
-                        {
-                            // jeśli mpIloscNominalowDoWydania jest większa od zasobów automatu, do mpIloscNominalowDoWydania przypisywana jest liczność danego nominału
-                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowPLN[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowPLN[mpI].mpLicznosc;
-                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowPLN[mpI].mpWartosc} złoty\n"; // dodanie do komuniaktu ilości wydawanego nominału nominału
-                            mpReszta -= mpPojemnikNominalowPLN[mpI].mpWartosc * mpIloscNominalowDoWydania; // odjęcie od reszty wydanych nominałów
-                            mpPojemnikNominalowPLN[mpI].mpLicznosc -= mpIloscNominalowDoWydania; // zmiejszenie ilości nominałów o wydawaną resztę
-                        }
-                        // ten sam algorymt wykonywany jest dla wszystkich pozostałych nominałów we wszytkich walutach
-                    }
-                    for (int mpI = 8; mpI < mpPojemnikNominalowPLN.Length && mpReszta > 0; mpI++)
-                    {
-                        if (mpPojemnikNominalowPLN[mpI].mpLicznosc == 0) continue;
-                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowPLN[mpI].mpWartosc);
-                        if (mpIloscNominalowDoWydania != 0)
-                        {
-                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowPLN[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowPLN[mpI].mpLicznosc;
-                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowPLN[mpI].mpWartosc * 100} groszy\n";
-                            mpReszta -= mpPojemnikNominalowPLN[mpI].mpWartosc * mpIloscNominalowDoWydania;
-                            mpPojemnikNominalowPLN[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
-                        }
-                    }
-                    // sprawdzenie czy wrzucono pieniądze w pozostałych walutach
-                    if (mpDodaneSrodki[1] + mpDodaneSrodki[2] != 0)
-                        mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki.";
-                    break; // podobny algorytm jest wykonywany dla pozostałych walut
-                case 1: // YEN
-                    mpKomunikat += (mpReszta = mpDodaneSrodki[1] - mpDoZaplaty[1]) + "¥\n";
-                    // iterowanie po wszystkich nominałach, bo w jenie japońskim nie występują monety zdawkowe
-                    for (int mpI = 0; mpI < mpPojemnikNominalowYEN.Length && mpReszta > 0; mpI++)
-                    {
-                        if (mpPojemnikNominalowYEN[mpI].mpLicznosc == 0) continue;
-                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowYEN[mpI].mpWartosc);
-                        if (mpIloscNominalowDoWydania != 0)
-                        {
-                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowYEN[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowYEN[mpI].mpLicznosc;
-                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowYEN[mpI].mpWartosc} ¥\n";
-                            mpReszta -= mpPojemnikNominalowYEN[mpI].mpWartosc * mpIloscNominalowDoWydania;
-                            mpPojemnikNominalowYEN[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
-                        }
-                    }
-                    if (mpDodaneSrodki[0] + mpDodaneSrodki[2] != 0)
-                        mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki";
+                case 0:
+                    mpNazwaWaluty = "PLN";
+                    mpNazwaZdawkowej = "groszy";
+                    mpLiczbaNiezdawkowych = 7;
                     break;
-                case 2: // EUR
-                    mpKomunikat += (mpReszta = mpDodaneSrodki[2] - mpDoZaplaty[2]) + "€\n";
-                    for (int mpI = 0; mpI <= 7 && mpReszta >= 1; mpI++)
-                    {
-                        if (mpPojemnikNominalowEUR[mpI].mpLicznosc == 0) continue;
-                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowEUR[mpI].mpWartosc);
-                        if (mpIloscNominalowDoWydania != 0)
-                        {
-                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowEUR[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowEUR[mpI].mpLicznosc;
-                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowEUR[mpI].mpWartosc} €\n";
-                            mpReszta -= mpPojemnikNominalowEUR[mpI].mpWartosc * mpIloscNominalowDoWydania;
-                            mpPojemnikNominalowEUR[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
-                        }
-                    }
-                    for (int mpI = 8; mpI < mpPojemnikNominalowEUR.Length && mpReszta > 0; mpI++)
-                    {
-                        if (mpPojemnikNominalowEUR[mpI].mpLicznosc == 0) continue;
-                        mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalowEUR[mpI].mpWartosc);
-                        if (mpIloscNominalowDoWydania != 0)
-                        {
-                            if (mpIloscNominalowDoWydania > mpPojemnikNominalowEUR[mpI].mpLicznosc) mpIloscNominalowDoWydania = mpPojemnikNominalowEUR[mpI].mpLicznosc;
-                            mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalowEUR[mpI].mpWartosc * 100} centów\n";
-                            mpReszta -= mpPojemnikNominalowEUR[mpI].mpWartosc * mpIloscNominalowDoWydania;
-                            mpPojemnikNominalowEUR[mpI].mpLicznosc -= mpIloscNominalowDoWydania;
-                        }
-                    }
-                    if (mpDodaneSrodki[1] + mpDodaneSrodki[0] != 0)
-                        mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki";
+                case 1:
+                    mpNazwaWaluty = "¥";
+                    mpLiczbaNiezdawkowych = 9;
+                    break;
+                case 2:
+                    mpNazwaWaluty = "€";
+                    mpNazwaZdawkowej = "centów";
+                    mpLiczbaNiezdawkowych = 7;
                     break;
             }
-            if (mpReszta > 0)
+            mpKomunikat += (mpReszta = mpSumaDodanychSrodkow(mpIndexWaluty) - mpDoZaplaty[mpIndexWaluty]) + mpNazwaWaluty + "\n";
+            for (int mpI = 0; mpI <= mpLiczbaNiezdawkowych && mpReszta >= 1; mpI++) // iterowanie przez wszystkie nominały niezdawkowe dopuki reszta jest różna od 0
+            {
+                // jeśli w automacie brakuje środków o danym nominale, wykonywane jest przejście to do kolejnego mniejszego nominału
+                if (mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc == 0) continue;
+                // obliczenie ile w wartości reszty mieści się monet/banknotów o danej wartości
+                mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc);
+                if (mpIloscNominalowDoWydania != 0) // sprawdzenie czy mpIloscNominalowDoWydania jest różne od 0
+                {
+                    // jeśli mpIloscNominalowDoWydania jest większa od zasobów automatu, do mpIloscNominalowDoWydania przypisywana jest liczność danego nominału
+                    if (mpIloscNominalowDoWydania > mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc) 
+                        mpIloscNominalowDoWydania = mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc;
+                    // dodanie do komuniaktu ilości wydawanego nominału nominału
+                    mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc} {mpNazwaWaluty}\n"; 
+                    mpReszta -= mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc * mpIloscNominalowDoWydania; // odjęcie od reszty wydanych nominałów
+                    mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc -= mpIloscNominalowDoWydania; // zmiejszenie ilości nominałów o wydawaną resztę
+                }
+            }
+            // ten sam algorytm wykonywany jest dla monet zdawkowych (tylko przy PLN i EUR, bo YEN nie ma monet zdawkowych)
+            if (mpIndexWaluty != 1)
+            {
+                for (int mpI = 8; mpI < mpPojemnikNominalow[mpIndexWaluty].Length && mpReszta > 0; mpI++)
+                {
+                    if (mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc == 0) continue;
+                    mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc);
+                    if (mpIloscNominalowDoWydania != 0)
+                    {
+                        if (mpIloscNominalowDoWydania > mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc) 
+                            mpIloscNominalowDoWydania = mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc;
+                        mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc * 100} {mpNazwaZdawkowej}\n";
+                        mpReszta -= mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc * mpIloscNominalowDoWydania;
+                        mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc -= mpIloscNominalowDoWydania;
+                    }
+                }
+            }
+            // jeśli zostały dodane środki w innych walutach, zostaje wyświetlona informacja o ich zwrocie
+            if (mpSumaDodanychSrodkow(0) + mpSumaDodanychSrodkow(1) + mpSumaDodanychSrodkow(2) - mpSumaDodanychSrodkow(mpIndexWaluty) != 0)
+                mpKomunikat += "Dodatkowo zwrócono dodane w pozostałych walutach środki";
+            if (mpReszta > 0) // jeśli reszta pozostanie większa od zera, funkcja nie została wykonana poprawnie przez brak nominałów do wydania reszty
             {
                 MessageBox.Show("Nie można zrealizować opecji, gdyż automat nie posiada wystarczającej ilości sródków do wydania reszty." +
                     "\nProszę wykorzystać inne nominały lub walutę, albo skorzystać z płatności kartą.", "Nie można wydać reszty", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie komuniakatu
+            MessageBox.Show(mpKomunikat, "Na zdrowie!", MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie komunikatu
+            // dodanie wrzuconej przez użytkownika gotówki, to odpowiedniego pojemnika nominałów
+            for (ushort mpI = 0; mpI < mpPojemnikNominalow[mpIndexWaluty].Length; mpI++) // iterowanie przez mpPojemnikNominalow dla wybranej waluty
+                foreach (KeyValuePair<float, ushort> mpNominal in mpDodaneSrodki[mpIndexWaluty]) // iterowanie przez mpDodaneSrodki dla wybranej waluty
+                    if (mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc == mpNominal.Key) // jeśli zostanie znaleziony dodany nominał
+                        // jego liczność w pojemniku nominałów jest zwiększana o ilość dodanych nominałów
+                        mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc += mpNominal.Value; 
             // wyzerowanie zmiennych mpDoZaplaty i mpWrzuconePieniadze
             mpZwrotPieniedzy();
             mpOproznienieKoszyka();
@@ -1035,7 +1040,7 @@ namespace ProjektNr1_Palacz
                 string mpWaluta = ""; // zmienna przechowująca oznaczenie wybranej waluty
                 // sprawdzenie która waluta została wybrana
                 // i przypisanie odpowiedniej wartości do mpWaluta
-                switch (mpCMBRodzajWalutyAutomat.SelectedIndex) 
+                switch (mpIndexWaluty) 
                 {
                     case 0:
                         mpWaluta = "PLN";
@@ -1048,9 +1053,9 @@ namespace ProjektNr1_Palacz
                         break;
                 }
                 MessageBox.Show("Zakupiono:\n" + mpRTBKoszyk.Text + "Łączna kwota: " +
-                    mpDoZaplaty[mpCMBRodzajWalutyAutomat.SelectedIndex] + mpWaluta, "Na zdrowie!"
+                    mpDoZaplaty[mpIndexWaluty] + mpWaluta, "Na zdrowie!"
                     , MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie zawartości koszyka i jego wartości
-                if (mpDodaneSrodki[0] + mpDodaneSrodki[1] + mpDodaneSrodki[2] != 0) // sprawdzenie czy do automatu została wrzucona gotówka
+                if (mpSumaDodanychSrodkow(0) + mpSumaDodanychSrodkow(1) + mpSumaDodanychSrodkow(2) != 0) // sprawdzenie czy do automatu została wrzucona gotówka
                 {
                     MessageBox.Show("Zwrócono wprowadzoną gotówkę.", "Zwrot gotówki", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     mpZwrotPieniedzy();
