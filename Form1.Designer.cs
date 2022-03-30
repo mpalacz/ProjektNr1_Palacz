@@ -65,16 +65,18 @@ namespace ProjektNr1_Palacz
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mpTabPage3 = new System.Windows.Forms.TabPage();
+            this.mpBTNAdmin = new System.Windows.Forms.Button();
+            this.mpGRBAdmin = new System.Windows.Forms.GroupBox();
+            this.mpBTNAkceptacjaLicznościAutomat = new System.Windows.Forms.Button();
             this.mpDGVListaNominalowAutomat = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mpBTNAkceptacjaLicznościAutomat = new System.Windows.Forms.Button();
-            this.mpRDBUstalonyPrzedzialLicznosciAutomat = new System.Windows.Forms.RadioButton();
-            this.mpRDBLosowyPrzedzialLicznosciAutomat = new System.Windows.Forms.RadioButton();
-            this.mpTXTGornaGranicaLicznosciAutomat = new System.Windows.Forms.TextBox();
-            this.mpTXTDolnaGranicaLicznosciAutomat = new System.Windows.Forms.TextBox();
-            this.mpLBLGornaGranicaLicznosciAutomat = new System.Windows.Forms.Label();
             this.mpLBLDolnaGranicaLicznosciAutomat = new System.Windows.Forms.Label();
+            this.mpLBLGornaGranicaLicznosciAutomat = new System.Windows.Forms.Label();
+            this.mpRDBUstalonyPrzedzialLicznosciAutomat = new System.Windows.Forms.RadioButton();
+            this.mpTXTDolnaGranicaLicznosciAutomat = new System.Windows.Forms.TextBox();
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat = new System.Windows.Forms.RadioButton();
+            this.mpTXTGornaGranicaLicznosciAutomat = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.mpRTBKoszyk = new System.Windows.Forms.RichTextBox();
             this.mpBTNCofnij = new System.Windows.Forms.Button();
@@ -160,6 +162,7 @@ namespace ProjektNr1_Palacz
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVListaNominalowBankomat)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.mpTabPage3.SuspendLayout();
+            this.mpGRBAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVListaNominalowAutomat)).BeginInit();
             this.mpGRBZlotowki.SuspendLayout();
             this.mpGRBJeny.SuspendLayout();
@@ -522,14 +525,8 @@ namespace ProjektNr1_Palacz
             // mpTabPage3
             // 
             this.mpTabPage3.BackColor = System.Drawing.Color.HotPink;
-            this.mpTabPage3.Controls.Add(this.mpDGVListaNominalowAutomat);
-            this.mpTabPage3.Controls.Add(this.mpBTNAkceptacjaLicznościAutomat);
-            this.mpTabPage3.Controls.Add(this.mpRDBUstalonyPrzedzialLicznosciAutomat);
-            this.mpTabPage3.Controls.Add(this.mpRDBLosowyPrzedzialLicznosciAutomat);
-            this.mpTabPage3.Controls.Add(this.mpTXTGornaGranicaLicznosciAutomat);
-            this.mpTabPage3.Controls.Add(this.mpTXTDolnaGranicaLicznosciAutomat);
-            this.mpTabPage3.Controls.Add(this.mpLBLGornaGranicaLicznosciAutomat);
-            this.mpTabPage3.Controls.Add(this.mpLBLDolnaGranicaLicznosciAutomat);
+            this.mpTabPage3.Controls.Add(this.mpBTNAdmin);
+            this.mpTabPage3.Controls.Add(this.mpGRBAdmin);
             this.mpTabPage3.Controls.Add(this.label5);
             this.mpTabPage3.Controls.Add(this.mpRTBKoszyk);
             this.mpTabPage3.Controls.Add(this.mpBTNCofnij);
@@ -578,13 +575,50 @@ namespace ProjektNr1_Palacz
             this.mpTabPage3.TabIndex = 2;
             this.mpTabPage3.Text = "Automat vendingowy";
             // 
+            // mpBTNAdmin
+            // 
+            this.mpBTNAdmin.Location = new System.Drawing.Point(1033, 257);
+            this.mpBTNAdmin.Name = "mpBTNAdmin";
+            this.mpBTNAdmin.Size = new System.Drawing.Size(181, 31);
+            this.mpBTNAdmin.TabIndex = 61;
+            this.mpBTNAdmin.Text = "Funkcje administratora";
+            this.mpBTNAdmin.UseVisualStyleBackColor = true;
+            this.mpBTNAdmin.Click += new System.EventHandler(this.mpBTNAdmin_Click);
+            // 
+            // mpGRBAdmin
+            // 
+            this.mpGRBAdmin.Controls.Add(this.mpBTNAkceptacjaLicznościAutomat);
+            this.mpGRBAdmin.Controls.Add(this.mpDGVListaNominalowAutomat);
+            this.mpGRBAdmin.Controls.Add(this.mpLBLDolnaGranicaLicznosciAutomat);
+            this.mpGRBAdmin.Controls.Add(this.mpLBLGornaGranicaLicznosciAutomat);
+            this.mpGRBAdmin.Controls.Add(this.mpRDBUstalonyPrzedzialLicznosciAutomat);
+            this.mpGRBAdmin.Controls.Add(this.mpTXTDolnaGranicaLicznosciAutomat);
+            this.mpGRBAdmin.Controls.Add(this.mpRDBDomyslnyPrzedzialLicznosciAutomat);
+            this.mpGRBAdmin.Controls.Add(this.mpTXTGornaGranicaLicznosciAutomat);
+            this.mpGRBAdmin.Location = new System.Drawing.Point(972, 78);
+            this.mpGRBAdmin.Name = "mpGRBAdmin";
+            this.mpGRBAdmin.Size = new System.Drawing.Size(293, 462);
+            this.mpGRBAdmin.TabIndex = 60;
+            this.mpGRBAdmin.TabStop = false;
+            this.mpGRBAdmin.Text = "Funkcje administratora";
+            // 
+            // mpBTNAkceptacjaLicznościAutomat
+            // 
+            this.mpBTNAkceptacjaLicznościAutomat.Location = new System.Drawing.Point(53, 25);
+            this.mpBTNAkceptacjaLicznościAutomat.Name = "mpBTNAkceptacjaLicznościAutomat";
+            this.mpBTNAkceptacjaLicznościAutomat.Size = new System.Drawing.Size(229, 53);
+            this.mpBTNAkceptacjaLicznościAutomat.TabIndex = 58;
+            this.mpBTNAkceptacjaLicznościAutomat.Text = "Akceptacja wybranego ustawienia liczności nominałów";
+            this.mpBTNAkceptacjaLicznościAutomat.UseVisualStyleBackColor = true;
+            this.mpBTNAkceptacjaLicznościAutomat.Click += new System.EventHandler(this.mpBTNAkceptacjaLicznościAutomat_Click);
+            // 
             // mpDGVListaNominalowAutomat
             // 
             this.mpDGVListaNominalowAutomat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mpDGVListaNominalowAutomat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.mpDGVListaNominalowAutomat.Location = new System.Drawing.Point(997, 353);
+            this.mpDGVListaNominalowAutomat.Location = new System.Drawing.Point(14, 300);
             this.mpDGVListaNominalowAutomat.Name = "mpDGVListaNominalowAutomat";
             this.mpDGVListaNominalowAutomat.Size = new System.Drawing.Size(268, 150);
             this.mpDGVListaNominalowAutomat.TabIndex = 59;
@@ -599,20 +633,32 @@ namespace ProjektNr1_Palacz
             this.dataGridViewTextBoxColumn2.HeaderText = "Wartość nominału";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // mpBTNAkceptacjaLicznościAutomat
+            // mpLBLDolnaGranicaLicznosciAutomat
             // 
-            this.mpBTNAkceptacjaLicznościAutomat.Location = new System.Drawing.Point(1036, 78);
-            this.mpBTNAkceptacjaLicznościAutomat.Name = "mpBTNAkceptacjaLicznościAutomat";
-            this.mpBTNAkceptacjaLicznościAutomat.Size = new System.Drawing.Size(229, 53);
-            this.mpBTNAkceptacjaLicznościAutomat.TabIndex = 58;
-            this.mpBTNAkceptacjaLicznościAutomat.Text = "Akceptacja wybranego ustawienia liczności nominałów";
-            this.mpBTNAkceptacjaLicznościAutomat.UseVisualStyleBackColor = true;
-            this.mpBTNAkceptacjaLicznościAutomat.Click += new System.EventHandler(this.mpBTNAkceptacjaLicznościAutomat_Click);
+            this.mpLBLDolnaGranicaLicznosciAutomat.AutoSize = true;
+            this.mpLBLDolnaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
+            this.mpLBLDolnaGranicaLicznosciAutomat.Location = new System.Drawing.Point(50, 141);
+            this.mpLBLDolnaGranicaLicznosciAutomat.Name = "mpLBLDolnaGranicaLicznosciAutomat";
+            this.mpLBLDolnaGranicaLicznosciAutomat.Size = new System.Drawing.Size(165, 34);
+            this.mpLBLDolnaGranicaLicznosciAutomat.TabIndex = 52;
+            this.mpLBLDolnaGranicaLicznosciAutomat.Text = "Dolna granica przedziału\r\nliczności nominałów";
+            this.mpLBLDolnaGranicaLicznosciAutomat.Visible = false;
+            // 
+            // mpLBLGornaGranicaLicznosciAutomat
+            // 
+            this.mpLBLGornaGranicaLicznosciAutomat.AutoSize = true;
+            this.mpLBLGornaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
+            this.mpLBLGornaGranicaLicznosciAutomat.Location = new System.Drawing.Point(50, 207);
+            this.mpLBLGornaGranicaLicznosciAutomat.Name = "mpLBLGornaGranicaLicznosciAutomat";
+            this.mpLBLGornaGranicaLicznosciAutomat.Size = new System.Drawing.Size(168, 34);
+            this.mpLBLGornaGranicaLicznosciAutomat.TabIndex = 53;
+            this.mpLBLGornaGranicaLicznosciAutomat.Text = "Górna granica przedziału\r\nliczności nominałów";
+            this.mpLBLGornaGranicaLicznosciAutomat.Visible = false;
             // 
             // mpRDBUstalonyPrzedzialLicznosciAutomat
             // 
             this.mpRDBUstalonyPrzedzialLicznosciAutomat.AutoSize = true;
-            this.mpRDBUstalonyPrzedzialLicznosciAutomat.Location = new System.Drawing.Point(1036, 167);
+            this.mpRDBUstalonyPrzedzialLicznosciAutomat.Location = new System.Drawing.Point(53, 114);
             this.mpRDBUstalonyPrzedzialLicznosciAutomat.Name = "mpRDBUstalonyPrzedzialLicznosciAutomat";
             this.mpRDBUstalonyPrzedzialLicznosciAutomat.Size = new System.Drawing.Size(110, 23);
             this.mpRDBUstalonyPrzedzialLicznosciAutomat.TabIndex = 57;
@@ -620,65 +666,43 @@ namespace ProjektNr1_Palacz
             this.mpRDBUstalonyPrzedzialLicznosciAutomat.UseVisualStyleBackColor = true;
             this.mpRDBUstalonyPrzedzialLicznosciAutomat.CheckedChanged += new System.EventHandler(this.mpRDBUstalonyPrzedzialLicznosciAutomat_CheckedChanged);
             // 
-            // mpRDBLosowyPrzedzialLicznosciAutomat
-            // 
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.AutoSize = true;
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.Checked = true;
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.Location = new System.Drawing.Point(1036, 137);
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.Name = "mpRDBLosowyPrzedzialLicznosciAutomat";
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.Size = new System.Drawing.Size(71, 23);
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.TabIndex = 56;
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.TabStop = true;
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.Text = "losowe";
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.UseVisualStyleBackColor = true;
-            this.mpRDBLosowyPrzedzialLicznosciAutomat.CheckedChanged += new System.EventHandler(this.mpRDBLosowyPrzedzialLicznosciAutomat_CheckedChanged);
-            // 
-            // mpTXTGornaGranicaLicznosciAutomat
-            // 
-            this.mpTXTGornaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
-            this.mpTXTGornaGranicaLicznosciAutomat.Location = new System.Drawing.Point(1036, 297);
-            this.mpTXTGornaGranicaLicznosciAutomat.Name = "mpTXTGornaGranicaLicznosciAutomat";
-            this.mpTXTGornaGranicaLicznosciAutomat.Size = new System.Drawing.Size(100, 26);
-            this.mpTXTGornaGranicaLicznosciAutomat.TabIndex = 55;
-            this.mpTXTGornaGranicaLicznosciAutomat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mpTXTGornaGranicaLicznosciAutomat.Visible = false;
-            // 
             // mpTXTDolnaGranicaLicznosciAutomat
             // 
             this.mpTXTDolnaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
-            this.mpTXTDolnaGranicaLicznosciAutomat.Location = new System.Drawing.Point(1036, 231);
+            this.mpTXTDolnaGranicaLicznosciAutomat.Location = new System.Drawing.Point(53, 178);
             this.mpTXTDolnaGranicaLicznosciAutomat.Name = "mpTXTDolnaGranicaLicznosciAutomat";
             this.mpTXTDolnaGranicaLicznosciAutomat.Size = new System.Drawing.Size(100, 26);
             this.mpTXTDolnaGranicaLicznosciAutomat.TabIndex = 54;
             this.mpTXTDolnaGranicaLicznosciAutomat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mpTXTDolnaGranicaLicznosciAutomat.Visible = false;
             // 
-            // mpLBLGornaGranicaLicznosciAutomat
+            // mpRDBDomyslnyPrzedzialLicznosciAutomat
             // 
-            this.mpLBLGornaGranicaLicznosciAutomat.AutoSize = true;
-            this.mpLBLGornaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
-            this.mpLBLGornaGranicaLicznosciAutomat.Location = new System.Drawing.Point(1033, 260);
-            this.mpLBLGornaGranicaLicznosciAutomat.Name = "mpLBLGornaGranicaLicznosciAutomat";
-            this.mpLBLGornaGranicaLicznosciAutomat.Size = new System.Drawing.Size(168, 34);
-            this.mpLBLGornaGranicaLicznosciAutomat.TabIndex = 53;
-            this.mpLBLGornaGranicaLicznosciAutomat.Text = "Górna granica przedziału\r\nliczności nominałów";
-            this.mpLBLGornaGranicaLicznosciAutomat.Visible = false;
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.AutoSize = true;
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.Checked = true;
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.Location = new System.Drawing.Point(53, 84);
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.Name = "mpRDBDomyslnyPrzedzialLicznosciAutomat";
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.Size = new System.Drawing.Size(87, 23);
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.TabIndex = 56;
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.TabStop = true;
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.Text = "domyślne";
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.UseVisualStyleBackColor = true;
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.CheckedChanged += new System.EventHandler(this.mpRDBLosowyPrzedzialLicznosciAutomat_CheckedChanged);
             // 
-            // mpLBLDolnaGranicaLicznosciAutomat
+            // mpTXTGornaGranicaLicznosciAutomat
             // 
-            this.mpLBLDolnaGranicaLicznosciAutomat.AutoSize = true;
-            this.mpLBLDolnaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
-            this.mpLBLDolnaGranicaLicznosciAutomat.Location = new System.Drawing.Point(1033, 194);
-            this.mpLBLDolnaGranicaLicznosciAutomat.Name = "mpLBLDolnaGranicaLicznosciAutomat";
-            this.mpLBLDolnaGranicaLicznosciAutomat.Size = new System.Drawing.Size(165, 34);
-            this.mpLBLDolnaGranicaLicznosciAutomat.TabIndex = 52;
-            this.mpLBLDolnaGranicaLicznosciAutomat.Text = "Dolna granica przedziału\r\nliczności nominałów";
-            this.mpLBLDolnaGranicaLicznosciAutomat.Visible = false;
+            this.mpTXTGornaGranicaLicznosciAutomat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic);
+            this.mpTXTGornaGranicaLicznosciAutomat.Location = new System.Drawing.Point(53, 244);
+            this.mpTXTGornaGranicaLicznosciAutomat.Name = "mpTXTGornaGranicaLicznosciAutomat";
+            this.mpTXTGornaGranicaLicznosciAutomat.Size = new System.Drawing.Size(100, 26);
+            this.mpTXTGornaGranicaLicznosciAutomat.TabIndex = 55;
+            this.mpTXTGornaGranicaLicznosciAutomat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mpTXTGornaGranicaLicznosciAutomat.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(836, 56);
+            this.label5.Location = new System.Drawing.Point(769, 88);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 19);
             this.label5.TabIndex = 51;
@@ -686,7 +710,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpRTBKoszyk
             // 
-            this.mpRTBKoszyk.Location = new System.Drawing.Point(840, 78);
+            this.mpRTBKoszyk.Location = new System.Drawing.Point(773, 110);
             this.mpRTBKoszyk.Name = "mpRTBKoszyk";
             this.mpRTBKoszyk.ReadOnly = true;
             this.mpRTBKoszyk.Size = new System.Drawing.Size(165, 225);
@@ -696,7 +720,7 @@ namespace ProjektNr1_Palacz
             // mpBTNCofnij
             // 
             this.mpBTNCofnij.Enabled = false;
-            this.mpBTNCofnij.Location = new System.Drawing.Point(405, 422);
+            this.mpBTNCofnij.Location = new System.Drawing.Point(417, 455);
             this.mpBTNCofnij.Name = "mpBTNCofnij";
             this.mpBTNCofnij.Size = new System.Drawing.Size(165, 31);
             this.mpBTNCofnij.TabIndex = 49;
@@ -735,7 +759,7 @@ namespace ProjektNr1_Palacz
             this.mpGRBZlotowki.Size = new System.Drawing.Size(224, 225);
             this.mpGRBZlotowki.TabIndex = 47;
             this.mpGRBZlotowki.TabStop = false;
-            this.mpGRBZlotowki.Text = "Wrzut monet (PLN)";
+            this.mpGRBZlotowki.Text = "Dodanie środków (PLN)";
             // 
             // mpBTN10Groszy
             // 
@@ -893,7 +917,7 @@ namespace ProjektNr1_Palacz
             this.mpGRBJeny.Size = new System.Drawing.Size(224, 142);
             this.mpGRBJeny.TabIndex = 46;
             this.mpGRBJeny.TabStop = false;
-            this.mpGRBJeny.Text = "Wrzut monet (¥)";
+            this.mpGRBJeny.Text = "Dodanie środków (¥)";
             this.mpGRBJeny.Visible = false;
             // 
             // mpBTN1Jen
@@ -1007,7 +1031,7 @@ namespace ProjektNr1_Palacz
             this.mpGRBEuro.Size = new System.Drawing.Size(224, 225);
             this.mpGRBEuro.TabIndex = 45;
             this.mpGRBEuro.TabStop = false;
-            this.mpGRBEuro.Text = "Wrzut monet (€)";
+            this.mpGRBEuro.Text = "Dodanie środków (€)";
             this.mpGRBEuro.Visible = false;
             // 
             // mpBTN20EuroCentow
@@ -1173,7 +1197,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNZwrotMonet
             // 
-            this.mpBTNZwrotMonet.Location = new System.Drawing.Point(644, 385);
+            this.mpBTNZwrotMonet.Location = new System.Drawing.Point(656, 418);
             this.mpBTNZwrotMonet.Name = "mpBTNZwrotMonet";
             this.mpBTNZwrotMonet.Size = new System.Drawing.Size(165, 31);
             this.mpBTNZwrotMonet.TabIndex = 42;
@@ -1183,7 +1207,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpBTNResetKoszyka
             // 
-            this.mpBTNResetKoszyka.Location = new System.Drawing.Point(405, 385);
+            this.mpBTNResetKoszyka.Location = new System.Drawing.Point(417, 418);
             this.mpBTNResetKoszyka.Name = "mpBTNResetKoszyka";
             this.mpBTNResetKoszyka.Size = new System.Drawing.Size(165, 31);
             this.mpBTNResetKoszyka.TabIndex = 41;
@@ -1193,7 +1217,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTDodaneSrodki
             // 
-            this.mpTXTDodaneSrodki.Location = new System.Drawing.Point(644, 353);
+            this.mpTXTDodaneSrodki.Location = new System.Drawing.Point(656, 386);
             this.mpTXTDodaneSrodki.Name = "mpTXTDodaneSrodki";
             this.mpTXTDodaneSrodki.ReadOnly = true;
             this.mpTXTDodaneSrodki.Size = new System.Drawing.Size(165, 26);
@@ -1202,7 +1226,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTDoZaplaty
             // 
-            this.mpTXTDoZaplaty.Location = new System.Drawing.Point(405, 353);
+            this.mpTXTDoZaplaty.Location = new System.Drawing.Point(417, 386);
             this.mpTXTDoZaplaty.Name = "mpTXTDoZaplaty";
             this.mpTXTDoZaplaty.ReadOnly = true;
             this.mpTXTDoZaplaty.Size = new System.Drawing.Size(165, 26);
@@ -1239,7 +1263,7 @@ namespace ProjektNr1_Palacz
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(672, 331);
+            this.label10.Location = new System.Drawing.Point(684, 364);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(102, 19);
             this.label10.TabIndex = 36;
@@ -1248,7 +1272,7 @@ namespace ProjektNr1_Palacz
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(446, 334);
+            this.label9.Location = new System.Drawing.Point(458, 367);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 19);
             this.label9.TabIndex = 35;
@@ -1274,7 +1298,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTToughnessEmperorCena
             // 
-            this.mpTXTToughnessEmperorCena.Location = new System.Drawing.Point(648, 277);
+            this.mpTXTToughnessEmperorCena.Location = new System.Drawing.Point(581, 309);
             this.mpTXTToughnessEmperorCena.Name = "mpTXTToughnessEmperorCena";
             this.mpTXTToughnessEmperorCena.ReadOnly = true;
             this.mpTXTToughnessEmperorCena.Size = new System.Drawing.Size(80, 26);
@@ -1284,7 +1308,7 @@ namespace ProjektNr1_Palacz
             // mpBTNToughnessEmperor
             // 
             this.mpBTNToughnessEmperor.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughemp;
-            this.mpBTNToughnessEmperor.Location = new System.Drawing.Point(648, 191);
+            this.mpBTNToughnessEmperor.Location = new System.Drawing.Point(581, 223);
             this.mpBTNToughnessEmperor.Name = "mpBTNToughnessEmperor";
             this.mpBTNToughnessEmperor.Size = new System.Drawing.Size(80, 80);
             this.mpBTNToughnessEmperor.TabIndex = 27;
@@ -1293,7 +1317,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTToughnessInfinityCena
             // 
-            this.mpTXTToughnessInfinityCena.Location = new System.Drawing.Point(729, 277);
+            this.mpTXTToughnessInfinityCena.Location = new System.Drawing.Point(662, 309);
             this.mpTXTToughnessInfinityCena.Name = "mpTXTToughnessInfinityCena";
             this.mpTXTToughnessInfinityCena.ReadOnly = true;
             this.mpTXTToughnessInfinityCena.Size = new System.Drawing.Size(80, 26);
@@ -1303,7 +1327,7 @@ namespace ProjektNr1_Palacz
             // mpBTNToughnessInfinity
             // 
             this.mpBTNToughnessInfinity.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughinf;
-            this.mpBTNToughnessInfinity.Location = new System.Drawing.Point(729, 191);
+            this.mpBTNToughnessInfinity.Location = new System.Drawing.Point(662, 223);
             this.mpBTNToughnessInfinity.Name = "mpBTNToughnessInfinity";
             this.mpBTNToughnessInfinity.Size = new System.Drawing.Size(80, 80);
             this.mpBTNToughnessInfinity.TabIndex = 25;
@@ -1312,7 +1336,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTStaminanXCena
             // 
-            this.mpTXTStaminanXCena.Location = new System.Drawing.Point(486, 164);
+            this.mpTXTStaminanXCena.Location = new System.Drawing.Point(419, 196);
             this.mpTXTStaminanXCena.Name = "mpTXTStaminanXCena";
             this.mpTXTStaminanXCena.ReadOnly = true;
             this.mpTXTStaminanXCena.Size = new System.Drawing.Size(80, 26);
@@ -1322,7 +1346,7 @@ namespace ProjektNr1_Palacz
             // mpBTNStaminanSpark
             // 
             this.mpBTNStaminanSpark.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0staminanspark;
-            this.mpBTNStaminanSpark.Location = new System.Drawing.Point(729, 78);
+            this.mpBTNStaminanSpark.Location = new System.Drawing.Point(662, 110);
             this.mpBTNStaminanSpark.Name = "mpBTNStaminanSpark";
             this.mpBTNStaminanSpark.Size = new System.Drawing.Size(80, 80);
             this.mpBTNStaminanSpark.TabIndex = 23;
@@ -1331,7 +1355,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTTaurinerCena
             // 
-            this.mpTXTTaurinerCena.Location = new System.Drawing.Point(405, 164);
+            this.mpTXTTaurinerCena.Location = new System.Drawing.Point(338, 196);
             this.mpTXTTaurinerCena.Name = "mpTXTTaurinerCena";
             this.mpTXTTaurinerCena.ReadOnly = true;
             this.mpTXTTaurinerCena.Size = new System.Drawing.Size(80, 26);
@@ -1341,7 +1365,7 @@ namespace ProjektNr1_Palacz
             // mpBTNTauriner
             // 
             this.mpBTNTauriner.Image = global::ProjektNr1_Palacz.Properties.Resources.Tauriner;
-            this.mpBTNTauriner.Location = new System.Drawing.Point(405, 78);
+            this.mpBTNTauriner.Location = new System.Drawing.Point(338, 110);
             this.mpBTNTauriner.Name = "mpBTNTauriner";
             this.mpBTNTauriner.Size = new System.Drawing.Size(80, 80);
             this.mpBTNTauriner.TabIndex = 21;
@@ -1350,7 +1374,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTStaminanSparkCena
             // 
-            this.mpTXTStaminanSparkCena.Location = new System.Drawing.Point(729, 164);
+            this.mpTXTStaminanSparkCena.Location = new System.Drawing.Point(662, 196);
             this.mpTXTStaminanSparkCena.Name = "mpTXTStaminanSparkCena";
             this.mpTXTStaminanSparkCena.ReadOnly = true;
             this.mpTXTStaminanSparkCena.Size = new System.Drawing.Size(80, 26);
@@ -1360,7 +1384,7 @@ namespace ProjektNr1_Palacz
             // mpBTNStaminanRoyale
             // 
             this.mpBTNStaminanRoyale.Image = global::ProjektNr1_Palacz.Properties.Resources.Staminanroyale;
-            this.mpBTNStaminanRoyale.Location = new System.Drawing.Point(648, 78);
+            this.mpBTNStaminanRoyale.Location = new System.Drawing.Point(581, 110);
             this.mpBTNStaminanRoyale.Name = "mpBTNStaminanRoyale";
             this.mpBTNStaminanRoyale.Size = new System.Drawing.Size(80, 80);
             this.mpBTNStaminanRoyale.TabIndex = 19;
@@ -1369,7 +1393,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTStaminanRoyaleCena
             // 
-            this.mpTXTStaminanRoyaleCena.Location = new System.Drawing.Point(648, 164);
+            this.mpTXTStaminanRoyaleCena.Location = new System.Drawing.Point(581, 196);
             this.mpTXTStaminanRoyaleCena.Name = "mpTXTStaminanRoyaleCena";
             this.mpTXTStaminanRoyaleCena.ReadOnly = true;
             this.mpTXTStaminanRoyaleCena.Size = new System.Drawing.Size(80, 26);
@@ -1379,7 +1403,7 @@ namespace ProjektNr1_Palacz
             // mpBTNStaminanXX
             // 
             this.mpBTNStaminanXX.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0staminanxx;
-            this.mpBTNStaminanXX.Location = new System.Drawing.Point(567, 78);
+            this.mpBTNStaminanXX.Location = new System.Drawing.Point(500, 110);
             this.mpBTNStaminanXX.Name = "mpBTNStaminanXX";
             this.mpBTNStaminanXX.Size = new System.Drawing.Size(80, 80);
             this.mpBTNStaminanXX.TabIndex = 17;
@@ -1388,7 +1412,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTStaminanXXCena
             // 
-            this.mpTXTStaminanXXCena.Location = new System.Drawing.Point(567, 164);
+            this.mpTXTStaminanXXCena.Location = new System.Drawing.Point(500, 196);
             this.mpTXTStaminanXXCena.Name = "mpTXTStaminanXXCena";
             this.mpTXTStaminanXXCena.ReadOnly = true;
             this.mpTXTStaminanXXCena.Size = new System.Drawing.Size(80, 26);
@@ -1398,7 +1422,7 @@ namespace ProjektNr1_Palacz
             // mpBTNStaminanX
             // 
             this.mpBTNStaminanX.Image = ((System.Drawing.Image)(resources.GetObject("mpBTNStaminanX.Image")));
-            this.mpBTNStaminanX.Location = new System.Drawing.Point(486, 78);
+            this.mpBTNStaminanX.Location = new System.Drawing.Point(419, 110);
             this.mpBTNStaminanX.Name = "mpBTNStaminanX";
             this.mpBTNStaminanX.Size = new System.Drawing.Size(80, 80);
             this.mpBTNStaminanX.TabIndex = 15;
@@ -1407,7 +1431,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTToughnessZZCena
             // 
-            this.mpTXTToughnessZZCena.Location = new System.Drawing.Point(567, 277);
+            this.mpTXTToughnessZZCena.Location = new System.Drawing.Point(500, 309);
             this.mpTXTToughnessZZCena.Name = "mpTXTToughnessZZCena";
             this.mpTXTToughnessZZCena.ReadOnly = true;
             this.mpTXTToughnessZZCena.Size = new System.Drawing.Size(80, 26);
@@ -1417,7 +1441,7 @@ namespace ProjektNr1_Palacz
             // mpBTNToughnessZZ
             // 
             this.mpBTNToughnessZZ.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughzedzed;
-            this.mpBTNToughnessZZ.Location = new System.Drawing.Point(567, 191);
+            this.mpBTNToughnessZZ.Location = new System.Drawing.Point(500, 223);
             this.mpBTNToughnessZZ.Name = "mpBTNToughnessZZ";
             this.mpBTNToughnessZZ.Size = new System.Drawing.Size(80, 80);
             this.mpBTNToughnessZZ.TabIndex = 13;
@@ -1426,7 +1450,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTToughnessZCena
             // 
-            this.mpTXTToughnessZCena.Location = new System.Drawing.Point(486, 277);
+            this.mpTXTToughnessZCena.Location = new System.Drawing.Point(419, 309);
             this.mpTXTToughnessZCena.Name = "mpTXTToughnessZCena";
             this.mpTXTToughnessZCena.ReadOnly = true;
             this.mpTXTToughnessZCena.Size = new System.Drawing.Size(80, 26);
@@ -1436,7 +1460,7 @@ namespace ProjektNr1_Palacz
             // mpBTNToughnessZ
             // 
             this.mpBTNToughnessZ.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughzed;
-            this.mpBTNToughnessZ.Location = new System.Drawing.Point(486, 191);
+            this.mpBTNToughnessZ.Location = new System.Drawing.Point(419, 223);
             this.mpBTNToughnessZ.Name = "mpBTNToughnessZ";
             this.mpBTNToughnessZ.Size = new System.Drawing.Size(80, 80);
             this.mpBTNToughnessZ.TabIndex = 11;
@@ -1445,7 +1469,7 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTToughnessLightCena
             // 
-            this.mpTXTToughnessLightCena.Location = new System.Drawing.Point(405, 277);
+            this.mpTXTToughnessLightCena.Location = new System.Drawing.Point(338, 309);
             this.mpTXTToughnessLightCena.Name = "mpTXTToughnessLightCena";
             this.mpTXTToughnessLightCena.ReadOnly = true;
             this.mpTXTToughnessLightCena.Size = new System.Drawing.Size(80, 26);
@@ -1455,7 +1479,7 @@ namespace ProjektNr1_Palacz
             // mpBTNToughnessLight
             // 
             this.mpBTNToughnessLight.Image = global::ProjektNr1_Palacz.Properties.Resources.Y0toughlite;
-            this.mpBTNToughnessLight.Location = new System.Drawing.Point(405, 191);
+            this.mpBTNToughnessLight.Location = new System.Drawing.Point(338, 223);
             this.mpBTNToughnessLight.Name = "mpBTNToughnessLight";
             this.mpBTNToughnessLight.Size = new System.Drawing.Size(80, 80);
             this.mpBTNToughnessLight.TabIndex = 9;
@@ -1510,6 +1534,8 @@ namespace ProjektNr1_Palacz
             this.groupBox1.PerformLayout();
             this.mpTabPage3.ResumeLayout(false);
             this.mpTabPage3.PerformLayout();
+            this.mpGRBAdmin.ResumeLayout(false);
+            this.mpGRBAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVListaNominalowAutomat)).EndInit();
             this.mpGRBZlotowki.ResumeLayout(false);
             this.mpGRBJeny.ResumeLayout(false);
@@ -1638,12 +1664,14 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label mpLBLGornaGranicaLicznosciAutomat;
         private System.Windows.Forms.TextBox mpTXTDolnaGranicaLicznosciAutomat;
         private System.Windows.Forms.TextBox mpTXTGornaGranicaLicznosciAutomat;
-        private System.Windows.Forms.RadioButton mpRDBLosowyPrzedzialLicznosciAutomat;
+        private System.Windows.Forms.RadioButton mpRDBDomyslnyPrzedzialLicznosciAutomat;
         private System.Windows.Forms.RadioButton mpRDBUstalonyPrzedzialLicznosciAutomat;
         private System.Windows.Forms.Button mpBTNAkceptacjaLicznościAutomat;
         private System.Windows.Forms.DataGridView mpDGVListaNominalowAutomat;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Button mpBTNAdmin;
+        private System.Windows.Forms.GroupBox mpGRBAdmin;
     }
 }
 

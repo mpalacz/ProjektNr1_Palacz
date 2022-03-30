@@ -217,6 +217,7 @@ namespace ProjektNr1_Palacz
             mpStanTabPage[0] = true;
             // przejście do zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
+            mpBTNAdmin.Visible = true; // ponowne pokazanie przycisku mpBTNAdmin
         } 
 
         // Pulpit
@@ -248,6 +249,7 @@ namespace ProjektNr1_Palacz
             mpCMBRodzajWalutyAutomat.SelectedIndex = 0;
             // domyśle wygenerowanie losowych wartości liczności nominałów
             mpBTNAkceptacjaLicznościAutomat.PerformClick();
+            mpGRBAdmin.Visible = false; // ukrycie funkcji administratora
         }
 
         // zamknięcie aplikacji
@@ -830,7 +832,7 @@ namespace ProjektNr1_Palacz
         private void mpRDBLosowyPrzedzialLicznosciAutomat_CheckedChanged(object sender, EventArgs e)
         {
             // ustawnienie drugiej kontrolki na wartość przeciwną
-            mpRDBUstalonyPrzedzialLicznosciAutomat.Checked = !mpRDBLosowyPrzedzialLicznosciAutomat.Checked;
+            mpRDBUstalonyPrzedzialLicznosciAutomat.Checked = !mpRDBDomyslnyPrzedzialLicznosciAutomat.Checked;
             // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
             mpLBLDolnaGranicaLicznosciAutomat.Visible = false;
             mpLBLGornaGranicaLicznosciAutomat.Visible = false;
@@ -841,7 +843,7 @@ namespace ProjektNr1_Palacz
         private void mpRDBUstalonyPrzedzialLicznosciAutomat_CheckedChanged(object sender, EventArgs e)
         {
             // ustawnienie drugiej kontrolki na wartość przeciwną
-            mpRDBUstalonyPrzedzialLicznosciAutomat.Checked = !mpRDBLosowyPrzedzialLicznosciAutomat.Checked;
+            mpRDBUstalonyPrzedzialLicznosciAutomat.Checked = !mpRDBDomyslnyPrzedzialLicznosciAutomat.Checked;
             // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
             mpLBLDolnaGranicaLicznosciAutomat.Visible = true;
             mpLBLGornaGranicaLicznosciAutomat.Visible = true;
@@ -877,12 +879,19 @@ namespace ProjektNr1_Palacz
             }
         }
 
+        // obsługa przycisku udostępniającego funkcje administratora
+        private void mpBTNAdmin_Click(object sender, EventArgs e)
+        {
+            mpGRBAdmin.Visible = true; // wyświetlenie panelu administratora
+            mpBTNAdmin.Visible = false; // schowanie przycisku
+        }
+
         // kliknięcie przycisku obsługującego losowanie liczności nominałów
         private void mpBTNAkceptacjaLicznościAutomat_Click(object sender, EventArgs e)
         {
             mpErrorProvider1.Clear(); // wyczyszczenie kontrolki mpErrorProvider1
             ushort mpDolnaGranicaLicznosciAutomat, mpGornaGranicaLicznosciAutomat; // zmienne przechowujące dolną i górną granicę licznośći
-            if (mpRDBLosowyPrzedzialLicznosciAutomat.Checked) // jeśli mpRDBLosowyPrzedzialLicznosciAutomat jest zaznaczony, ustawiane są wartości domyślne
+            if (mpRDBDomyslnyPrzedzialLicznosciAutomat.Checked) // jeśli mpRDBLosowyPrzedzialLicznosciAutomat jest zaznaczony, ustawiane są wartości domyślne
             {
                 mpDolnaGranicaLicznosciAutomat = 0; // 0 jest najmniejszym możliwym minimum (liczność nie może być mniejsza od zera)
                 mpGornaGranicaLicznosciAutomat = mpMaxLicznoscNominalow; // stała pochądząca z projektu Bankomat, definiująca domyślą górną granicę liczności
@@ -903,7 +912,7 @@ namespace ProjektNr1_Palacz
                 // sprawdzenie czy dolna granica przedziału jest mniejsza do górnej
                 if (mpDolnaGranicaLicznosciAutomat >= mpGornaGranicaLicznosciAutomat)
                 {
-                    mpErrorProvider1.SetError(mpRDBUstalonyPrzedzialLicznosciAutomat, "Dolna granica przedziału liczności, musi być mnijesza niż górna.");
+                    mpErrorProvider1.SetError(mpTXTDolnaGranicaLicznosciAutomat, "Dolna granica przedziału liczności, musi być mnijesza niż górna.");
                     return;
                 }
             }
@@ -945,7 +954,7 @@ namespace ProjektNr1_Palacz
             mpPojemnikNominalow.Add(mpPojemnikNominalowYEN);
             mpPojemnikNominalow.Add(mpPojemnikNominalowEUR);
             float mpReszta = 0; // zmienna przechowująca resztę
-            ushort mpIloscNominalowDoWydania;
+            ushort mpIloscNominalowDoWydania; // zmienna pomocnicza przechowująca liczność nominału, który zostanie wydany użytkownikowi
             switch (mpIndexWaluty)
             {
                 case 0:
