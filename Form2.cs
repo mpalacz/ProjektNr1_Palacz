@@ -13,7 +13,7 @@ namespace ProjektNr1_Palacz
         public Form2()
         {
             InitializeComponent();
-            mpListaUzytkownikow.Add(new MPUzytkownik("admin", "admin@email.com", "admin")); // dodanie urzytkownika do listy w celach testowych
+            mpListaUzytkownikow.Add(new MPUzytkownik("admin", "admin@email.com", "admin")); // dodanie użytkownika do listy w celach testowych
         }
 
         // funkcja sprawdzająca czy dany string może być adresem e-mail
@@ -27,9 +27,9 @@ namespace ProjektNr1_Palacz
         // obsługa przycisku logującego urzytkownika do płatności
         private void mpBTNZaloguj_Click(object sender, EventArgs e)
         {
-            mpErrorProvider1.Clear(); // wyczysczenie kontrolek errorProvider
+            mpErrorProvider1.Clear(); // wyczyszczenie kontrolek errorProvider
             bool mpCzyZalogowano = false; // zmienna przechowuje informacje czy użyutkownik pomyślnie się zalogował
-            foreach(MPUzytkownik mpUzytkownik in mpListaUzytkownikow) // pętka iterująca przez każdego urzytkownika
+            foreach(MPUzytkownik mpUzytkownik in mpListaUzytkownikow) // pętla iterująca przez każdego urzytkownika
             {
                 if (mpUzytkownik.mpCzyPorpawnyLogin(mpTXTLogin.Text)) // sprawdzenie czy dany login lub e-mail znajduje się w bazie 
                 {
@@ -64,6 +64,7 @@ namespace ProjektNr1_Palacz
             mpTXTHaslo.Text = "";
             mpGRBLogowanie.Visible = false; // ukrycie ekranu logowania
             mpGRBZakladanieKonta.Visible = true; // pokazanie ekranu ekranu zakładania konta
+            mpErrorProvider1.Clear(); // wyczysczenie kontrolek errorProvider
         }
 
         // obsługa przycisku rejestrującego nowego użytkownika
@@ -88,7 +89,7 @@ namespace ProjektNr1_Palacz
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (mpUzytkownik.mpCzyPorpawnyLogin(mpTXTEmailNowegoKonta.Text)) // sprawdzenie czy na podanego maila istnieje już konto
+                if (mpUzytkownik.mpCzyPorpawnyLogin(mpTXTEmailNowegoKonta.Text)) // sprawdzenie czy na podanego e-maila istnieje już konto
                 {
                     MessageBox.Show("Na podanego e-maila istnieje już utworzone konto.\nPodaj inny adres e-mail, albo spróbuj ponownie się zalogować.", "Wykorzystany e-mail",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -116,7 +117,7 @@ namespace ProjektNr1_Palacz
             mpErrorProvider1.Clear();
         }
     }
-    // klasa przechodująca dane użyutkownika
+    // klasa przechodująca dane użytkownika
     public class MPUzytkownik 
     {
         public string mpLogin { get; private set; }
@@ -130,7 +131,7 @@ namespace ProjektNr1_Palacz
             this.mpHaslo = mpHaslo;
         }
 
-        // funkcja sprawdzająca czy podnay login jest prawidłowy (jako login może też służyć hasło)
+        // funkcja sprawdzająca czy podany login jest prawidłowy (jako login może też służyć hasło)
         public bool mpCzyPorpawnyLogin(string mpLogin)
         {
             return mpLogin == this.mpLogin || mpLogin == this.mpEmail;

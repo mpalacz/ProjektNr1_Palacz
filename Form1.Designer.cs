@@ -687,7 +687,7 @@ namespace ProjektNr1_Palacz
             this.mpRDBDomyslnyPrzedzialLicznosciAutomat.TabStop = true;
             this.mpRDBDomyslnyPrzedzialLicznosciAutomat.Text = "domyślne";
             this.mpRDBDomyslnyPrzedzialLicznosciAutomat.UseVisualStyleBackColor = true;
-            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.CheckedChanged += new System.EventHandler(this.mpRDBLosowyPrzedzialLicznosciAutomat_CheckedChanged);
+            this.mpRDBDomyslnyPrzedzialLicznosciAutomat.CheckedChanged += new System.EventHandler(this.mpRDBDomyslnyPrzedzialLicznosciAutomat_CheckedChanged);
             // 
             // mpTXTGornaGranicaLicznosciAutomat
             // 

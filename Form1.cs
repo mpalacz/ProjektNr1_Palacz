@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjektNr1_Palacz
@@ -34,10 +29,10 @@ namespace ProjektNr1_Palacz
         mpNominaly[] mpPojemnikNominalow;
 
         // Automat vendingowy
-        private int mpIndexWaluty; // zmienna przechowująca indeks wybranej waluty (zmienna stworzona tylko w celach stylistycznych
-        // waluty po kolei: PLN, YEN, EUR
-        private Dictionary<float, ushort>[] mpDodaneSrodki = { new Dictionary<float, ushort>(), new Dictionary<float, ushort>(), new Dictionary<float, ushort>() }; // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie
-        private float[] mpDoZaplaty = { 0f, 0f, 0f }; // tablica przechowująca łączną wartośc wybranych produktów
+        private int mpIndexWaluty; // zmienna przechowująca indeks wybranej waluty (zmienna stworzona tylko w celach stylistycznych)
+        // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie (PLN, YEN, EUR)
+        private Dictionary<float, ushort>[] mpDodaneSrodki = { new Dictionary<float, ushort>(), new Dictionary<float, ushort>(), new Dictionary<float, ushort>() }; 
+        private float[] mpDoZaplaty = { 0f, 0f, 0f }; // tablica przechowująca łączną wartośc wybranych produktów w każdej walucie (PLN, YEN, EUR)
         private Dictionary<string, MPProdukt> mpPojemnikProduktow; // słownik przechowujący wszystkie produkty w automacie
         private Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>(); // słownik przechowujący produkty znajdujące się w koszyku
         private List<string> mpOstatnieAktywnosci = new List<string>(); // lista przechowująca ostatnie wykonane aktywności
@@ -88,27 +83,28 @@ namespace ProjektNr1_Palacz
             return mpPojemnikProduktow;
         }
 
+        // funkcja obliczająca sumę dodanych środków w podanej walucie
         private float mpSumaDodanychSrodkow(int mpIndexWaluty)
         {
-            if (mpDodaneSrodki[mpIndexWaluty].Count == 0)
-                return 0;
-            float mpSuma = 0;
-            foreach (KeyValuePair<float, ushort> mpNominal in mpDodaneSrodki[mpIndexWaluty])
-                mpSuma += mpNominal.Key * mpNominal.Value;
-            return mpSuma;
+            if (mpDodaneSrodki[mpIndexWaluty].Count == 0) // jeśli słownik z dodanymi środkami jest pusta
+                return 0; // zwracana jest wartość 0
+            float mpSuma = 0; // zadeklarowanie zmiennej przechowującej sumę
+            foreach (KeyValuePair<float, ushort> mpNominal in mpDodaneSrodki[mpIndexWaluty]) // iterowanie przez zawartość słównika
+                mpSuma += mpNominal.Key * mpNominal.Value; // zwiększenie sumy o wartość nominału przemnożoną przez jego liczność
+            return mpSuma; // zwrócenie sumy
         }
 
         // funkcja służąca wyświetleniu cen każdego produktu w wybranej walucie
         private void mpWyswietlenieCen()
         {
-            string mpCena = "";
+            string mpCena = ""; // zmienna przechoiwująca tekst z ceną danego produktu w wybreanej walucie
             foreach (MPProdukt mpProdukt in mpPojemnikProduktow.Values) // iterowanie przez każdy produkt
             {
                 // sprawdzenie która waluta została wybrana 
                 switch (mpIndexWaluty)  
                 {
                     case 0: // PLN
-                        mpCena = mpProdukt.mpCenaPLN + " PLN";
+                        mpCena = mpProdukt.mpCenaPLN + " PLN"; // przypisanie ceny
                         break;
                     case 1: // YEN
                         mpCena = mpProdukt.mpCenaYEN + "¥";
@@ -146,9 +142,7 @@ namespace ProjektNr1_Palacz
             if (mpKoszyk.Count != 0) // sprawdzenie czy koszyk nie jest pusty
             {
                 foreach (KeyValuePair<string, ushort> mpProdukt in mpKoszyk) // iteropwanie przez kazdy produkt w koszyku
-                {
                     mpRTBKoszyk.Text += $"{mpProdukt.Key} {mpProdukt.Value}x\n"; // dodanie nazwy i ilości wybranego produktu do textBoxa wyświetlającego koszyk
-                }
             }
         }
 
@@ -253,10 +247,7 @@ namespace ProjektNr1_Palacz
         }
 
         // zamknięcie aplikacji
-        private void mpBTNZamknij_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void mpBTNZamknij_Click(object sender, EventArgs e) { Close(); }
 
         //Bankomat
         private void mpRDBUstawieniePrzedziałuLiczności_CheckedChanged(object sender, EventArgs e)
@@ -495,7 +486,7 @@ namespace ProjektNr1_Palacz
         // funkcja obsługująca zdarzenie zmiany waluty
         private void mpCMBRodzajWalutyAutomat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mpIndexWaluty = mpCMBRodzajWalutyAutomat.SelectedIndex; // przypisanie wybranego indexu kontrolki do 
+            mpIndexWaluty = mpCMBRodzajWalutyAutomat.SelectedIndex; // przypisanie wybranego indexu kontrolki do zmiennej
             if (mpCMBMetodaPlatnosci.SelectedIndex == 0) // sprawdzenie czy została wybrana płatność gotówką
             {
                 // sprawdzenie która waluta została wybrana i wyświetlenie stosownego onka z nominałami
@@ -518,7 +509,7 @@ namespace ProjektNr1_Palacz
                         break;
                 }
             }
-            // aktualizacja wyświetlanych danych
+            // aktualizacja wyświetlanych danych (cen produktów, wartości do zapłaty i wartości dodanychśrodków)
             mpWyswietlenieCen();
             mpWyświetelnieDanych();
         }
@@ -530,6 +521,7 @@ namespace ProjektNr1_Palacz
             switch (mpCMBMetodaPlatnosci.SelectedIndex)
             {
                 case 0: // gotówka
+                    // ukrycie kontrolek związanych z płatnością kartą i pokazanie związanych z płatnością gotówką
                     mpLBLPlatnoscKarta.Visible = false;
                     mpBTNPlatnoscKarta.Visible = false;
                     mpBTNKupnoGotowka.Visible = true;
@@ -537,6 +529,7 @@ namespace ProjektNr1_Palacz
                     mpCMBRodzajWalutyAutomat_SelectedIndexChanged(sender, e);
                     break;
                 case 1: // karta
+                    // ukrycie kontrolek związanych z płatnością gotówką i pokazanie związanych z płatnością kartą
                     mpGRBJeny.Visible = false;
                     mpGRBEuro.Visible = false;
                     mpGRBZlotowki.Visible = false;
@@ -551,7 +544,7 @@ namespace ProjektNr1_Palacz
         private void mpDodajDoKoszyka(string mpNazwaProduktu)
         {
             try { mpKoszyk[mpNazwaProduktu]++; } // próba zwiększenia ilości produktu w koszyku, jeśli dany produkt został wcześniej dodany do koszyka
-            catch { mpKoszyk.Add(mpNazwaProduktu, 1); } // dodanie produktu do koszyka jeśli wcześniej nie zostało to wykonane
+            catch { mpKoszyk.Add(mpNazwaProduktu, 1); } // dodanie produktu do koszyka jeśli produkt nie został wcześniej dodany do koszyka
             finally
             {
                 // zwiększenie wartości do zapłaty w każdej walucie
@@ -607,17 +600,12 @@ namespace ProjektNr1_Palacz
         }
 
         // funkcja dodająca środki za pomocą gotówki
-        private void mpWrzutPieniedzy(int mpIndexWaluty, float mpKwota)
+        private void mpWrzutPieniedzy(int mpIndexWaluty, float mpWartoscNominalu)
         {
-            if (!mpDodaneSrodki[mpIndexWaluty].ContainsKey(mpKwota))
-                mpDodaneSrodki[mpIndexWaluty].Add(mpKwota, 1);
-            else
-                for (ushort mpI = 0; mpI < mpDodaneSrodki[mpIndexWaluty].Count; mpI++)
-                {
-                    KeyValuePair<float, ushort> mpElement = mpDodaneSrodki[mpIndexWaluty].ElementAt(mpI);
-                    if (mpElement.Key == mpKwota)
-                        mpDodaneSrodki[mpIndexWaluty][mpI]++;
-                }
+            if (!mpDodaneSrodki[mpIndexWaluty].ContainsKey(mpWartoscNominalu)) // sprawdzenie czy dany nominał nie został wcześniej dodany
+                mpDodaneSrodki[mpIndexWaluty].Add(mpWartoscNominalu, 1); // jeśli nie, następije jego dodanie
+            else // jeśli tak, wartość ilości danego nominału jest zwiększana o 1
+                mpDodaneSrodki[mpIndexWaluty][mpWartoscNominalu]++;
             mpWyświetelnieDanych(); // aktualizacja wyświetlanych danych
         }
 
@@ -774,7 +762,7 @@ namespace ProjektNr1_Palacz
         // funkcja zwracająca wrzuconą gotówkę
         private void mpZwrotPieniedzy()
         {
-            // wyzerowanie wartości wrzyconych pieniędzy
+            // przypisanie pustych słowników dla wartości dodanych środków
             mpDodaneSrodki[0] = new Dictionary<float, ushort>();
             mpDodaneSrodki[1] = new Dictionary<float, ushort>();
             mpDodaneSrodki[2] = new Dictionary<float, ushort>();
@@ -785,17 +773,18 @@ namespace ProjektNr1_Palacz
         // kliknięcie przycisku obsługującego zwrot gotówki
         private void mpBTNZwrotMonet_Click(object sender, EventArgs e)
         {
-            if (mpSumaDodanychSrodkow(0) + mpSumaDodanychSrodkow(1) + mpSumaDodanychSrodkow(2) == 0) // sprawdzenie czy nie zostały dodane środki za pomocą gotówki
+            if (mpSumaDodanychSrodkow(0) + mpSumaDodanychSrodkow(1) + mpSumaDodanychSrodkow(2) == 0) // sprawdzenie czy zostały dodane środki za pomocą gotówki
             {
+                // jeśli nie, wyświetlany jest stosowny komunikat i funkcja jest przerywana
                 MessageBox.Show("Nie wrzucono żadnych pieniędzy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             // upewnienie sie czy użytkownik jest pewny swojej decyzji
             if (MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes) 
-                mpZwrotPieniedzy(); 
+                mpZwrotPieniedzy(); // dokonanie zwrotu
         }
 
-        // funkcja orpóżniająca (resetująca) koszyk
+        // funkcja opróżniająca (resetująca) koszyk
         private void mpOproznienieKoszyka()
         {
             // wyzerowanie wartości do zapłaty
@@ -820,7 +809,7 @@ namespace ProjektNr1_Palacz
                 mpOproznienieKoszyka();
                 // sprawdzenie czy zostały dodane środki w formie gotówki
                 if (mpSumaDodanychSrodkow(mpIndexWaluty) != 0)
-                    // sprawdzenie czy użtywkownik chce dodatkowo otrzymać zwrot gotówki
+                    // sprawdzenie czy użytkownik chce dodatkowo otrzymać zwrot gotówki
                     if (MessageBox.Show("Czy zwrócić dodane środki?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         mpZwrotPieniedzy();
                 // reset funkcji cofania
@@ -829,17 +818,19 @@ namespace ProjektNr1_Palacz
             }
         }
 
-        private void mpRDBLosowyPrzedzialLicznosciAutomat_CheckedChanged(object sender, EventArgs e)
+        // ustawienie domyślnego przedziału loswanie liczności
+        private void mpRDBDomyslnyPrzedzialLicznosciAutomat_CheckedChanged(object sender, EventArgs e)
         {
             // ustawnienie drugiej kontrolki na wartość przeciwną
             mpRDBUstalonyPrzedzialLicznosciAutomat.Checked = !mpRDBDomyslnyPrzedzialLicznosciAutomat.Checked;
-            // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
+            // zmiana parametru Visble kontrolek związanych z granicą przedziału na false
             mpLBLDolnaGranicaLicznosciAutomat.Visible = false;
             mpLBLGornaGranicaLicznosciAutomat.Visible = false;
             mpTXTDolnaGranicaLicznosciAutomat.Visible = false;
             mpTXTGornaGranicaLicznosciAutomat.Visible = false;
         }
 
+        // ustawienie ustalonego przedziału loswanie liczności
         private void mpRDBUstalonyPrzedzialLicznosciAutomat_CheckedChanged(object sender, EventArgs e)
         {
             // ustawnienie drugiej kontrolki na wartość przeciwną
@@ -896,7 +887,7 @@ namespace ProjektNr1_Palacz
                 mpDolnaGranicaLicznosciAutomat = 0; // 0 jest najmniejszym możliwym minimum (liczność nie może być mniejsza od zera)
                 mpGornaGranicaLicznosciAutomat = mpMaxLicznoscNominalow; // stała pochądząca z projektu Bankomat, definiująca domyślą górną granicę liczności
             }
-            else // jeśli mpRDBUstalonyPrzedzialLicznosciAutomat jest zaznaczony, przedziały liczności są podawane przez użytkownika administratora (w domyśle adminitratora)
+            else // jeśli mpRDBUstalonyPrzedzialLicznosciAutomat jest zaznaczony, przedziały liczności są podawane przez użytkownika (w domyśle adminitratora)
             {
                 // sprawdzenie czy w textBoxach wpisano liczby naturalne
                 if (!ushort.TryParse(mpTXTDolnaGranicaLicznosciAutomat.Text, out mpDolnaGranicaLicznosciAutomat))
@@ -938,40 +929,43 @@ namespace ProjektNr1_Palacz
                 MessageBox.Show("Koszyk jest pusty.", "Pusty koszyk", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            // sprawdzenie czy dodana kwota nie jest wystarczająca do zakupu produktów w wybranej walucie
+            // sprawdzenie czy dodana kwota jest wystarczająca do zakupu produktów w wybranej walucie
             else if (mpSumaDodanychSrodkow(mpIndexWaluty) < mpDoZaplaty[mpIndexWaluty]) 
             {
+                // jeśli nie, wyświetlany jest stosowny komunikat i funkcja jest przerywana
                 MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             string mpKomunikat = "Zakupiono:\n" + mpRTBKoszyk.Text + "Reszta: "; // zmienna przchowująca komunikat z listą produtków i resztą
             string mpNazwaWaluty = "", mpNazwaZdawkowej = ""; // zmienne przechowujące nazwy wybranej waluty
-            // zmienna określająca liczbę nominałów w danej walucie
+            // zmienna określająca liczbę nominałów niezdawkowych w danej walucie
             // (potrzebne przy iterowaniu przez nominały, by wypisać odpowienią nazwę)
             ushort mpLiczbaNiezdawkowych = 0; 
             List<mpNominaly[]> mpPojemnikNominalow = new List<mpNominaly[]>(); // lista przechowujące tablice nominalów w każdej walucie
+            // dodawanie pojemników do listy
             mpPojemnikNominalow.Add(mpPojemnikNominalowPLN);
             mpPojemnikNominalow.Add(mpPojemnikNominalowYEN);
             mpPojemnikNominalow.Add(mpPojemnikNominalowEUR);
             float mpReszta = 0; // zmienna przechowująca resztę
             ushort mpIloscNominalowDoWydania; // zmienna pomocnicza przechowująca liczność nominału, który zostanie wydany użytkownikowi
-            switch (mpIndexWaluty)
+            switch (mpIndexWaluty) // sprawdzenie która waluta została wybrana i przypisanie odpowiednich wartości do zmiennych
             {
-                case 0:
+                case 0: // PLN
                     mpNazwaWaluty = "PLN";
                     mpNazwaZdawkowej = "groszy";
                     mpLiczbaNiezdawkowych = 7;
                     break;
-                case 1:
+                case 1: // YEN
                     mpNazwaWaluty = "¥";
                     mpLiczbaNiezdawkowych = 9;
                     break;
-                case 2:
+                case 2: // EUR
                     mpNazwaWaluty = "€";
                     mpNazwaZdawkowej = "centów";
                     mpLiczbaNiezdawkowych = 7;
                     break;
-            }
+            } 
+            // obliczenie i dodanie wartości reszty do komunikatu
             mpKomunikat += (mpReszta = mpSumaDodanychSrodkow(mpIndexWaluty) - mpDoZaplaty[mpIndexWaluty]) + mpNazwaWaluty + "\n";
             for (int mpI = 0; mpI <= mpLiczbaNiezdawkowych && mpReszta >= 1; mpI++) // iterowanie przez wszystkie nominały niezdawkowe dopuki reszta jest różna od 0
             {
@@ -1047,8 +1041,7 @@ namespace ProjektNr1_Palacz
             if (mpLoginForm.DialogResult == DialogResult.OK) // sprawdzenie czy logowanie zostało wykonane pomyślnie
             {
                 string mpWaluta = ""; // zmienna przechowująca oznaczenie wybranej waluty
-                // sprawdzenie która waluta została wybrana
-                // i przypisanie odpowiedniej wartości do mpWaluta
+                // sprawdzenie która waluta została wybrana i przypisanie odpowiedniej wartości do mpWaluta
                 switch (mpIndexWaluty) 
                 {
                     case 0:
@@ -1066,6 +1059,7 @@ namespace ProjektNr1_Palacz
                     , MessageBoxButtons.OK, MessageBoxIcon.Information); // wyświetlenie zawartości koszyka i jego wartości
                 if (mpSumaDodanychSrodkow(0) + mpSumaDodanychSrodkow(1) + mpSumaDodanychSrodkow(2) != 0) // sprawdzenie czy do automatu została wrzucona gotówka
                 {
+                    // jeśli tak, jest ona zwracana
                     MessageBox.Show("Zwrócono wprowadzoną gotówkę.", "Zwrot gotówki", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     mpZwrotPieniedzy();
                 }
