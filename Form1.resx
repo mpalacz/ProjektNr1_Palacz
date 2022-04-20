@@ -135,6 +135,12 @@
   <metadata name="dataGridViewTextBoxColumn2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="dataGridViewTextBoxColumn1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mpBTNPlatnoscKarta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -143,7 +149,7 @@
         cbn3nJmBuhOZOF86gDgpMtc7Gl4Or5yVNxqs0WSPdmDytDc486k8n6/UrL60rBd/O8vhODfShSoxaVZA
         7VDcmRepZRVbt753In4QO2GchOIn8X4Yh5btrhdHM/PjaW/THCcXA9tX7eLSpUcfhxEzpkQUtKSJOqd0
         aEtdMgLuyTHSiLF6c80U3IhyObkci3yRblORt1Pm9ZUyksdUXjbhjlieNg/7v99rH+flZm17kQZZULYa
-        qvpkAu+PsDGEzWdYv67IWv39toqZTjnzrzfCFxvrUH9XaXVpAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+        qvpkAu+PsDGEzWdYv67IWv39toqZTjnzrzfCFxvrUH9XaXVpAAAACXBIWXMAAAsSAAALEgHS3X78AAAA
         B3RJTUUH5gMJDCARwE+aUQAACrlJREFUeF7tnWeobFcZhq+9G7sxtkTF3rv5oQkqGkSjIipqrD/sUWMX
         G/ZYoiZRNNbEAkpsiA2NvUewd2NFNPbe2/sgA4d73lnfWe/M7H1mzn7ggfvjznf27JnZa61vfWutfRMl
         55PHyNPln+Xf5dflc+Ul5cSAXFOeIf87x9/II+TEAFxWnindB7HVv8lD5cSKOVW6D8D5TXkOObEiLiP/
@@ -202,7 +208,7 @@
         ueRYwgPCHSnLlvxAssgpxWuKreyK+XNP9cLGRXs6rnSZ7YwzQZQpNAxWWCZLgR5ZbVFcYrIfqeBv8/1T
         4jLEtYwpjlFyWOi+H/UHv7t10/19xaTGCNQ8ed5bJ9Ruwdem530eet7XEQQf4cIu+XMHMPQu+mZJ69iH
         5nU4uyxpxjacb0DrQ153dF8Kygyk0/B6It80Ay3XEJor9vazz/EdJKSrySvY3YOujGTPV3h3XXlvf57x
-        +yPyDVlXcp2hvbefAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5gMJChMUQMN3XAAAFR9JREFU
+        +yPyDVlXcp2hvbefAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH5gMJChMUQMN3XAAAFR9JREFU
         eF7tnHlcjVvbx+9de9dOIVOl0kBKR46OMZw4eI7QMSVDpDQY45yQSGVoUFFUKkU5iEilIjQrhwzhUERF
         ZmWqKNqkfu+1bnWO93mfz/N5nj/fva2Pr21ve6/1ub/3ta51rT3c3Lf2/78JCPk2hP8F7PlyBHu9zDYm
         QEyoEB2JTkTnNlTbaL/fhejeRte2++x1CoSIkDmR7IBZJDFxTIgaYUD0J0z+BUZEnzZ02+hJdCDYSWAn

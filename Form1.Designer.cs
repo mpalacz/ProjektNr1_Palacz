@@ -30,6 +30,7 @@ namespace ProjektNr1_Palacz
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjektNr1_Palacz53262));
             this.mpTCZakladki = new System.Windows.Forms.TabControl();
             this.mpTabPage1 = new System.Windows.Forms.TabPage();
@@ -38,8 +39,8 @@ namespace ProjektNr1_Palacz
             this.mpBTNWyplata = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.mpTabPage2 = new System.Windows.Forms.TabPage();
-            this.mpTXTGornaGranicaPrzedzialu = new System.Windows.Forms.TextBox();
-            this.mpTXTDolnaGranicaPrzedzialu = new System.Windows.Forms.TextBox();
+            this.mpTXTGornaGranicaPrzedzialuBankomat = new System.Windows.Forms.TextBox();
+            this.mpTXTDolnaGranicaPrzedzialuBankomat = new System.Windows.Forms.TextBox();
             this.mpLBLEtykietaGornejGranicyPrzedzialu = new System.Windows.Forms.Label();
             this.mpLBLEtykietaDolnejGranicyPrzedzialu = new System.Windows.Forms.Label();
             this.mpTXTWyplacanaKwota = new System.Windows.Forms.TextBox();
@@ -60,7 +61,7 @@ namespace ProjektNr1_Palacz
             this.mpBTNAkceptacjaLicznościBankomat = new System.Windows.Forms.Button();
             this.mpRDBUstawieniePrzedziałuLiczności = new System.Windows.Forms.RadioButton();
             this.mpRDBUstawienieLicznosciDomyslne = new System.Windows.Forms.RadioButton();
-            this.mpCMBRodzajWaluty = new System.Windows.Forms.ComboBox();
+            this.mpCMBRodzajWalutyBankomat = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -243,8 +244,8 @@ namespace ProjektNr1_Palacz
             // mpTabPage2
             // 
             this.mpTabPage2.BackColor = System.Drawing.Color.YellowGreen;
-            this.mpTabPage2.Controls.Add(this.mpTXTGornaGranicaPrzedzialu);
-            this.mpTabPage2.Controls.Add(this.mpTXTDolnaGranicaPrzedzialu);
+            this.mpTabPage2.Controls.Add(this.mpTXTGornaGranicaPrzedzialuBankomat);
+            this.mpTabPage2.Controls.Add(this.mpTXTDolnaGranicaPrzedzialuBankomat);
             this.mpTabPage2.Controls.Add(this.mpLBLEtykietaGornejGranicyPrzedzialu);
             this.mpTabPage2.Controls.Add(this.mpLBLEtykietaDolnejGranicyPrzedzialu);
             this.mpTabPage2.Controls.Add(this.mpTXTWyplacanaKwota);
@@ -258,7 +259,7 @@ namespace ProjektNr1_Palacz
             this.mpTabPage2.Controls.Add(this.mpDGVListaNominalowBankomat);
             this.mpTabPage2.Controls.Add(this.mpLBLWyplacaneNominaly);
             this.mpTabPage2.Controls.Add(this.groupBox1);
-            this.mpTabPage2.Controls.Add(this.mpCMBRodzajWaluty);
+            this.mpTabPage2.Controls.Add(this.mpCMBRodzajWalutyBankomat);
             this.mpTabPage2.Controls.Add(this.label4);
             this.mpTabPage2.Controls.Add(this.label3);
             this.mpTabPage2.Controls.Add(this.label2);
@@ -271,29 +272,29 @@ namespace ProjektNr1_Palacz
             // 
             // mpTXTGornaGranicaPrzedzialu
             // 
-            this.mpTXTGornaGranicaPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.mpTXTGornaGranicaPrzedzialu.Location = new System.Drawing.Point(761, 262);
-            this.mpTXTGornaGranicaPrzedzialu.Name = "mpTXTGornaGranicaPrzedzialu";
-            this.mpTXTGornaGranicaPrzedzialu.Size = new System.Drawing.Size(100, 26);
-            this.mpTXTGornaGranicaPrzedzialu.TabIndex = 18;
-            this.mpTXTGornaGranicaPrzedzialu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mpTXTGornaGranicaPrzedzialu.Visible = false;
+            this.mpTXTGornaGranicaPrzedzialuBankomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.mpTXTGornaGranicaPrzedzialuBankomat.Location = new System.Drawing.Point(683, 241);
+            this.mpTXTGornaGranicaPrzedzialuBankomat.Name = "mpTXTGornaGranicaPrzedzialu";
+            this.mpTXTGornaGranicaPrzedzialuBankomat.Size = new System.Drawing.Size(230, 26);
+            this.mpTXTGornaGranicaPrzedzialuBankomat.TabIndex = 18;
+            this.mpTXTGornaGranicaPrzedzialuBankomat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mpTXTGornaGranicaPrzedzialuBankomat.Visible = false;
             // 
             // mpTXTDolnaGranicaPrzedzialu
             // 
-            this.mpTXTDolnaGranicaPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.mpTXTDolnaGranicaPrzedzialu.Location = new System.Drawing.Point(390, 262);
-            this.mpTXTDolnaGranicaPrzedzialu.Name = "mpTXTDolnaGranicaPrzedzialu";
-            this.mpTXTDolnaGranicaPrzedzialu.Size = new System.Drawing.Size(100, 26);
-            this.mpTXTDolnaGranicaPrzedzialu.TabIndex = 17;
-            this.mpTXTDolnaGranicaPrzedzialu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mpTXTDolnaGranicaPrzedzialu.Visible = false;
+            this.mpTXTDolnaGranicaPrzedzialuBankomat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpTXTDolnaGranicaPrzedzialuBankomat.Location = new System.Drawing.Point(344, 241);
+            this.mpTXTDolnaGranicaPrzedzialuBankomat.Name = "mpTXTDolnaGranicaPrzedzialu";
+            this.mpTXTDolnaGranicaPrzedzialuBankomat.Size = new System.Drawing.Size(230, 26);
+            this.mpTXTDolnaGranicaPrzedzialuBankomat.TabIndex = 17;
+            this.mpTXTDolnaGranicaPrzedzialuBankomat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mpTXTDolnaGranicaPrzedzialuBankomat.Visible = false;
             // 
             // mpLBLEtykietaGornejGranicyPrzedzialu
             // 
             this.mpLBLEtykietaGornejGranicyPrzedzialu.AutoSize = true;
             this.mpLBLEtykietaGornejGranicyPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
-            this.mpLBLEtykietaGornejGranicyPrzedzialu.Location = new System.Drawing.Point(648, 189);
+            this.mpLBLEtykietaGornejGranicyPrzedzialu.Location = new System.Drawing.Point(680, 191);
             this.mpLBLEtykietaGornejGranicyPrzedzialu.Name = "mpLBLEtykietaGornejGranicyPrzedzialu";
             this.mpLBLEtykietaGornejGranicyPrzedzialu.Size = new System.Drawing.Size(295, 17);
             this.mpLBLEtykietaGornejGranicyPrzedzialu.TabIndex = 16;
@@ -304,7 +305,7 @@ namespace ProjektNr1_Palacz
             // 
             this.mpLBLEtykietaDolnejGranicyPrzedzialu.AutoSize = true;
             this.mpLBLEtykietaDolnejGranicyPrzedzialu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic);
-            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Location = new System.Drawing.Point(321, 189);
+            this.mpLBLEtykietaDolnejGranicyPrzedzialu.Location = new System.Drawing.Point(282, 189);
             this.mpLBLEtykietaDolnejGranicyPrzedzialu.Name = "mpLBLEtykietaDolnejGranicyPrzedzialu";
             this.mpLBLEtykietaDolnejGranicyPrzedzialu.Size = new System.Drawing.Size(292, 17);
             this.mpLBLEtykietaDolnejGranicyPrzedzialu.TabIndex = 15;
@@ -316,7 +317,7 @@ namespace ProjektNr1_Palacz
             this.mpTXTWyplacanaKwota.Enabled = false;
             this.mpTXTWyplacanaKwota.Location = new System.Drawing.Point(1104, 264);
             this.mpTXTWyplacanaKwota.Name = "mpTXTWyplacanaKwota";
-            this.mpTXTWyplacanaKwota.Size = new System.Drawing.Size(100, 26);
+            this.mpTXTWyplacanaKwota.Size = new System.Drawing.Size(124, 26);
             this.mpTXTWyplacanaKwota.TabIndex = 14;
             this.mpTXTWyplacanaKwota.Visible = false;
             // 
@@ -397,6 +398,14 @@ namespace ProjektNr1_Palacz
             this.WartoscNominalu,
             this.RodzajNominalu,
             this.RodzajWaluty});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mpDGVListaNominalowBankomat.DefaultCellStyle = dataGridViewCellStyle2;
             this.mpDGVListaNominalowBankomat.Location = new System.Drawing.Point(353, 364);
             this.mpDGVListaNominalowBankomat.Name = "mpDGVListaNominalowBankomat";
             this.mpDGVListaNominalowBankomat.Size = new System.Drawing.Size(560, 150);
@@ -482,22 +491,22 @@ namespace ProjektNr1_Palacz
             // 
             // mpCMBRodzajWaluty
             // 
-            this.mpCMBRodzajWaluty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mpCMBRodzajWaluty.FormattingEnabled = true;
-            this.mpCMBRodzajWaluty.Items.AddRange(new object[] {
+            this.mpCMBRodzajWalutyBankomat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mpCMBRodzajWalutyBankomat.FormattingEnabled = true;
+            this.mpCMBRodzajWalutyBankomat.Items.AddRange(new object[] {
             "PLN",
             "USD",
             "GBP",
             "EUR"});
-            this.mpCMBRodzajWaluty.Location = new System.Drawing.Point(94, 211);
-            this.mpCMBRodzajWaluty.Name = "mpCMBRodzajWaluty";
-            this.mpCMBRodzajWaluty.Size = new System.Drawing.Size(121, 27);
-            this.mpCMBRodzajWaluty.TabIndex = 3;
+            this.mpCMBRodzajWalutyBankomat.Location = new System.Drawing.Point(45, 176);
+            this.mpCMBRodzajWalutyBankomat.Name = "mpCMBRodzajWaluty";
+            this.mpCMBRodzajWalutyBankomat.Size = new System.Drawing.Size(121, 27);
+            this.mpCMBRodzajWalutyBankomat.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(90, 189);
+            this.label4.Location = new System.Drawing.Point(41, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(150, 19);
             this.label4.TabIndex = 2;
@@ -1554,7 +1563,7 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage mpTabPage2;
         private System.Windows.Forms.TabPage mpTabPage3;
-        private System.Windows.Forms.ComboBox mpCMBRodzajWaluty;
+        private System.Windows.Forms.ComboBox mpCMBRodzajWalutyBankomat;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -1612,8 +1621,8 @@ namespace ProjektNr1_Palacz
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button mpBTNAkceptacjaLicznościBankomat;
         private System.Windows.Forms.ErrorProvider mpErrorProvider1;
-        private System.Windows.Forms.TextBox mpTXTGornaGranicaPrzedzialu;
-        private System.Windows.Forms.TextBox mpTXTDolnaGranicaPrzedzialu;
+        private System.Windows.Forms.TextBox mpTXTGornaGranicaPrzedzialuBankomat;
+        private System.Windows.Forms.TextBox mpTXTDolnaGranicaPrzedzialuBankomat;
         private System.Windows.Forms.Label mpLBLEtykietaGornejGranicyPrzedzialu;
         private System.Windows.Forms.Label mpLBLEtykietaDolnejGranicyPrzedzialu;
         private System.Windows.Forms.GroupBox mpGRBEuro;

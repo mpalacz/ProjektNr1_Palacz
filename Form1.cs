@@ -9,11 +9,17 @@ namespace ProjektNr1_Palacz
     {
         // deklaracja tablicy aktywności zakładek formularza
         bool[] mpStanTabPage = { true, false, false };
+        // Bankomat
         // deklaracja stałych
         const ushort mpMargines = 20;
         const ushort mpMaxLicznoscNominalow = 100;
         const ushort mpBanknotONajnizszejWartosci = 10;
-        float[] mpWartoscNominalow = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f };
+        // deklaracje tablic przechowujących wartości nominałów
+        static float[] mpWartosciNominalowZlotowki = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f };
+        static float[] mpWartosciNominalowDolary = { 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.25f, 0.1f, 0.05f, 0.01f };
+        static float[] mpWartosciNominalowFunty = { 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f };
+        static float[] mpWartosciNominalowEuro = { 200, 100, 50, 20, 10, 5, 2, 1, 0.5f, 0.2f, 0.1f };
+        float[][] mpWartosciNominalow = { mpWartosciNominalowZlotowki, mpWartosciNominalowDolary, mpWartosciNominalowFunty, mpWartosciNominalowEuro };
         // deklaracja struktury (rekordu) opisującego element tablicy PojemnikNominalow
         struct mpNominaly
         {
@@ -31,7 +37,7 @@ namespace ProjektNr1_Palacz
         // Automat vendingowy
         private int mpIndexWaluty; // zmienna przechowująca indeks wybranej waluty (zmienna stworzona tylko w celach stylistycznych)
         // tablica przechowująca wartość wrzuconych pieniędzy w każdej walucie (PLN, YEN, EUR)
-        private Dictionary<float, ushort>[] mpDodaneSrodki = { new Dictionary<float, ushort>(), new Dictionary<float, ushort>(), new Dictionary<float, ushort>() }; 
+        private Dictionary<float, ushort>[] mpDodaneSrodki = { new Dictionary<float, ushort>(), new Dictionary<float, ushort>(), new Dictionary<float, ushort>() };
         private float[] mpDoZaplaty = { 0f, 0f, 0f }; // tablica przechowująca łączną wartośc wybranych produktów w każdej walucie (PLN, YEN, EUR)
         private Dictionary<string, MPProdukt> mpPojemnikProduktow; // słownik przechowujący wszystkie produkty w automacie
         private Dictionary<string, ushort> mpKoszyk = new Dictionary<string, ushort>(); // słownik przechowujący produkty znajdujące się w koszyku
@@ -101,7 +107,7 @@ namespace ProjektNr1_Palacz
             foreach (MPProdukt mpProdukt in mpPojemnikProduktow.Values) // iterowanie przez każdy produkt
             {
                 // sprawdzenie która waluta została wybrana 
-                switch (mpIndexWaluty)  
+                switch (mpIndexWaluty)
                 {
                     case 0: // PLN
                         mpCena = mpProdukt.mpCenaPLN + " PLN"; // przypisanie ceny
@@ -151,9 +157,7 @@ namespace ProjektNr1_Palacz
             InitializeComponent();
             // ustawienie aktywnej zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
-            // utworzenie egzemplarza pojemnika nominałów
-            mpPojemnikNominalow = new mpNominaly[mpWartoscNominalow.Length];
-            mpCMBRodzajWaluty.SelectedIndex = 0;
+            mpCMBRodzajWalutyBankomat.SelectedIndex = 0;
         }
 
         // Manipulacja zakładkami
@@ -212,7 +216,7 @@ namespace ProjektNr1_Palacz
             // przejście do zakładki Pulpit
             mpTCZakladki.SelectedTab = mpTabPage1;
             mpBTNAdmin.Visible = true; // ponowne pokazanie przycisku mpBTNAdmin
-        } 
+        }
 
         // Pulpit
         // Przejście do bankomatu
@@ -257,8 +261,8 @@ namespace ProjektNr1_Palacz
             // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
             mpLBLEtykietaDolnejGranicyPrzedzialu.Visible = true;
             mpLBLEtykietaGornejGranicyPrzedzialu.Visible = true;
-            mpTXTDolnaGranicaPrzedzialu.Visible = true;
-            mpTXTGornaGranicaPrzedzialu.Visible = true;
+            mpTXTDolnaGranicaPrzedzialuBankomat.Visible = true;
+            mpTXTGornaGranicaPrzedzialuBankomat.Visible = true;
         }
         private void mpRDBUstawienieLicznosciDomyslne_CheckedChanged(object sender, EventArgs e)
         {
@@ -267,70 +271,117 @@ namespace ProjektNr1_Palacz
             // zmiana parametru Visble kontrolek związanych z granicą przedziału na true
             mpLBLEtykietaDolnejGranicyPrzedzialu.Visible = false;
             mpLBLEtykietaGornejGranicyPrzedzialu.Visible = false;
-            mpTXTDolnaGranicaPrzedzialu.Visible = false;
-            mpTXTGornaGranicaPrzedzialu.Visible = false;
+            mpTXTDolnaGranicaPrzedzialuBankomat.Visible = false;
+            mpTXTGornaGranicaPrzedzialuBankomat.Visible = false;
         }
         private void mpBTNAkceptacjaLiczności_Click(object sender, EventArgs e)
         {
             // sprawdzanie, czy została wybrana waluta
-            if (mpCMBRodzajWaluty.SelectedIndex < 0)
+            if (mpCMBRodzajWalutyBankomat.SelectedIndex < 0)
             {
-                mpErrorProvider1.SetError(mpCMBRodzajWaluty, "ERROR: musisz wybrać walutę");
-                return;
-            }
-            // sprawdzenie, czyzostała wybrana kontrolka RadioButton dla określenia sposobu wyznaczenia liczności
-            if (!(mpRDBUstawienieLicznosciDomyslne.Checked || mpRDBUstawieniePrzedziałuLiczności.Checked))
-            {
-                mpErrorProvider1.SetError(mpBTNAkceptacjaLicznościBankomat, "ERROR: musisz wybrać spodów ustalenia licznośc nominałów");
+                mpErrorProvider1.SetError(mpCMBRodzajWalutyBankomat, "ERROR: musisz wybrać walutę");
                 return;
             }
             // ustawienie stanu braku aktywności kontrolek RadioButton
             mpRDBUstawienieLicznosciDomyslne.Enabled = false;
             mpRDBUstawieniePrzedziałuLiczności.Enabled = false;
+            // utworzenie egzemplarza pojemnika nominałów
+            mpPojemnikNominalow = new mpNominaly[mpWartosciNominalow[mpCMBRodzajWalutyBankomat.SelectedIndex].Length];
             // utworzenie generatora liczb losowaych
             Random mpRandom = new Random();
             //rozpoznanie która z kontrolek została wybrana
             if (mpRDBUstawienieLicznosciDomyslne.Checked)
             {
                 // wpisanie wartości nominałów oraz ich liczności w tablicy pojemnik nominałów
-                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
+                for (ushort mpI = 0; mpI < mpPojemnikNominalow.Length; mpI++)
                 {
-                    mpPojemnikNominalow[i].mpWartosc = mpWartoscNominalow[i];
-                    mpPojemnikNominalow[i].mpLicznosc = (ushort)mpRandom.Next(mpMaxLicznoscNominalow);
+                    mpPojemnikNominalow[mpI].mpWartosc = mpWartosciNominalow[mpCMBRodzajWalutyBankomat.SelectedIndex][mpI];
+                    mpPojemnikNominalow[mpI].mpLicznosc = (ushort)mpRandom.Next(mpMaxLicznoscNominalow);
                 }
                 // odsłonięcie kontrolek dla wizualizacji ustalonej liczności nominałów
                 mpLBLWyplacaneNominaly.Visible = true;
-                mpLBLWyplacaneNominaly.Text = "Wylosowane liczności nominałów";
+                mpLBLWyplacaneNominaly.Text = "Liczności nominałów Bankomatu";
                 mpDGVListaNominalowBankomat.Visible = true;
                 mpDGVListaNominalowBankomat.Rows.Clear();
                 // wpisanie liczności nominałów do kontrolki DataGridView
-                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
-                {
-                    mpDGVListaNominalowBankomat.Rows.Add();
-                    mpDGVListaNominalowBankomat.Rows[i].Cells[0].Value = mpPojemnikNominalow[i].mpLicznosc;
-                    mpDGVListaNominalowBankomat.Rows[i].Cells[1].Value = mpPojemnikNominalow[i].mpWartosc;
-                }
+                mpWyswietlanieNominalowBankomat();
             }
             else
             {
-                // wpisanie wartości nominałów oraz ich liczności w tablicy pojemnik nominałów
-                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
+                // przedziałowe ustalenie liczności nominałów
+                mpErrorProvider1.Clear(); // wyczyszczenie kontrolki mpErrorProvider1
+                ushort mpDolnaGranica, mpGornaGranica; // deklaracja zmiennych granic przedziału
+                if (string.IsNullOrEmpty(mpTXTDolnaGranicaPrzedzialuBankomat.Text)) // sprawdzenie czy została podana dolna granica przedziału
                 {
-                    mpPojemnikNominalow[i].mpWartosc = mpWartoscNominalow[i];
-                    mpPojemnikNominalow[i].mpLicznosc = (ushort)mpRandom.Next(Convert.ToInt32(mpTXTDolnaGranicaPrzedzialu.Text), Convert.ToInt32(mpTXTGornaGranicaPrzedzialu.Text));
+                    // wyświetlenie błędu
+                    mpErrorProvider1.SetError(mpTXTDolnaGranicaPrzedzialuBankomat, "ERROR: musisz podać dolną granicę przedziału licznosci nominałów!");
+                    return;
                 }
-                // odsłonięcie kontrolek dla wizualizacji ustalonej liczności nominałów
+                if (string.IsNullOrEmpty(mpTXTGornaGranicaPrzedzialuBankomat.Text)) // sprawdzenie czy została podana górna granica przedziału
+                {
+                    // wyświetlenie błędu
+                    mpErrorProvider1.SetError(mpTXTGornaGranicaPrzedzialuBankomat, "ERROR: musisz podać górną granicę przedziału licznosci nominałów!");
+                    return;
+                }
+                if (!ushort.TryParse(mpTXTDolnaGranicaPrzedzialuBankomat.Text, out mpDolnaGranica)) // pogranie i sprawdzenie poprawności zapisu dolnej granicy przedziału
+                {
+                    // wyświetlenie błędu
+                    mpErrorProvider1.SetError(mpTXTDolnaGranicaPrzedzialuBankomat, "ERROR: błąd w zapisie dolnej granicy przedziału liczności nominałów!");
+                    return;
+                }
+                if (!ushort.TryParse(mpTXTGornaGranicaPrzedzialuBankomat.Text, out mpGornaGranica)) // pogranie i sprawdzenie poprawności zapisu górnej granicy przedziału
+                {
+                    // wyświetlenie błędu
+                    mpErrorProvider1.SetError(mpTXTGornaGranicaPrzedzialuBankomat, "ERROR: błąd w zapisie górnej granicy przedziału liczności nominałów!");
+                    return;
+                }
+                if (mpDolnaGranica <= 0) // spawdzenie czy dolna granica przedziału jest mniejsza równa 0
+                {
+                    // wyświetlenie błędu
+                    mpErrorProvider1.SetError(mpTXTDolnaGranicaPrzedzialuBankomat, "ERROR: dolna granica musi być większa od 0");
+                    return;
+                }
+                if (mpGornaGranica <= mpDolnaGranica) // sprawdzenie czy górna granica jest mniejsza lub równa dolnej
+                {
+                    mpErrorProvider1.SetError(mpTXTGornaGranicaPrzedzialuBankomat, "ERROR: górna granica przedziału liczności musi być większa od dolnej");
+                    return;
+                }
+                // wyznaczenie losowych licznosci nominałów w wyznaczonym przedziale
+                for (int mpK = 0; mpK < mpPojemnikNominalow.GetLength(0); mpK++)
+                {
+                    mpPojemnikNominalow[mpK].mpLicznosc = (ushort)(mpRandom.Next(mpDolnaGranica, mpGornaGranica));
+                    mpPojemnikNominalow[mpK].mpWartosc = mpWartosciNominalow[mpCMBRodzajWalutyBankomat.SelectedIndex][mpK];
+                }
+                mpDGVListaNominalowBankomat.Visible = true; // wyświetlenie kontrolki mpDGVListaNominalowBankomat
+                mpLBLWyplacaneNominaly.Text = "Wylosowanie nominały bankomatu:"; // zmiana komunikatu znajdującego się nad mpDGVListaNominalowBankomat
+                // przepisywanie danych z tablicy nominałów do kontrolki mpDGVListaNominalowBankomat
+                mpWyswietlanieNominalowBankomat();
+                // zablokowanie kontrolek wejściowych
+                mpTXTDolnaGranicaPrzedzialuBankomat.Enabled = false;
+                mpTXTGornaGranicaPrzedzialuBankomat.Enabled = false;
+                mpCMBRodzajWalutyBankomat.Enabled = false;
+                // wyświetlenie kotrolek wizualizujacych obliczenia
                 mpLBLWyplacaneNominaly.Visible = true;
-                mpLBLWyplacaneNominaly.Text = "Wylosowane liczności nominałów";
                 mpDGVListaNominalowBankomat.Visible = true;
-                mpDGVListaNominalowBankomat.Rows.Clear();
-                // wpisanie liczności nominałów do kontrolki DataGridView
-                for (ushort i = 0; i < mpPojemnikNominalow.Length; i++)
-                {
-                    mpDGVListaNominalowBankomat.Rows.Add();
-                    mpDGVListaNominalowBankomat.Rows[i].Cells[0].Value = mpPojemnikNominalow[i].mpLicznosc;
-                    mpDGVListaNominalowBankomat.Rows[i].Cells[1].Value = mpPojemnikNominalow[i].mpWartosc;
-                }
+                // zmiana komunikatu w mpLBLWyplacaneNominaly
+                mpLBLWyplacaneNominaly.Text = "Liczność nominałów bankomatu:";
+            }
+        }
+
+        private void mpWyswietlanieNominalowBankomat()
+        {
+            for (ushort mpI = 0; mpI < mpPojemnikNominalow.Length; mpI++)
+            {
+                mpDGVListaNominalowBankomat.Rows.Add(); // dodanie nowego wiersza
+                                                        // wpisanie odpowiednich danych do poszczególnych komórek 
+                mpDGVListaNominalowBankomat.Rows[mpI].Cells[0].Value = mpPojemnikNominalow[mpI].mpLicznosc;
+                mpDGVListaNominalowBankomat.Rows[mpI].Cells[1].Value = mpPojemnikNominalow[mpI].mpWartosc;
+                mpDGVListaNominalowBankomat.Rows[mpI].Cells[3].Value = mpCMBRodzajWalutyBankomat.SelectedItem;
+                // rozpoznanie czy banknot czy moneta
+                if (mpPojemnikNominalow[mpI].mpWartosc >= mpBanknotONajnizszejWartosci)
+                    mpDGVListaNominalowBankomat.Rows[mpI].Cells[2].Value = "banknot";
+                else
+                    mpDGVListaNominalowBankomat.Rows[mpI].Cells[2].Value = "moneta";
             }
         }
 
@@ -340,7 +391,7 @@ namespace ProjektNr1_Palacz
             mpErrorProvider1.Dispose();
             if (string.IsNullOrEmpty(mpTXTKwotaDoWyplaty.Text))
             {
-
+                mpErrorProvider1.SetError(mpTXTKwotaDoWyplaty, "ERROR: nie podano kwoty do wypłaty");
             }
             if (!float.TryParse(mpTXTKwotaDoWyplaty.Text, out mpKwotaDoWypłaty))
             {
@@ -404,7 +455,7 @@ namespace ProjektNr1_Palacz
                     else
                         mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[2].Value = "moneta";
                     // wypisanie waluty
-                    mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[3].Value = mpCMBRodzajWaluty.SelectedItem;
+                    mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[3].Value = mpCMBRodzajWalutyBankomat.SelectedItem;
                     // wycentrowanie zapisów w poszczególnych komórkach
                     for (ushort i = 0; i < mpDGVListaNominalowBankomat.Columns.Count; i++)
                         mpDGVListaNominalowBankomat.Rows[mpIndexDGV].Cells[i].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -463,13 +514,15 @@ namespace ProjektNr1_Palacz
         private void mpBTNResetuj_Click(object sender, EventArgs e)
         {
             // ustawienie "początkowe" kontrolki wyboru waluty
-            mpCMBRodzajWaluty.SelectedIndex = 0;
-            mpCMBRodzajWaluty.Enabled = true;
+            mpCMBRodzajWalutyBankomat.SelectedIndex = 0;
+            mpCMBRodzajWalutyBankomat.Enabled = true;
             // ustawienie "początkowe" kontrolek wypłaty
             mpTXTKwotaDoWyplaty.Text = "";
-            mpTXTKwotaDoWyplaty.Enabled = false;
+            mpTXTKwotaDoWyplaty.Enabled = true;
             mpLBLWyplacanaKwota.Visible = false;
             mpTXTWyplacanaKwota.Visible = false;
+            mpTXTWyplacanaKwota.Text = "";
+            mpBTNAkceptacja.Enabled = true;
             // ukrycie przeycisków operacyjnych
             mpBTNResetuj.Visible = false;
             mpBTNWyjscie.Visible = false;
@@ -480,6 +533,15 @@ namespace ProjektNr1_Palacz
             // ustawienie stanu aktywności kontrolek Radiobutton
             mpRDBUstawienieLicznosciDomyslne.Enabled = true;
             mpRDBUstawieniePrzedziałuLiczności.Enabled = true;
+            // wyczyszczenie i ukrycie kontrolki mpDGVListaNominalowBankomat oraz związanego z nią komunikatu
+            mpDGVListaNominalowBankomat.Rows.Clear();
+            mpDGVListaNominalowBankomat.Visible = false;
+            mpLBLWyplacaneNominaly.Visible = false;
+            // przywrócenie kontrolek dotyczących granic przedziału do stanu początkowego
+            mpTXTGornaGranicaPrzedzialuBankomat.Text = "";
+            mpTXTGornaGranicaPrzedzialuBankomat.Enabled = true;
+            mpTXTDolnaGranicaPrzedzialuBankomat.Text = "";
+            mpTXTDolnaGranicaPrzedzialuBankomat.Enabled = true;
         }
 
         //Automat vendingowy
@@ -490,7 +552,7 @@ namespace ProjektNr1_Palacz
             if (mpCMBMetodaPlatnosci.SelectedIndex == 0) // sprawdzenie czy została wybrana płatność gotówką
             {
                 // sprawdzenie która waluta została wybrana i wyświetlenie stosownego onka z nominałami
-                switch (mpIndexWaluty) 
+                switch (mpIndexWaluty)
                 {
                     case 0: // PLN
                         mpGRBEuro.Visible = false;
@@ -560,7 +622,7 @@ namespace ProjektNr1_Palacz
         // obsługa przycisków służących do wyboru produktów
         private void mpBTNTauriner_Click(object sender, EventArgs e)
         {
-            mpDodajDoKoszyka("Tauriner"); 
+            mpDodajDoKoszyka("Tauriner");
         }
         private void mpBTNStaminanX_Click(object sender, EventArgs e)
         {
@@ -612,7 +674,7 @@ namespace ProjektNr1_Palacz
         // obsługa przycisków służących do wrzucenia gotówki
         private void mpBTN1Grosz_Click(object sender, EventArgs e)
         {
-            mpWrzutPieniedzy(0, 0.01f); 
+            mpWrzutPieniedzy(0, 0.01f);
         }
         private void mpBTN2Grosze_Click(object sender, EventArgs e)
         {
@@ -780,7 +842,7 @@ namespace ProjektNr1_Palacz
                 return;
             }
             // upewnienie sie czy użytkownik jest pewny swojej decyzji
-            if (MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes) 
+            if (MessageBox.Show("Czy na pewno chcesz dokonać zwrotu monet?", "Zwrót monet", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 mpZwrotPieniedzy(); // dokonanie zwrotu
         }
 
@@ -930,7 +992,7 @@ namespace ProjektNr1_Palacz
                 return;
             }
             // sprawdzenie czy dodana kwota jest wystarczająca do zakupu produktów w wybranej walucie
-            else if (mpSumaDodanychSrodkow(mpIndexWaluty) < mpDoZaplaty[mpIndexWaluty]) 
+            else if (mpSumaDodanychSrodkow(mpIndexWaluty) < mpDoZaplaty[mpIndexWaluty])
             {
                 // jeśli nie, wyświetlany jest stosowny komunikat i funkcja jest przerywana
                 MessageBox.Show("Wrzucona kwota jest za mała.", "Za mało pieniędzy", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -940,7 +1002,7 @@ namespace ProjektNr1_Palacz
             string mpNazwaWaluty = "", mpNazwaZdawkowej = ""; // zmienne przechowujące nazwy wybranej waluty
             // zmienna określająca liczbę nominałów niezdawkowych w danej walucie
             // (potrzebne przy iterowaniu przez nominały, by wypisać odpowienią nazwę)
-            ushort mpLiczbaNiezdawkowych = 0; 
+            ushort mpLiczbaNiezdawkowych = 0;
             List<mpNominaly[]> mpPojemnikNominalow = new List<mpNominaly[]>(); // lista przechowujące tablice nominalów w każdej walucie
             // dodawanie pojemników do listy
             mpPojemnikNominalow.Add(mpPojemnikNominalowPLN);
@@ -964,7 +1026,7 @@ namespace ProjektNr1_Palacz
                     mpNazwaZdawkowej = "centów";
                     mpLiczbaNiezdawkowych = 7;
                     break;
-            } 
+            }
             // obliczenie i dodanie wartości reszty do komunikatu
             mpKomunikat += (mpReszta = mpSumaDodanychSrodkow(mpIndexWaluty) - mpDoZaplaty[mpIndexWaluty]) + mpNazwaWaluty + "\n";
             for (int mpI = 0; mpI <= mpLiczbaNiezdawkowych && mpReszta >= 1; mpI++) // iterowanie przez wszystkie nominały niezdawkowe dopuki reszta jest różna od 0
@@ -976,10 +1038,10 @@ namespace ProjektNr1_Palacz
                 if (mpIloscNominalowDoWydania != 0) // sprawdzenie czy mpIloscNominalowDoWydania jest różne od 0
                 {
                     // jeśli mpIloscNominalowDoWydania jest większa od zasobów automatu, do mpIloscNominalowDoWydania przypisywana jest liczność danego nominału
-                    if (mpIloscNominalowDoWydania > mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc) 
+                    if (mpIloscNominalowDoWydania > mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc)
                         mpIloscNominalowDoWydania = mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc;
                     // dodanie do komuniaktu ilości wydawanego nominału nominału
-                    mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc} {mpNazwaWaluty}\n"; 
+                    mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc} {mpNazwaWaluty}\n";
                     mpReszta -= mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc * mpIloscNominalowDoWydania; // odjęcie od reszty wydanych nominałów
                     mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc -= mpIloscNominalowDoWydania; // zmiejszenie ilości nominałów o wydawaną resztę
                 }
@@ -993,7 +1055,7 @@ namespace ProjektNr1_Palacz
                     mpIloscNominalowDoWydania = (ushort)(mpReszta / mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc);
                     if (mpIloscNominalowDoWydania != 0)
                     {
-                        if (mpIloscNominalowDoWydania > mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc) 
+                        if (mpIloscNominalowDoWydania > mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc)
                             mpIloscNominalowDoWydania = mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc;
                         mpKomunikat += $"{mpIloscNominalowDoWydania}x {mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc * 100} {mpNazwaZdawkowej}\n";
                         mpReszta -= mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc * mpIloscNominalowDoWydania;
@@ -1007,7 +1069,7 @@ namespace ProjektNr1_Palacz
             if (mpReszta > 0) // jeśli reszta pozostanie większa od zera, funkcja nie została wykonana poprawnie przez brak nominałów do wydania reszty
             {
                 MessageBox.Show("Nie można zrealizować opecji, gdyż automat nie posiada wystarczającej ilości sródków do wydania reszty." +
-                    "\nProszę wykorzystać inne nominały lub walutę, albo skorzystać z płatności kartą.", "Nie można wydać reszty", 
+                    "\nProszę wykorzystać inne nominały lub walutę, albo skorzystać z płatności kartą.", "Nie można wydać reszty",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -1017,7 +1079,7 @@ namespace ProjektNr1_Palacz
                 foreach (KeyValuePair<float, ushort> mpNominal in mpDodaneSrodki[mpIndexWaluty]) // iterowanie przez mpDodaneSrodki dla wybranej waluty
                     if (mpPojemnikNominalow[mpIndexWaluty][mpI].mpWartosc == mpNominal.Key) // jeśli zostanie znaleziony dodany nominał
                         // jego liczność w pojemniku nominałów jest zwiększana o ilość dodanych nominałów
-                        mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc += mpNominal.Value; 
+                        mpPojemnikNominalow[mpIndexWaluty][mpI].mpLicznosc += mpNominal.Value;
             // wyzerowanie zmiennych mpDoZaplaty i mpWrzuconePieniadze
             mpZwrotPieniedzy();
             mpOproznienieKoszyka();
@@ -1042,7 +1104,7 @@ namespace ProjektNr1_Palacz
             {
                 string mpWaluta = ""; // zmienna przechowująca oznaczenie wybranej waluty
                 // sprawdzenie która waluta została wybrana i przypisanie odpowiedniej wartości do mpWaluta
-                switch (mpIndexWaluty) 
+                switch (mpIndexWaluty)
                 {
                     case 0:
                         mpWaluta = "PLN";
